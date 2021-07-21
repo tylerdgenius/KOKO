@@ -1,14 +1,8 @@
 import { Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { i18n } from 'src/i18n';
-import DashboardBarChart from 'src/view/dashboard/DashboardBarChart';
-import DashboardDoughnutChart from 'src/view/dashboard/DashboardDoughnutChart';
-import DashboardHorizontalBarChart from 'src/view/dashboard/DashboardHorizontalBarChart';
-import DashboardLineChart from 'src/view/dashboard/DashboardLineChart';
-import DashboardMixChartOne from 'src/view/dashboard/DashboardMixChartOne';
-import DashboardMixChartTwo from 'src/view/dashboard/DashboardMixChartTwo';
-import DashboardPolarChart from 'src/view/dashboard/DashboardPolarChart';
-import DashboardRadarChart from 'src/view/dashboard/DashboardRadarChart';
+import TodaysFocus from 'src/view/dashboard/DashboardTodaysFocus';
+import NotificationList from 'src/view/dashboard/Notifications';
 
 const useStyles = makeStyles((theme) => ({
   chartWrapper: {
@@ -33,51 +27,25 @@ function DashboardPage(props) {
           padding: 0,
         }}
       >
-        <Grid spacing={2} container>
-          <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
+      <Grid spacing={2} container>
+         {/*  <Grid item xl={12} lg={12} md={6} sm={12} xs={12}>
             <div className={classes.chartWrapper}>
-              <DashboardDoughnutChart />
+                Here we will put a Greeting and a dismissable alert
             </div>
-          </Grid>
-          <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-            <div className={classes.chartWrapper}>
-              <DashboardMixChartTwo />
-            </div>
-          </Grid>
-          <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-            <div className={classes.chartWrapper}>
-              <DashboardBarChart />
-            </div>
+          </Grid> */}
+  
+          <Grid item xl={8} lg={8} md={8} sm={12} xs={12}>
+     
+              <TodaysFocus />
+ 
           </Grid>
 
-          <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
-            <div className={classes.chartWrapper}>
-              <DashboardMixChartOne />
-            </div>
+          <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+        
+                <NotificationList />
+        
           </Grid>
-
-          <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
-            <div className={classes.chartWrapper}>
-              <DashboardPolarChart />
-            </div>
-          </Grid>
-
-          <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-            <div className={classes.chartWrapper}>
-              <DashboardHorizontalBarChart />
-            </div>
-          </Grid>
-          <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-            <div className={classes.chartWrapper}>
-              <DashboardLineChart />
-            </div>
-          </Grid>
-          <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-            <div className={classes.chartWrapper}>
-              <DashboardRadarChart />
-            </div>
-          </Grid>
-        </Grid>
+  </Grid>
 
         <p
           style={{
@@ -87,7 +55,7 @@ function DashboardPage(props) {
             color: 'grey',
           }}
         >
-          {i18n('dashboard.message')}
+         {/*  {i18n('dashboard.message')} */}
         </p>
       </div>
     </>

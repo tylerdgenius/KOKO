@@ -20,19 +20,8 @@ export default [
     permissionRequired: null,
   },
 
-  config.isPlanEnabled && {
-    path: '/plan',
-    permissionRequired: permissions.planRead,
-    icon: <CreditCardOutlinedIcon />,
-    label: i18n('plan.menu'),
-  },
+ 
 
-  {
-    path: '/user',
-    label: i18n('user.menu'),
-    permissionRequired: permissions.userRead,
-    icon: <PersonIcon />,
-  },
 
   {
     path: '/audit-logs',
@@ -48,24 +37,13 @@ export default [
     permissionRequired: permissions.settingsEdit,
   },
 
-  {
-    path: '/customer',
-    permissionRequired: permissions.customerRead,
-    icon: <ChevronRightIcon />,
-    label: i18n('entities.customer.menu'),
-  },
 
-  {
-    path: '/product',
-    permissionRequired: permissions.productRead,
-    icon: <ChevronRightIcon />,
-    label: i18n('entities.product.menu'),
-  },
+/* 
 
   {
     path: '/order',
     permissionRequired: permissions.orderRead,
     icon: <ChevronRightIcon />,
     label: i18n('entities.order.menu'),
-  },
+  }, */
 ].filter(Boolean);

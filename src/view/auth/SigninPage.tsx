@@ -18,12 +18,13 @@ import {
   Box,
   Button,
   Tooltip,
+  CircularProgress,
 } from '@material-ui/core';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import SocialButtons from 'src/view/auth/styles/SocialButtons';
-import config from 'src/config';
+/* import SocialButtons from 'src/view/auth/styles/SocialButtons';
+import config from 'src/config'; */
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import Message from 'src/view/shared/message';
@@ -175,9 +176,10 @@ function SigninPage() {
               disabled={loading}
             >
               {i18n('auth.signin')}
+              {loading && <CircularProgress size={24} />}
             </Button>
 
-            <SocialButtons>
+         {/*    <SocialButtons>
               <Tooltip title="Facebook">
                 <a
                   href={`${config.backendUrl}/auth/social/facebook`}
@@ -200,7 +202,7 @@ function SigninPage() {
                 </a>
               </Tooltip>
             </SocialButtons>
-
+ */}
             <OtherActions>
               <MaterialLink
                 component={Link}
@@ -210,7 +212,6 @@ function SigninPage() {
               </MaterialLink>
             </OtherActions>
 
-            <I18nFlags style={{ marginTop: '24px' }} />
           </form>
         </FormProvider>
       </Content>

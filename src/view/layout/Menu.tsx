@@ -15,6 +15,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@material-ui/core';
+import GoOnline from 'src/view/layout/GoOnline';
 
 const drawerWidth = 200;
 
@@ -55,6 +56,10 @@ function Menu(props) {
   const permissionChecker = new PermissionChecker(
     currentTenant,
     currentUser,
+  );
+
+  const IsOnline = useSelector(
+    layoutSelectors.selectOnline,
   );
 
   useLayoutEffect(() => {
@@ -141,14 +146,12 @@ function Menu(props) {
       }}
     >
       <div className={classes.toolbar}></div>
+      <GoOnline IsOnline />
       <List>
         {menus
           .filter((menu) => match(menu.permissionRequired))
           .map((menu) => (
-            <CustomRouterLink
-              key={menu.path}
-              to={menu.path}
-            >
+            <CustomRouterLink key={menu.path} to={menu.path}>
               <ListItem button>
                 <ListItemIcon
                   className={clsx({
@@ -179,9 +182,7 @@ function Menu(props) {
           )
           .map((menu) => (
             <ListItem key={menu.path} className={classes.listItemDisabled}>
-              <ListItemIcon
-                className={classes.listItemIcon}
-              >
+              <ListItemIcon className={classes.listItemIcon}>
                 {menu.icon}
               </ListItemIcon>
               <ListItemText>{menu.label}</ListItemText>

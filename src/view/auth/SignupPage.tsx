@@ -100,9 +100,33 @@ function SignupPage() {
               externalErrorMessage={externalErrorMessage}
             />
 
+            
+            <InputFormItem
+              name="fullname"
+              label='First Name'
+              autoComplete="text"
+              autoFocus
+              externalErrorMessage={externalErrorMessage}
+            />
+
+            <InputFormItem
+              name="lastname"
+              label='Last Name'
+              autoComplete="text"
+              autoFocus
+              externalErrorMessage={externalErrorMessage}
+            />
+
             <InputFormItem
               name="password"
               label={i18n('user.fields.password')}
+              autoComplete="password"
+              type="password"
+            />
+
+           <InputFormItem
+              name="confirmpassword"
+              label='Confirm Password'
               autoComplete="password"
               type="password"
             />

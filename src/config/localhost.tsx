@@ -1,8 +1,8 @@
-const backendUrl = `http://localhost:8080/api`;
+const backendUrl = `http://192.168.0.15:8080/api`;
 
 // SwaggerUI Documentation URL
 // Leave black if documentation should be hidden
-const apiDocumentationUrl = `http://localhost:8080/documentation`;
+const apiDocumentationUrl = `https://kokofp-319805.wn.r.appspot.com/documentation`;
 
 /**
  * Frontend Url.
@@ -18,7 +18,7 @@ const frontendUrl = {
  * multi-with-subdomain: Same as multi, but enable access to the tenant via subdomain.
  * single: One tenant, the first user to register will be the admin.
  */
-const tenantMode = 'multi';
+const tenantMode = 'single';
 
 /**
  * Plan payments configuration.

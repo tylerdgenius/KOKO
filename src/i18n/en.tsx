@@ -26,7 +26,7 @@ const en = {
   },
 
   app: {
-    title: 'Application',
+    title: 'KokoFP Dev',
   },
 
   api: {
@@ -460,7 +460,7 @@ const en = {
   },
   dashboard: {
     menu: 'Dashboard',
-    message: `This page uses fake data for demonstration purposes only. You can edit it at frontend/view/dashboard/DashboardPage.ts.`,
+    message: ` Dashboard `,
     charts: {
       day: 'Day',
       red: 'Red',

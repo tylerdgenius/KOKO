@@ -17,8 +17,14 @@ const selectLanguage = createSelector(
   (layout) => layout.language,
 );
 
+const selectOnline = createSelector(
+  [selectRaw],
+  (layout) => Boolean(layout.IsOnline),
+);
+
 const layoutSelectors = {
   selectRaw,
+  selectOnline,
   selectMenuVisible,
   selectLoading,
   selectLanguage,

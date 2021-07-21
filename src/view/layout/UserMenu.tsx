@@ -13,6 +13,7 @@ import authActions from 'src/modules/auth/authActions';
 import { i18n } from 'src/i18n';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import MoneyRoundedIcon from '@material-ui/icons/MoneyRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LockIcon from '@material-ui/icons/Lock';
 import config from 'src/config';
@@ -78,6 +79,10 @@ function UserMenu(props) {
     getHistory().push('/profile');
   };
 
+  const doNavigateToWallet = () => {
+    getHistory().push('/profile');
+  };
+
   const doNavigateToPasswordChange = () => {
     getHistory().push('/password-change');
   };
@@ -111,6 +116,12 @@ function UserMenu(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+         <MenuItem onClick={doNavigateToWallet}>
+          <MoneyRoundedIcon />
+          <span className={classes.optionText}>
+              Wallet
+          </span>
+        </MenuItem>
         <MenuItem onClick={doNavigateToProfile}>
           <PersonOutlineIcon />
           <span className={classes.optionText}>
@@ -133,19 +144,7 @@ function UserMenu(props) {
             </span>
           </MenuItem>
         )}
-        {config.apiDocumentationUrl && (
-          <MenuItem
-            component="a"
-            href={config.apiDocumentationUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <CodeIcon />
-            <span className={classes.optionText}>
-              {i18n('api.menu')}
-            </span>
-          </MenuItem>
-        )}
+ 
         <MenuItem onClick={doSignout}>
           <ExitToAppIcon />
           <span className={classes.optionText}>

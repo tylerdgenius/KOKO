@@ -12,6 +12,27 @@ const privateRoutes = [
   },
 
   {
+    path: '/consultations',
+    loader: () => import('src/view/consultations/ConsultationPage'),
+    permissionRequired: null,
+    exact: true,
+  },
+
+  {
+    path: '/consultations/:id',
+    loader: () => import('src/view/consultations/AvailableConsultantsPage'),
+    permissionRequired: null,
+    exact: true,
+  },
+
+  {
+    path: '/forums',
+    loader: () => import('src/view/forums/ForumPage'),
+    permissionRequired: null,
+    exact: true,
+  },
+
+  {
     path: '/profile',
     loader: () => import('src/view/auth/ProfileFormPage'),
     permissionRequired: null,
@@ -102,119 +123,6 @@ const privateRoutes = [
     permissionRequired: permissions.settingsEdit,
   },
   
-  {
-    path: '/customer',
-    loader: () =>
-      import('src/view/customer/list/CustomerListPage'),
-    permissionRequired: permissions.customerRead,
-    exact: true,
-  },
-  {
-    path: '/customer/new',
-    loader: () =>
-      import('src/view/customer/form/CustomerFormPage'),
-    permissionRequired: permissions.customerCreate,
-    exact: true,
-  },
-  {
-    path: '/customer/importer',
-    loader: () =>
-      import(
-        'src/view/customer/importer/CustomerImporterPage'
-      ),
-    permissionRequired: permissions.customerImport,
-    exact: true,
-  },
-  {
-    path: '/customer/:id/edit',
-    loader: () =>
-      import('src/view/customer/form/CustomerFormPage'),
-    permissionRequired: permissions.customerEdit,
-    exact: true,
-  },
-  {
-    path: '/customer/:id',
-    loader: () =>
-      import('src/view/customer/view/CustomerViewPage'),
-    permissionRequired: permissions.customerRead,
-    exact: true,
-  },
-
-  {
-    path: '/product',
-    loader: () =>
-      import('src/view/product/list/ProductListPage'),
-    permissionRequired: permissions.productRead,
-    exact: true,
-  },
-  {
-    path: '/product/new',
-    loader: () =>
-      import('src/view/product/form/ProductFormPage'),
-    permissionRequired: permissions.productCreate,
-    exact: true,
-  },
-  {
-    path: '/product/importer',
-    loader: () =>
-      import(
-        'src/view/product/importer/ProductImporterPage'
-      ),
-    permissionRequired: permissions.productImport,
-    exact: true,
-  },
-  {
-    path: '/product/:id/edit',
-    loader: () =>
-      import('src/view/product/form/ProductFormPage'),
-    permissionRequired: permissions.productEdit,
-    exact: true,
-  },
-  {
-    path: '/product/:id',
-    loader: () =>
-      import('src/view/product/view/ProductViewPage'),
-    permissionRequired: permissions.productRead,
-    exact: true,
-  },
-
-  {
-    path: '/order',
-    loader: () =>
-      import('src/view/order/list/OrderListPage'),
-    permissionRequired: permissions.orderRead,
-    exact: true,
-  },
-  {
-    path: '/order/new',
-    loader: () =>
-      import('src/view/order/form/OrderFormPage'),
-    permissionRequired: permissions.orderCreate,
-    exact: true,
-  },
-  {
-    path: '/order/importer',
-    loader: () =>
-      import(
-        'src/view/order/importer/OrderImporterPage'
-      ),
-    permissionRequired: permissions.orderImport,
-    exact: true,
-  },
-  {
-    path: '/order/:id/edit',
-    loader: () =>
-      import('src/view/order/form/OrderFormPage'),
-    permissionRequired: permissions.orderEdit,
-    exact: true,
-  },
-  {
-    path: '/order/:id',
-    loader: () =>
-      import('src/view/order/view/OrderViewPage'),
-    permissionRequired: permissions.orderRead,
-    exact: true,
-  },
 ].filter(Boolean);
 
 const publicRoutes = [

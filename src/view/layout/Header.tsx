@@ -54,7 +54,7 @@ function Header(props) {
           color="inherit"
         >
           <MenuIcon />
-        </IconButton>
+        </IconButton> 
 
         <Link className={classes.logo} to="/">
           {logoUrl ? (
@@ -71,7 +71,7 @@ function Header(props) {
 
         <div className={classes.grow} />
 
-        <I18nSelect />
+        {/* <I18nSelect /> */}
 
         <UserMenu />
       </Toolbar>

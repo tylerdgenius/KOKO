@@ -6,9 +6,6 @@ import plan from 'src/modules/plan/planReducers';
 import user from 'src/modules/user/userReducers';
 import auditLog from 'src/modules/auditLog/auditLogReducers';
 import settings from 'src/modules/settings/settingsReducers';
-import customer from 'src/modules/customer/customerReducers';
-import product from 'src/modules/product/productReducers';
-import order from 'src/modules/order/orderReducers';
 import { combineReducers } from 'redux';
 
 export default (history) =>
@@ -21,7 +18,5 @@ export default (history) =>
     user,
     auditLog,
     settings,
-    customer,
-    product,
-    order,
+
   });
