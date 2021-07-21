@@ -1,16 +1,16 @@
 // Place the URL here with the /api suffix.
 // Ex.:`https://domain.com/api`;
-const backendUrl = `https://kokofp-319805.wn.r.appspot.com/api`;
+const backendUrl = `/api`;
 
 // SwaggerUI Documentation URL
 // Leave black if documentation should be hidden
-const apiDocumentationUrl = `https://kokofp-319805.wn.r.appspot.com/documentation`;
+const apiDocumentationUrl = `/documentation`;
 
 /**
  * Frontend URL.
  */
 const frontendUrl = {
-  host: ' kokofpnew.web.apps',
+  host: 'domain.com',
   protocol: 'https',
 };
 
@@ -20,7 +20,7 @@ const frontendUrl = {
  * multi-with-subdomain: Same as multi, but enable access to the tenant via subdomain.
  * single: One tenant, the first user to register will be the admin.
  */
-const tenantMode = 'single';
+const tenantMode = 'multi';
 
 /**
  * Plan payments configuration.
