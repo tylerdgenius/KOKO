@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Alerts() {
+export default function OldAlerts() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 

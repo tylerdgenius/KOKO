@@ -84,7 +84,6 @@ export default function BadgeAvatars(props) {
         }}
         badgeContent={<SmallAvatar alt={props.name} src={props.image} />}
       >
-        <Avatar alt={props.name} src={props.image} />
       </Badge>
     </div>
   );

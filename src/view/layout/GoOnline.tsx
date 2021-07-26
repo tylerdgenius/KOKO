@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GoOnline(props) {
 
-  console.log(props);
+
   const classes = useStyles();
 
   const [IsOnline, setIsOnline] = useState();

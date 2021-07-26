@@ -1,9 +1,8 @@
-import { Grid, makeStyles } from '@material-ui/core';
-import React from 'react';
-import { i18n } from 'src/i18n';
-import TodaysFocus from 'src/view/dashboard/DashboardTodaysFocus';
-import NotificationList from 'src/view/dashboard/Notifications';
-import GroupsOnline from '../online/groupsOnline';
+import { CardContent, Grid, makeStyles } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import ConsultationHistory from './component/ConsultationHistory';
+
 
 const useStyles = makeStyles((theme) => ({
   chartWrapper: {
@@ -20,10 +19,8 @@ const useStyles = makeStyles((theme) => ({
   DashboardCard: {minHeight: '500px'}
 }));
 
-function DashboardPage(props) {
+function EMRPage(props) {
   const classes = useStyles();
-
-  
 
   return (
     <>
@@ -33,19 +30,22 @@ function DashboardPage(props) {
         }}
       >
       <Grid spacing={2} container>
-         {/*  <Grid item xl={12} lg={12} md={6} sm={12} xs={12}>
-            <div className={classes.chartWrapper}>
-                Here we will put a Greeting and a dismissable alert
-            </div>
-          </Grid> */}
-  
-          <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
-     
-              <TodaysFocus />
+    
+      <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+        <Card  style={{
+          minHeight: "500px",
+        }}>
+            <CardHeader title="My Consultations">
+      </CardHeader>
+            <CardContent>
+                 <ConsultationHistory />
+            </CardContent>
+        </Card>
+             
  
           </Grid>
 
-          <Grid item xl={6} lg={3} md={3} sm={12} xs={12}   >
+     {/*      <Grid item xl={6} lg={3} md={3} sm={12} xs={12}   >
         
                 <GroupsOnline subtitle={"Appointments"} />
         
@@ -54,7 +54,8 @@ function DashboardPage(props) {
                 
                 <GroupsOnline subtitle={"Notifications"}/>
 
-          </Grid>
+          </Grid> */}
+      
   </Grid>
 
         <p
@@ -65,11 +66,11 @@ function DashboardPage(props) {
             color: 'grey',
           }}
         >
-         {/*  {i18n('dashboard.message')} */}
+   
         </p>
       </div>
     </>
   );
 }
 
-export default DashboardPage;
+export default EMRPage;

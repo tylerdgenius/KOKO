@@ -69,7 +69,10 @@ function ConsultationPage(props) {
                         <Grid container alignItems="center" spacing={2}>
                         {hospitals.map((row) => (
                                     <Grid item  spacing={2} sm={6} md={4} xs={12} lg={3}>
-                                        <Link key='/consultations/child'
+                                        <Link  style={{
+                                                textDecoration: 'none',
+                                                color: 'inherit',
+                                                }} key='/consultations/child'
                                                      to='/consultations/child'>
                                             <Card>
                                                 <CardHeader

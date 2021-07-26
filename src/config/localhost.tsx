@@ -1,4 +1,4 @@
-const backendUrl = `http://192.168.0.15:8080/api`;
+const backendUrl = `https://kokofp-319805.wn.r.appspot.com/api`;
 
 // SwaggerUI Documentation URL
 // Leave black if documentation should be hidden

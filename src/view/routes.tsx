@@ -12,6 +12,23 @@ const privateRoutes = [
   },
 
   {
+    path: '/EMR',
+    loader: () =>
+      import('src/view/EMR/EMRPage'),
+    permissionRequired: null,
+    exact: true,
+  },
+
+  {
+    path: '/EMR/:id',
+    loader: () =>
+      import('src/view/EMR/EMRDetails'),
+    permissionRequired: null,
+    exact: true,
+  },
+
+  
+  {
     path: '/consultations',
     loader: () => import('src/view/consultations/ConsultationPage'),
     permissionRequired: null,

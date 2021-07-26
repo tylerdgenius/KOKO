@@ -6,6 +6,7 @@ import { useRouteMatch } from 'react-router-dom';
 import Alerts from 'src/view/layout/Alerts';
 import authSelectors from 'src/modules/auth/authSelectors';
 import { useSelector } from 'react-redux';
+import Welcome from './MainAlert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,8 +44,8 @@ function Layout(props) {
       <div className={classes.content}>
         <div className={classes.toolbar}></div>
         <div>
-        <h2>Welcome {userText}, </h2>
-        <Alerts />
+        
+        <Welcome UserName={userText} />
         </div>
  
         {props.children}

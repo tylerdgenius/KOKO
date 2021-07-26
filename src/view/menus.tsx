@@ -20,7 +20,14 @@ export default [
     permissionRequired: null,
   },
 
- 
+  {
+    path: '/EMR',
+    exact: true,
+    icon: <DashboardIcon />,
+    label: "My EMR",
+    permissionRequired: null,
+  },
+
 
 
   {
