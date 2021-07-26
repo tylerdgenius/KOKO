@@ -44,6 +44,12 @@ export default [
     permissionRequired: permissions.settingsEdit,
   },
 
+  {
+    path: '/user',
+    icon: <SettingsIcon />,
+    label: 'Users',
+    permissionRequired: permissions.userRead,
+  },
 
 /* 
 

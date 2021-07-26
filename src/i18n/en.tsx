@@ -275,6 +275,10 @@ const en = {
       label: 'Custom Role',
       description: 'Custom role access',
     },
+    user: {
+      label: 'User Role',
+      description: 'User role access',
+    },
   },
 
   user: {

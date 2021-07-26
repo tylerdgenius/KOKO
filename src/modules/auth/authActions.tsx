@@ -115,6 +115,7 @@ const authActions = {
         },
       });
     } catch (error) {
+      console.log(error);
       await service.signout();
 
       if (Errors.errorCode(error) !== 400) {

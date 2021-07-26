@@ -16,6 +16,8 @@ import InputFormItem from 'src/view/shared/form/items/InputFormItem';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Alert from '@material-ui/lab/Alert';
+import { AlertTitle } from '@material-ui/lab';
 
 const schema = yup.object().shape({
   email: yupFormSchemas.string(i18n('user.fields.email'), {
@@ -91,13 +93,26 @@ function SignupPage() {
         </Logo>
 
         <FormProvider {...form}>
+     {   externalErrorMessage ? 
+            (
+                <Alert severity="error">
+                <AlertTitle>
+                {externalErrorMessage}
+                </AlertTitle>
+              </Alert>
+            ) : ''
+       }
+          
+          
+          
+       
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <InputFormItem
               name="email"
               label={i18n('user.fields.email')}
               autoComplete="email"
               autoFocus
-              externalErrorMessage={externalErrorMessage}
+            
             />
 
             
@@ -106,7 +121,7 @@ function SignupPage() {
               label='First Name'
               autoComplete="text"
               autoFocus
-              externalErrorMessage={externalErrorMessage}
+           
             />
 
             <InputFormItem
@@ -114,7 +129,7 @@ function SignupPage() {
               label='Last Name'
               autoComplete="text"
               autoFocus
-              externalErrorMessage={externalErrorMessage}
+             
             />
 
             <InputFormItem
