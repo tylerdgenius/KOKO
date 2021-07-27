@@ -55,12 +55,6 @@ function Welcome(props) {
     const classes = useStyles();
     return (
         <Card className={classes.root}>
-            <Box display={{  lg: "none" }}>
-            <Typography variant="h5" component="h2" gutterBottom>
-                        Welcome {props.UserName}
-                    </Typography>
-
-            </Box>
             <Box display="flex">
                 <Box flex="1"  display={{ xs: "none", lg: "block" }}>
                     <Typography variant="h5" component="h2" gutterBottom>
