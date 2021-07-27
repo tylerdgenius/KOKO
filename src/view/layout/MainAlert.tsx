@@ -5,7 +5,7 @@ import CodeIcon from '@material-ui/icons/Code';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import WalletIcon from '@material-ui/icons/PersonAdd';
-
+import { Link } from 'react-router-dom';
 import publishArticleImage from './styles/welcome_illustration.svg';
 import CardWithIcon from '../components/CardWithIcon';
 
@@ -56,12 +56,16 @@ function Welcome(props) {
                         <Button
                             variant="contained"
                             startIcon={<HomeIcon />}
+                            component={Link}
+                            to="/patient/new"
                         >
                             Complete Profile
                         </Button>
                         <Button
                             variant="contained"
                             startIcon={<CodeIcon />}
+                            component={Link}
+                            to="/personalvitals"
                         >
                             Update Vitals
                         </Button>

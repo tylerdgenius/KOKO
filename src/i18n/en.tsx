@@ -152,6 +152,73 @@ const en = {
         },
       },
 
+      personalvitals: {
+        name: 'personalvitals',
+        label: 'Personalvitals',
+        menu: 'Personalvitals',
+        exporterFileName: 'personalvitals_export',
+        list: {
+          menu: 'Personalvitals',
+          title: 'Personalvitals',
+        },
+        create: {
+          success: 'Personalvitals successfully saved',
+        },
+        update: {
+          success: 'Personalvitals successfully saved',
+        },
+        destroy: {
+          success: 'Personalvitals successfully deleted',
+        },
+        destroyAll: {
+          success: 'Personalvitals(s) successfully deleted',
+        },
+        edit: {
+          title: 'Edit Personalvitals',
+        },
+        fields: {
+            id: 'Id',
+            'name': 'Name',
+            'birthdateRange': 'Birthdate',
+            'birthdate': 'Birthdate',
+            'gender': 'Gender',
+            'temperature': 'Temprature(°C)',
+            'weight': 'Weight(kg)',
+            'height': 'Height(m)',
+            'bloodpressure': 'Bloodpressure',
+            'date': 'Date',
+            'bmi': 'BMI',
+            'pulse': 'Pulse(bpm)',
+            createdAt: 'Created at',
+            updatedAt: 'Updated at',
+            createdAtRange: 'Created at',
+          },
+          enumerators: {
+            'gender': {
+              'male': 'Male',
+              'female': 'Female',
+            },
+          },
+        placeholders: {
+    
+        },
+        hints: {
+    
+        },
+        new: {
+          title: 'New Personalvitals',
+        },
+        view: {
+          title: 'View Personalvitals',
+        },
+        importer: {
+          title: 'Import Personalvitals',
+          fileName: 'personalvitals_import_template',
+          hint:
+            'Files/Images columns must be the URLs of the files separated by space.',
+        },
+      },
+
     order: {
         name: 'order',
         label: 'Orders',
@@ -209,6 +276,451 @@ const en = {
             'Files/Images columns must be the URLs of the files separated by space.',
         },
       },
+        //Allergies
+    allergies: {
+      name: "allergies",
+      label: "Allergies",
+      menu: "Allergies",
+      exporterFileName: "allergies_export",
+      list: {
+        menu: "Allergies",
+        title: "Allergies",
+      },
+      create: {
+        success: "Allergies successfully saved",
+      },
+      update: {
+        success: "Allergies successfully saved",
+      },
+      destroy: {
+        success: "Allergies successfully deleted",
+      },
+      destroyAll: {
+        success: "Allergies successfully deleted",
+      },
+      edit: {
+        title: "Edit Allergies",
+      },
+      fields: {
+        name: "Name of Allergies",
+        created_date: "Created Date",
+        created_by: "Created By",
+        description: "Description",
+        status: "Status",
+        id: "ID",
+        is_deleted: "Deleted",
+        modified_date: "Date Modified",
+        modified_by: "Modified By",
+      },
+      enumerators: {
+        status: {
+          false: "false",
+          true: "true",
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: "New Allergies",
+      },
+      view: {
+        title: "View Allergies",
+      },
+      importer: {
+        title: "Import Allergies",
+        fileName: "allergies_import_template",
+        hint: "Files/Images columns must be the URLs of the files separated by space.",
+      },
+    },
+    //Drugs
+
+    drugs: {
+      name: "drugs",
+      label: "Drugs",
+      menu: "Drugs",
+      exporterFileName: "drugs_export",
+      list: {
+        menu: "Drugs",
+        title: "Drugs",
+      },
+      create: {
+        success: "Drugs successfully saved",
+      },
+      update: {
+        success: "Drugs successfully saved",
+      },
+      destroy: {
+        success: "Drugs successfully deleted",
+      },
+      destroyAll: {
+        success: "Drug(s) successfully deleted",
+      },
+      edit: {
+        title: "Edit Drugs",
+      },
+      fields: {
+        drugcode: "Drug Code",
+        created_date: "Created Date",
+        created_by: "Created By",
+        drugkind: "Drug Kind",
+        status: "Status",
+        id: "ID",
+        drugcategory: "Drug Category",
+        description: "Description",
+        modified_date: "Date Modified",
+        modified_by: "Modified By",
+      },
+      enumerators: {
+        status: {
+          false: "false",
+          true: "true",
+        },
+        drugcategory: {
+          Malaria: "Malaria",
+          Typhoid: "Typhoid",
+        },
+        drugkind: {
+          Cream: "Cream",
+          Syrup: "Syrup",
+          Powder: "Powder",
+          Tablet: "Tablet",
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: "New Drugs",
+      },
+      view: {
+        title: "View Drugs",
+      },
+      importer: {
+        title: "Import Drugs",
+        fileName: "drugs_import_template",
+        hint: "Files/Images columns must be the URLs of the files separated by space.",
+      },
+    },
+    //Medical Test
+    medicaltest: {
+      name: "medicaltest",
+      label: "Medical Tests",
+      menu: "Medicaltest",
+      exporterFileName: "medicaltest_export",
+      list: {
+        menu: "Medicaltest",
+        title: "Medicaltest",
+      },
+      create: {
+        success: "Medical Test successfully saved",
+      },
+      update: {
+        success: "Medical Test successfully saved",
+      },
+      destroy: {
+        success: "Medical Test successfully deleted",
+      },
+      destroyAll: {
+        success: "Medical Test(s) successfully deleted",
+      },
+      edit: {
+        title: "Edit Medical Test",
+      },
+      fields: {
+        medicaltestkind: "Medical Test Kind",
+        created_date: "Created Date",
+        created_by: "Created By",
+        medicaltestcategory: "Medical Category",
+        status: "Status",
+        id: "ID",
+        medicaltestcode: "Medical Test Code",
+        description: "Description",
+        modified_date: "Date Modified",
+        modified_by: "Modified By",
+      },
+      enumerators: {
+        status: {
+          false: "false",
+          true: "true",
+        },
+        medicaltestcategory: {
+          Pregnancy: "Pregnancy",
+          Typhoid: "Typhoid",
+        },
+        medicaltestkind: {
+          Pregnancy: "Pregnancy",
+          Typhoid: "Typhoid",
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: "New Medical Test",
+      },
+      view: {
+        title: "View Medical Test",
+      },
+      importer: {
+        title: "Import Medical Tests",
+        fileName: "medicaltest_import_template",
+        hint: "Files/Images columns must be the URLs of the files separated by space.",
+      },
+    },
+     //organization Setup
+     organizationsetup: {
+      name: "organizationsetup",
+      label: "Organization Setup",
+      menu: "Organizationsetup",
+      exporterFileName: "organizationsetup_export",
+      list: {
+        menu: "Organizationsetup",
+        title: "Organization setup",
+      },
+      create: {
+        success: "Organization Setup successfully saved",
+      },
+      update: {
+        success: "Organization Setup successfully saved",
+      },
+      destroy: {
+        success: "Organization Setup successfully deleted",
+      },
+      destroyAll: {
+        success: "Organization Setup(s) successfully deleted",
+      },
+      edit: {
+        title: "Edit Organization Setup",
+      },
+      fields: {
+        email: "Email",
+        created_date: "Created Date",
+        created_by: "Created By",
+        name: "Name",
+        status: "Status",
+        id: "ID",
+        shortcode: "Short Code",
+        domain: "Domain",
+        dateofestablishment: "Date of Establishment",
+        description: "Description",
+        phoneno: "Phone Number",
+        address1: "Main Address",
+        address2: "Secondary Address",
+        country_code: "Country code",
+        state_code: "State code",
+        lga_code: "LGA code",
+        Regno: "Reg No",
+        organisation_type: "Organization Type",
+        logo: "Logo",
+        is_deleted: "Deleted",
+        modified_date: "Date Modified",
+        modified_by: "Modified By",
+      },
+      enumerators: {
+        status: {
+          false: "false",
+          true: "true",
+        },
+        organisation_type: {
+          Provider: "Provider",
+          Laboratory: "Laboratory",
+          Pharmacy: "Pharmacy",
+          Radiology: "Radiology",
+        },
+        country_code: {
+          Nigeria: "Nigeria",
+          Canada: "Canada",
+        },
+        state_code: {
+          Lagos: "Lagos",
+          Ontario: "Ontario",
+        },
+        lga_code: {
+          Ikeja: "Ikeja",
+          Surulere: "Surulere",
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: "New Organization Setup",
+      },
+      view: {
+        title: "View Organization setup",
+      },
+      importer: {
+        title: "Import Organization Setup",
+        fileName: "organizationsetup_import_template",
+        hint: "Files/Images columns must be the URLs of the files separated by space.",
+      },
+    },
+    //branch
+    branch: {
+      name: "branch",
+      label: "Branch",
+      menu: "Branch",
+      exporterFileName: "branch_export",
+      list: {
+        menu: "Branch",
+        title: "Branch",
+      },
+      create: {
+        success: "Branch successfully saved",
+      },
+      update: {
+        success: "Branch successfully saved",
+      },
+      destroy: {
+        success: "Branch successfully deleted",
+      },
+      destroyAll: {
+        success: "Branch successfully deleted",
+      },
+      edit: {
+        title: "Edit Branch",
+      },
+      fields: {
+        created_date: "Created Date",
+        created_by: "Created By",
+        description: "Description",
+        organizationid: "Organization ID",
+        branchcode: "Branch Code",
+        branchkind: "Branch Kind",
+        branchcategory: "Branch Category",
+        status: "Status",
+        id: "ID",
+        is_deleted: "Deleted",
+        modified_date: "Date Modified",
+        modified_by: "Modified By",
+      },
+      enumerators: {
+        status: {
+          open: "open",
+          close: "close",
+        },
+        branchcategory:{
+          Headquater: "Headquater",
+          Branch:"Branch",
+        }
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: "New Branch",
+      },
+      view: {
+        title: "View Branch",
+      },
+      importer: {
+        title: "Import Branch",
+        fileName: "branch_import_template",
+        hint: "Files/Images columns must be the URLs of the files separated by space.",
+      },
+    },
+
+    //patient
+    patient: {
+      name: 'patient',
+      label: 'patients',
+      menu: 'patients',
+      exporterFileName: 'patient_export',
+      list: {
+        menu: 'patients',
+        title: 'patients',
+      },
+      create: {
+        success: 'patient successfully saved',
+      },
+      update: {
+        success: 'patient successfully saved',
+      },
+      destroy: {
+        success: 'patient successfully deleted',
+      },
+      destroyAll: {
+        success: 'patient(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit patient',
+      },
+      fields: {
+        id: 'Id',
+        'name': 'Name',
+        'title': 'Title',
+        'lastname': 'Lastname',
+        'firstname': 'Firstname',
+        'middlename': 'Middlename',
+        'email': 'Email',
+        'phonenumber': 'Phonenumber',
+        'address': 'Address',
+        'stateoforigin': 'Stateoforigin',
+        'allergies': 'Allergies',
+        'bloodgroup': 'Bloodgroup',
+        'genotype': 'Genotype',
+        'relative': 'Relative',
+        'nok': 'Nok',
+        'noknumber': 'Noknumber',
+        'birthdateRange': 'Birthdate',
+        'birthdate': 'Birthdate',
+        'gender': 'Gender',
+        'donor': 'Do you want to be a donor',
+        'cityofresidence': 'Cityofresidence',
+        'stateofresidence': 'Stateofresidence',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        'gender': {
+          'male': 'Male',
+          'female': 'Female',
+        },
+        'title': {
+          'Mr': 'Mr',
+          'Mrs': 'Mrs',
+          'Miss': 'Miss',
+        },
+        'bloodgroup': {
+          'A+': 'A+',
+          'B+': 'B+',
+          'AB+': 'AB+',
+          'O+': 'O+',
+          'A-': 'A-',
+          'B-': 'B-',
+          'AB-': 'AB-',
+          'O-': 'O-',
+        },
+        'genotype': {
+          'AA': 'AA',
+          'AS': 'AS',
+          'AC': 'AC',
+          'SS': 'SS',
+          'SC': 'SC',
+          'CC': 'CC',
+        },
+        'donor': {
+          'yes': 'yes',
+          'no': 'no',
+        },
+      },
+      placeholders: {
+  
+      },
+      hints: {
+  
+      },
+      new: {
+        title: 'New patient',
+      },
+      view: {
+        title: 'View patient',
+      },
+      importer: {
+        title: 'Import patients',
+        fileName: 'patient_import_template',
+        hint:
+          'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
   },
 
   auth: {

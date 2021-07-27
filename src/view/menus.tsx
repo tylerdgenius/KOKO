@@ -28,6 +28,43 @@ export default [
     permissionRequired: null,
   },
 
+  {
+    path: '/allergies',
+    exact: true,
+    icon: <HistoryIcon />,
+    label: "Allergies Report",
+    permissionRequired: null,
+  },
+
+  {
+    path: '/drugs',
+    exact: true,
+    icon: <DashboardIcon />,
+    label: "Drugs",
+    permissionRequired: null,
+  },
+  {
+    path: '/medical',
+    exact: true,
+    icon: <PersonIcon />,
+    label: "Medical Test",
+    permissionRequired: null,
+  },
+  {
+    path: '/branch',
+    exact: true,
+    icon: <SettingsIcon />,
+    label: "branch",
+    permissionRequired: null,
+  },
+  {
+    path: '/organization',
+    exact: true,
+    icon: <DashboardIcon />,
+    label: "Organization",
+    permissionRequired: null,
+  },
+
 
 
   {

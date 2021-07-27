@@ -139,6 +139,251 @@ const privateRoutes = [
       import('src/view/settings/SettingsFormPage'),
     permissionRequired: permissions.settingsEdit,
   },
+  //Allergies
+  {
+    path: "/allergies",
+    loader: () => import("src/view/allergies/list/AllergiesListPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/allergies/new",
+    loader: () => import("src/view/allergies/form/AllergiesFormPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/allergies/importer",
+    loader: () => import("src/view/allergies/importer/AllergiesImporterPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/allergies/:id/edit",
+    loader: () => import("src/view/allergies/form/AllergiesFormPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/allergies/:id",
+    loader: () => import("src/view/allergies/view/AllergiesViewPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  //Drugs
+
+  {
+    path: "/drugs",
+    loader: () => import("src/view/drugs/list/DrugsListPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/drugs/new",
+    loader: () => import("src/view/drugs/form/DrugsFormPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/drugs/importer",
+    loader: () => import("src/view/drugs/importer/DrugsImporterPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/drugs/:id/edit",
+    loader: () => import("src/view/drugs/form/DrugsFormPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/drugs/:id",
+    loader: () => import("src/view/drugs/view/DrugsViewPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+   //medical Test
+
+   {
+    path: "/medical",
+    loader: () => import("src/view/medicaltest/list/MedicaltestListPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/medicaltest/new",
+    loader: () => import("src/view/medicaltest/form/MedicaltestFormPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/medicaltest/importer",
+    loader: () =>
+      import("src/view/medicaltest/importer/MedicaltestImporterPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/medicaltest/:id/edit",
+    loader: () => import("src/view/medicaltest/form/MedicaltestFormPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/medicaltest/:id",
+    loader: () => import("src/view/medicaltest/view/MedicaltestViewPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+
+    //Oranization Setup
+    {
+      path: "/organization",
+      loader: () =>
+        import("src/view/organizationsetup/list/OrganizationsetupListPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: "/organizationsetup/new",
+      loader: () =>
+        import("src/view/organizationsetup/form/OrganizationsetupFormPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: "/organizationsetup/importer",
+      loader: () =>
+        import(
+          "src/view/organizationsetup/importer/OrganizationsetupImporterPage"
+        ),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: "/organizationsetup/:id/edit",
+      loader: () =>
+        import("src/view/organizationsetup/form/OrganizationsetupFormPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: "/organizationsetup/:id",
+      loader: () =>
+        import("src/view/organizationsetup/view/OrganizationsetupViewPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+    //branch
+    {
+      path: "/branch",
+      loader: () => import("src/view/branch/list/BranchListPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: "/branch/new",
+      loader: () => import("src/view/branch/form/BranchFormPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: "/branch/importer",
+      loader: () =>
+        import("src/view/branch/importer/BranchImporterPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: "/branch/:id/edit",
+      loader: () => import("src/view/branch/form/BranchFormPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: "/branch/:id",
+      loader: () => import("src/view/branch/view/BranchViewPage"),
+      permissionRequired: null,
+      exact: true,
+    },
+// Patient route
+    {
+      path: '/patient',
+      loader: () =>
+        import('src/view/patient/list/PatientListPage'),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: '/patient/new',
+      loader: () =>
+        import('src/view/patient/form/PatientFormPage'),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: '/patient/importer',
+      loader: () =>
+        import(
+          'src/view/patient/importer/PatientImporterPage'
+        ),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: '/patient/:id/edit',
+      loader: () =>
+        import('src/view/patient/form/PatientFormPage'),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: '/patient/:id',
+      loader: () =>
+        import('src/view/patient/view/PatientViewPage'),
+      permissionRequired: null,
+      exact: true,
+    },
+    // personalvitals
+    {
+      path: '/personalvitals',
+      loader: () =>
+        import('src/view/personalvitals/list/PersonalvitalsListPage'),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: '/personalvitals/new',
+      loader: () =>
+        import('src/view/personalvitals/form/PersonalvitalsFormPage'),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: '/personalvitals/importer',
+      loader: () =>
+        import(
+          'src/view/personalvitals/importer/PersonalvitalsImporterPage'
+        ),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: '/personalvitals/:id/edit',
+      loader: () =>
+        import('src/view/personalvitals/form/PersonalvitalsFormPage'),
+      permissionRequired: null,
+      exact: true,
+    },
+    {
+      path: '/personalvitals/:id',
+      loader: () =>
+        import('src/view/personalvitals/view/PersonalvitalsViewPage'),
+      permissionRequired: null,
+      exact: true,
+    },
+  
+  
   
 ].filter(Boolean);
 

@@ -6,6 +6,13 @@ import plan from 'src/modules/plan/planReducers';
 import user from 'src/modules/user/userReducers';
 import auditLog from 'src/modules/auditLog/auditLogReducers';
 import settings from 'src/modules/settings/settingsReducers';
+import medicaltest from 'src/modules/medicaltest/medicaltestReducers';
+import allergies from "src/modules/allergies/allergiesReducers";
+import drugs  from "src/modules/drugs/drugsReducers";
+import organizationsetup from "src/modules/organizationsetup/organizationsetupReducers";
+import branch from "src/modules/branch/branchReducers";
+import patient from 'src/modules/patient/patientReducers';
+import personalvitals from 'src/modules/personalvitals/personalvitalsReducers';
 import { combineReducers } from 'redux';
 
 export default (history) =>
@@ -18,5 +25,12 @@ export default (history) =>
     user,
     auditLog,
     settings,
+    drugs,
+    allergies,
+    medicaltest,
+    organizationsetup,
+    branch,
+    patient,
+    personalvitals,
 
   });
