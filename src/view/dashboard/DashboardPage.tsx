@@ -4,6 +4,8 @@ import { i18n } from 'src/i18n';
 import TodaysFocus from 'src/view/dashboard/DashboardTodaysFocus';
 import NotificationList from 'src/view/dashboard/Notifications';
 import GroupsOnline from '../online/groupsOnline';
+import PatientForm from 'src/view/patient/form/PatientForm';
+import PersonalvitalsListPage from 'src/view/personalvitals/list/PersonalvitalsListPage';
 
 const useStyles = makeStyles((theme) => ({
   chartWrapper: {
@@ -38,9 +40,10 @@ function DashboardPage(props) {
                 Here we will put a Greeting and a dismissable alert
             </div>
           </Grid> */}
+          
   
           <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
-     
+  
               <TodaysFocus />
  
           </Grid>
