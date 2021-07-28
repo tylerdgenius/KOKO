@@ -37,7 +37,7 @@ export default [
   {
     path: '/patient-report',
     icon: <SettingsIcon />,
-    label: 'Patient Report',
+    label: 'Report',
     permissionRequired: permissions.patientRead,
   },
 

@@ -43,8 +43,15 @@ const privateRoutes = [
   {
     path: '/report',
     loader: () =>
-      import('src/view/report/ReportFormPage'),
+      import('src/view/report/ReportListPage'),
     permissionRequired: permissions.settingsEdit,
+  },
+  {
+    path: '/report/:id',
+    loader: () =>
+      import('src/view/report/ReportDetailsPage'),
+    permissionRequired: null,
+    exact: true,
   },
   
   {
