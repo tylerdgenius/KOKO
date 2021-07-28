@@ -17,7 +17,9 @@ const useStyles = makeStyles((theme) => ({
 
     '& h1, h2, h3, h4, h5, h6': {
       color: 'rgba(0, 0, 0, 0.85)',
+      fontFamily: 'Poppins,sans-serif!important',
     },
+    
   },
 
   content: {
