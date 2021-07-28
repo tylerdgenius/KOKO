@@ -150,6 +150,11 @@ class Permissions {
 
         ],
       },
+      patientRead: {
+        id: 'patientRead',
+        allowedRoles: [roles.user],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
       customerRead: {
         id: 'customerRead',
         allowedRoles: [roles.admin, roles.custom],
