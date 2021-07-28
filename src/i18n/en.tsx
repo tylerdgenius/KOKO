@@ -959,6 +959,36 @@ const en = {
       createdByEmail: 'User Email',
     },
   },
+  setup: {
+    title: 'Set Up',
+    menu: 'Setup',
+    save: {
+      success:
+        'Setups successfully saved. The page will reload in {0} seconds for changes to take effect.',
+    },
+    fields: {
+      primary: 'Primary Color',
+      secondary: 'Secondary Color',
+      logos: 'Logo',
+      backgroundImages: 'Background Images',
+      shade: 'Shade',
+    },
+  },
+  report: {
+    title: 'Report',
+    menu: 'Report',
+    save: {
+      success:
+        'Report successfully saved. The page will reload in {0} seconds for changes to take effect.',
+    },
+    fields: {
+      primary: 'Primary Color',
+      secondary: 'Secondary Color',
+      logos: 'Logo',
+      backgroundImages: 'Background Images',
+      shade: 'Shade',
+    },
+  },
   settings: {
     title: 'Settings',
     menu: 'Settings',
