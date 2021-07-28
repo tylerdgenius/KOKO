@@ -45,10 +45,7 @@ function Layout(props) {
       <Menu url={match.url} />
       <div className={classes.content}>
         <div className={classes.toolbar}></div>
-        <div>
-        
-        <Welcome UserName={userText} />
-        </div>
+     
  
         {props.children}
       </div>

@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
    ' &:hover':{  
       boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
     }
+ },
+ jss29:{
+  fontWeight: 'bold',
  }
 }));
 const SetupFormPage = (props) => {
@@ -142,7 +145,7 @@ const SetupFormPage = (props) => {
             <CardContent>
             <CustomRouterLink key={menu.path} to={menu.path}>
               <Button size="small" color="primary">
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography gutterBottom variant="h5" component="h2"  className={classes.jss29}>
               {menu.label}
                 </Typography>  
               </Button>

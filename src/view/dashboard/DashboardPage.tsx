@@ -6,6 +6,9 @@ import NotificationList from 'src/view/dashboard/Notifications';
 import GroupsOnline from '../online/groupsOnline';
 import PatientForm from 'src/view/patient/form/PatientForm';
 import PersonalvitalsListPage from 'src/view/personalvitals/list/PersonalvitalsListPage';
+import Welcome from '../layout/MainAlert';
+import { useSelector } from 'react-redux';
+import authSelectors from 'src/modules/auth/authSelectors';
 
 const useStyles = makeStyles((theme) => ({
   chartWrapper: {
@@ -24,11 +27,18 @@ const useStyles = makeStyles((theme) => ({
 
 function DashboardPage(props) {
   const classes = useStyles();
+  const userText = useSelector(
+    authSelectors.selectCurrentUserNameOrEmailPrefix,
+  );
 
   
 
   return (
     <>
+       <div>
+        
+        <Welcome UserName={userText} />
+        </div>
       <div
         style={{
           padding: 0,
