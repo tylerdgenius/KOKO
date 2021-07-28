@@ -17,6 +17,18 @@ const useStyles = makeStyles({
         },
         padding: '40px'
     },
+    jss28: {
+        flexGrow: 1,
+        width: '100%',
+        cursor: 'pointer',
+        margin: '0 auto',
+        borderRadius: '16px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+        transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
+       ' &:hover':{  
+          boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
+        }
+     },
     title: {
         fontWeight: "bold",
     },
@@ -33,6 +45,7 @@ const useStyles = makeStyles({
         width: '60px',
         height: '60px'
       },
+      
 });
 
 const handleSubmit = ({});
@@ -74,7 +87,7 @@ function ConsultationPage(props) {
                                                 color: 'inherit',
                                                 }} key='/consultations/child'
                                                      to='/consultations/child'>
-                                            <Card>
+                                            <Card className={classes.jss28}>
                                                 <CardHeader
                                                             avatar={
                                                             <Avatar variant="rounded" aria-label="recipe" className={classes.avatar} src={row.image}>

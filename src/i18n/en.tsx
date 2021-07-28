@@ -616,6 +616,21 @@ const en = {
       },
     },
 
+     //search
+
+     search: {
+      name: "Search",
+    
+      fields: {
+        specialization: "Specialization",
+        country: "Country",
+        hospital: "Hospital",
+        city: "City",
+        status: "Status",
+      },
+  
+    },
+
     //patient
     patient: {
       name: 'patient',
@@ -718,6 +733,37 @@ const en = {
         fileName: 'patient_import_template',
         hint:
           'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    setup: {
+      title: 'Set Up',
+      menu: 'Setup',
+      save: {
+        success:
+          'Setups successfully saved. The page will reload in {0} seconds for changes to take effect.',
+      },
+      fields: {
+        primary: 'Primary Color',
+        secondary: 'Secondary Color',
+        logos: 'Logo',
+        backgroundImages: 'Background Images',
+        shade: 'Shade',
+      },
+    },
+    report: {
+      title: 'Report',
+      menu: 'Report',
+      save: {
+        success:
+          'Report successfully saved. The page will reload in {0} seconds for changes to take effect.',
+      },
+      fields: {
+        primary: 'Primary Color',
+        secondary: 'Secondary Color',
+        logos: 'Logo',
+        backgroundImages: 'Background Images',
+        shade: 'Shade',
       },
     },
 
@@ -959,36 +1005,7 @@ const en = {
       createdByEmail: 'User Email',
     },
   },
-  setup: {
-    title: 'Set Up',
-    menu: 'Setup',
-    save: {
-      success:
-        'Setups successfully saved. The page will reload in {0} seconds for changes to take effect.',
-    },
-    fields: {
-      primary: 'Primary Color',
-      secondary: 'Secondary Color',
-      logos: 'Logo',
-      backgroundImages: 'Background Images',
-      shade: 'Shade',
-    },
-  },
-  report: {
-    title: 'Report',
-    menu: 'Report',
-    save: {
-      success:
-        'Report successfully saved. The page will reload in {0} seconds for changes to take effect.',
-    },
-    fields: {
-      primary: 'Primary Color',
-      secondary: 'Secondary Color',
-      logos: 'Logo',
-      backgroundImages: 'Background Images',
-      shade: 'Shade',
-    },
-  },
+ 
   settings: {
     title: 'Settings',
     menu: 'Settings',

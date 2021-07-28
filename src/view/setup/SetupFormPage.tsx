@@ -124,14 +124,14 @@ const SetupFormPage = (props) => {
     
       <ContentWrapper>
         <PageTitle>
-          {/* {i18n('entities.setup.title')} */}
+          {i18n('entities.setup.menu')}
         </PageTitle>
         <div className={classes.root}>
       <Grid container spacing={3}>
       {admin_menus
           .filter((menu) => match(menu.permissionRequired))
           .map((menu) => (
-        <Grid item xs={3} >
+        <Grid item spacing={2} sm={6} md={4} xs={12} lg={3}>
               <Card className={classes.jss28}>
             <CardActionArea>
             <CardMedia
