@@ -1,6 +1,8 @@
 import { CardContent, Grid, makeStyles } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
+import PersonalvitalsListTable from '../personalvitals/list/PersonalvitalsListTable';
+import PersonalvitalsListToolbar from '../personalvitals/list/PersonalvitalsListToolbar';
 import ConsultationHistory from './component/ConsultationHistory';
 
 
@@ -39,6 +41,9 @@ function EMRPage(props) {
       </CardHeader>
             <CardContent>
                  <ConsultationHistory />
+                 <PersonalvitalsListToolbar />
+        {/* <PersonalvitalsListFilter /> */}
+        <PersonalvitalsListTable />
             </CardContent>
         </Card>
              

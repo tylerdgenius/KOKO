@@ -58,7 +58,7 @@ export default class AuthService {
     const response = await authAxios.post('/auth/sign-in', {
       email,
       password,
-      invitationToken,
+      // invitationToken,
       tenantId: tenantSubdomain.isSubdomain
         ? AuthCurrentTenant.get()
         : undefined,

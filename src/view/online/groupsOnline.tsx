@@ -82,7 +82,7 @@ const useStyles = makeStyles(theme => ({
     linkContent: {
         color: theme.palette.primary.main,
     },
-    DashboardCard: {minHeight: '500px'}
+    DashboardCard: {minHeight: '400px'}
 }));
 
 export default GroupsOnline;

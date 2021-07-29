@@ -58,12 +58,12 @@ function DashboardPage(props) {
  
           </Grid>
 
-          <Grid item xl={6} lg={3} md={3} sm={12} xs={12}   >
+          <Grid item md={3} sm={12} xs={12}   >
         
                 <GroupsOnline subtitle={"Appointments"} />
         
           </Grid>
-          <Grid item xl={6} lg={3} md={3} sm={12} xs={12}  >
+          <Grid item  md={3} sm={12} xs={12}  >
                 
                 <GroupsOnline subtitle={"Notifications"}/>
 
