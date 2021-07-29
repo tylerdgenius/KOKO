@@ -17,6 +17,9 @@ import * as yup from 'yup';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import Storage from 'src/security/storage';
 import { yupResolver } from '@hookform/resolvers/yup';
+import RadioFormItem from '../shared/form/items/RadioFormItem';
+import { DatePickerFormItem } from '../shared/form/items/DatePickerFormItem';
+import patientEnumerators from 'src/modules/patient/patientEnumerators';
 
 const schema = yup.object().shape({
   firstName: yupFormSchemas.string(
@@ -89,93 +92,203 @@ function ProfileFormPage(props) {
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Grid spacing={2} container>
-            <Grid item lg={6} md={8} sm={12} xs={12}>
+          <Grid item lg={4} md={6} sm={12} xs={12}>
+              <RadioFormItem
+                name="title"
+                options={patientEnumerators.title.map(
+                  (value) => ({
+                    value,
+                    label: i18n(
+                      `user.enumerators.title.${value}`,
+                    ),
+                  }),
+                )}
+                required={true}
+              />
+            </Grid>
+            <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
-                name="firstName"
-                label={i18n('user.fields.firstName')}
-                autoComplete="firstName"
-                autoFocus
+                 name="firstName"
+                 label={i18n('user.fields.firstName')}
+                 autoComplete="firstName"
+                required={true}
               />
             </Grid>
-            <Grid item lg={6} md={8} sm={12} xs={12}>
+            <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
-                name="lastName"
-                label={i18n('user.fields.lastName')}
-                autoComplete="lastName"
+              name="lastName"
+              label={i18n('user.fields.lastName')}
+              autoComplete="lastName"
+                required={true}
+              autoFocus
               />
             </Grid>
-            <Grid item lg={6} md={8} sm={12} xs={12}>
-              <TextField
-                id="email"
-                name="email"
-                label={i18n('user.fields.email')}
-                value={currentUser.email}
-                fullWidth
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                variant="outlined"
-                size="small"
+            <Grid item lg={4} md={6} sm={12} xs={12}>
+              <InputFormItem
+                name="Middlename"
+                label={i18n('user.fields.middlename')}  
+                required={true}
               />
             </Grid>
-            <Grid item lg={6} md={8} sm={12} xs={12}>
+            <Grid item lg={4} md={6} sm={12} xs={12}>
+    <TextField
+      id="email"
+      name="email"
+      label={i18n('user.fields.email')}
+      value={currentUser.email}
+      fullWidth
+      margin="normal"
+      InputProps={{
+        readOnly: true,
+      }}
+      InputLabelProps={{
+        shrink: true,
+      }}
+      variant="outlined"
+      size="small"
+    />
+  </Grid>
+            <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="phoneNumber"
                 label={i18n('user.fields.phoneNumber')}
                 autoComplete="phoneNumber"
-                prefix="+"
+                prefix="+" 
+                required={true}
               />
             </Grid>
-
+            <Grid item lg={4} md={6} sm={12} xs={12}>
+              <DatePickerFormItem
+                name="birthdate"
+                label={i18n('user.fields.birthdate')}
+                required={true}
+              />
+            </Grid>
+            <Grid item lg={4} md={6} sm={12} xs={12}>
+            <InputFormItem
+                name="Allergies"
+                label={i18n('user.fields.allergies')}  
+                required={true}
+              />
+            </Grid>
+            <Grid item lg={4} md={6} sm={12} xs={12}>
+              <InputFormItem
+                name="Address"
+                label={i18n('user.fields.address')}  
+                required={true}
+              />
+            </Grid>
+              <Grid item lg={4} md={6} sm={12} xs={12}>
+              <InputFormItem
+                name="Stateoforigin"
+                label={i18n('user.fields.stateoforigin')}  
+                required={true}
+              />
+              </Grid>
+              <Grid item lg={4} md={6} sm={12} xs={12}>
+              <InputFormItem
+                name="Stateofresidence"
+                label={i18n('user.fields.stateofresidence')}  
+                required={true}
+              />
+              </Grid>
+              <Grid item lg={4} md={6} sm={12} xs={12}>
+              <InputFormItem
+                name="Cityofresidence"
+                label={i18n('user.fields.cityofresidence')}  
+                required={true}
+              />
+              </Grid>
+              <Grid item lg={4} md={6} sm={12} xs={12}>
+              <RadioFormItem
+                name="gender"
+                label={i18n('user.fields.gender')}
+                options={patientEnumerators.gender.map(
+                  (value) => ({
+                    value,
+                    label: i18n(
+                      `entities.patient.enumerators.gender.${value}`,
+                    ),
+                  }),
+                )}
+                required={true}
+              />
+            </Grid>
+            <Grid item lg={4} md={6} sm={12} xs={12}>
+              <RadioFormItem
+                name="bloodgroup"
+                label={i18n('user.fields.bloodgroup')}
+                options={patientEnumerators.bloodgroup.map(
+                  (value) => ({
+                    value,
+                    label: i18n(
+                      `entities.patient.enumerators.bloodgroup.${value}`,
+                    ),
+                  }),
+                )}
+                required={true}
+              />
+            </Grid>
+            <Grid item lg={4} md={6} sm={12} xs={12}>
+              <RadioFormItem
+                name="genotype"
+                label={i18n('user.fields.genotype')}
+                options={patientEnumerators.genotype.map(
+                  (value) => ({
+                    value,
+                    label: i18n(
+                      `entities.patient.enumerators.genotype.${value}`,
+                    ),
+                  }),
+                )}
+                required={true}
+              />
+            </Grid>
             <Grid item lg={6} md={8} sm={12} xs={12}>
-              <ImagesFormItem
-                name="avatars"
-                label={i18n('user.fields.avatars')}
-                storage={Storage.values.userAvatarsProfiles}
-                max={1}
-              />
-            </Grid>
+    <ImagesFormItem
+      name="avatars"
+      label={i18n('user.fields.avatars')}
+      storage={Storage.values.userAvatarsProfiles}
+      max={1}
+    />
+  </Grid>
           </Grid>
 
           <FormButtons>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={saveLoading}
-              type="button"
-              onClick={form.handleSubmit(onSubmit)}
-              startIcon={<SaveIcon />}
-              size="small"
-            >
-              {i18n('common.save')}
-            </Button>
+  <Button
+    variant="contained"
+    color="primary"
+    disabled={saveLoading}
+    type="button"
+    onClick={form.handleSubmit(onSubmit)}
+    startIcon={<SaveIcon />}
+    size="small"
+  >
+    {i18n('common.save')}
+  </Button>
 
-            <Button
-              disabled={saveLoading}
-              onClick={onReset}
-              type="button"
-              startIcon={<UndoIcon />}
-              size="small"
-            >
-              {i18n('common.reset')}
-            </Button>
+  <Button
+    disabled={saveLoading}
+    onClick={onReset}
+    type="button"
+    startIcon={<UndoIcon />}
+    size="small"
+  >
+    {i18n('common.reset')}
+  </Button>
 
-            {props.onCancel ? (
-              <Button
-                disabled={saveLoading}
-                onClick={() => props.onCancel()}
-                type="button"
-                startIcon={<CloseIcon />}
-                size="small"
-              >
-                {i18n('common.cancel')}
-              </Button>
-            ) : null}
-          </FormButtons>
+  {props.onCancel ? (
+    <Button
+      disabled={saveLoading}
+      onClick={() => props.onCancel()}
+      type="button"
+      startIcon={<CloseIcon />}
+      size="small"
+    >
+      {i18n('common.cancel')}
+    </Button>
+  ) : null}
+</FormButtons>
         </form>
       </FormProvider>
     </FormWrapper>

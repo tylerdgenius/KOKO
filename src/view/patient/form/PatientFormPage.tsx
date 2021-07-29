@@ -47,7 +47,7 @@ function PatientFormPage(props) {
       <Breadcrumb
         items={[
           [i18n('dashboard.menu'), '/'],
-          [i18n('entities.patient.menu'), '/patient'],
+          // [i18n('entities.patient.menu'), '/patient'],
           [title],
         ]}
       />
