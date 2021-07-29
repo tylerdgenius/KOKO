@@ -29,65 +29,38 @@ export default [
   },
 
   {
-    path: '/allergies',
-    exact: true,
-    icon: <HistoryIcon />,
-    label: "Allergies Report",
-    permissionRequired: null,
-  },
-
-  {
-    path: '/drugs',
-    exact: true,
-    icon: <DashboardIcon />,
-    label: "Drugs",
-    permissionRequired: null,
-  },
-  {
-    path: '/medical',
-    exact: true,
-    icon: <PersonIcon />,
-    label: "Medical Test",
-    permissionRequired: null,
-  },
-  {
-    path: '/branch',
-    exact: true,
+    path: '/user',
     icon: <SettingsIcon />,
-    label: "branch",
-    permissionRequired: null,
+    label: 'Users',
+    permissionRequired: permissions.userRead,
   },
   {
-    path: '/organization',
-    exact: true,
-    icon: <DashboardIcon />,
-    label: "Organization",
-    permissionRequired: null,
+    path: '/patient-report',
+    icon: <SettingsIcon />,
+    label: 'Report',
+    permissionRequired: permissions.patientRead,
   },
-
-
 
   {
-    path: '/audit-logs',
-    icon: <HistoryIcon />,
-    label: i18n('auditLog.menu'),
-    permissionRequired: permissions.auditLogRead,
+    path: '/report',
+    icon: <SettingsIcon />,
+    label: 'Report',
+    permissionRequired: permissions.userRead,
   },
 
+  {
+    path: '/setup',
+    icon: <SettingsIcon />,
+    label: 'Set Up',
+    permissionRequired: permissions.userRead,
+  },
+  
   {
     path: '/settings',
     icon: <SettingsIcon />,
     label: i18n('settings.menu'),
     permissionRequired: permissions.settingsEdit,
   },
-
-  {
-    path: '/user',
-    icon: <SettingsIcon />,
-    label: 'Users',
-    permissionRequired: permissions.userRead,
-  },
-
 /* 
 
   {

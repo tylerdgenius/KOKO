@@ -27,6 +27,32 @@ const privateRoutes = [
     exact: true,
   },
 
+  {
+    path: '/setup',
+    loader: () =>
+      import('src/view/setup/SetupFormPage'),
+    permissionRequired: permissions.settingsEdit,
+  },
+
+  {
+    path: '/patient-report',
+    loader: () =>
+      import('src/view/patient/PatientReportFormPage'),
+    permissionRequired: null,
+  },
+  {
+    path: '/report',
+    loader: () =>
+      import('src/view/report/ReportListPage'),
+    permissionRequired: permissions.settingsEdit,
+  },
+  {
+    path: '/report/:id',
+    loader: () =>
+      import('src/view/report/ReportDetailsPage'),
+    permissionRequired: null,
+    exact: true,
+  },
   
   {
     path: '/consultations',
