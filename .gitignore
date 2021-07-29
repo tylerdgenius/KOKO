@@ -4,3 +4,4 @@ build/
 .history/
 .firebase/
 trash
+.eslintcache
