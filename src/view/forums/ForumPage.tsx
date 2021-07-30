@@ -65,11 +65,11 @@ firebase.initializeApp({
 
 const firestore =firebase.firestore();
 
-function formatSeconds(seconds) {
-    var date = new Date();
-    date.setSeconds(seconds);
-    return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
-}
+// function formatSeconds(seconds) {
+//     var date = new Date();
+//     date.setSeconds(seconds);
+//     return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+// }
 
 function ForumPage(props) {
     const classes = useStyles();
@@ -169,7 +169,7 @@ function ForumPage(props) {
                                 <ListItemText  primary={msg.text}></ListItemText>
                             </Grid>
                             <Grid item xs={12}>
-                                <ListItemText  secondary={formatSeconds(msg.createdAt.seconds)} ></ListItemText>
+                                <ListItemText  secondary="09.98"></ListItemText>
                             </Grid>
                         </Grid>
                     </ListItem>

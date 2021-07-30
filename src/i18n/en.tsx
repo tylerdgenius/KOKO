@@ -94,6 +94,103 @@ const en = {
         },
       },
 
+         //patient
+    profile: {
+      name: 'profile',
+      label: 'Profile',
+      menu: 'profile',
+      exporterFileName: 'patient_export',
+      list: {
+        menu: 'profile',
+        title: 'Profile',
+      },
+      create: {
+        success: 'Profile successfully saved',
+      },
+      update: {
+        success: 'Profile successfully saved',
+      },
+      destroy: {
+        success: 'Profile successfully deleted',
+      },
+      destroyAll: {
+        success: 'Profile(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Profile',
+      },
+      fields: {
+        id: 'Id',
+        'stateoforigin': 'Stateoforigin',
+        'allergies': 'Allergies',
+        'bloodgroup': 'Bloodgroup',
+        'genotype': 'Genotype',
+        'relative': 'Relative',
+        'nok': 'Nok',
+        'noknumber': 'Noknumber',
+        'birthdateRange': 'Birthdate',
+        'birthdate': 'Birthdate',
+        'gender': 'Gender',
+        'donor': 'Do you want to be a donor',
+        'cityofresidence': 'Cityofresidence',
+        'stateofresidence': 'Stateofresidence',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        'gender': {
+          'male': 'Male',
+          'female': 'Female',
+        },
+        'title': {
+          'Mr': 'Mr',
+          'Mrs': 'Mrs',
+          'Miss': 'Miss',
+        },
+        'bloodgroup': {
+          'A+': 'A+',
+          'B+': 'B+',
+          'AB+': 'AB+',
+          'O+': 'O+',
+          'A-': 'A-',
+          'B-': 'B-',
+          'AB-': 'AB-',
+          'O-': 'O-',
+        },
+        'genotype': {
+          'AA': 'AA',
+          'AS': 'AS',
+          'AC': 'AC',
+          'SS': 'SS',
+          'SC': 'SC',
+          'CC': 'CC',
+        },
+        'donor': {
+          'yes': 'yes',
+          'no': 'no',
+        },
+      },
+      placeholders: {
+  
+      },
+      hints: {
+  
+      },
+      new: {
+        title: 'New Profile',
+      },
+      view: {
+        title: 'View Profile',
+      },
+      importer: {
+        title: 'Import Profile',
+        fileName: 'profile_import_template',
+        hint:
+          'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
     product: {
         name: 'product',
         label: 'Products',
@@ -851,11 +948,8 @@ const en = {
       middlename: 'Middlename',
       status: 'Status',
       phoneNumber: 'Phone Number',
-      birthdate: 'Birthdate',
-      allergies: 'Allergies',
       address: 'Address',
       role: 'Role',
-      stateoforigin: 'Stateoforigin',
       createdAt: 'Created at',
       updatedAt: 'Updated at',
       roleUser: 'Role/User',
@@ -866,46 +960,9 @@ const en = {
       newPassword: 'New Password',
       newPasswordConfirmation: 'New Password Confirmation',
       rememberMe: 'Remember me',
-      cityofresidence: 'Cityofresidence',
-      stateofresidence: 'Stateofresidence',
-      gender: 'Gender',
-      donor: 'Do you want to be a donor',
-      bloodgroup: 'Bloodgroup',
-        genotype: 'Genotype',
+   
     },
-    enumerators: {
-      'gender': {
-        'male': 'Male',
-        'female': 'Female',
-      },
-      'title': {
-        'Mr': 'Mr',
-        'Mrs': 'Mrs',
-        'Miss': 'Miss',
-      },
-      'bloodgroup': {
-        'A+': 'A+',
-        'B+': 'B+',
-        'AB+': 'AB+',
-        'O+': 'O+',
-        'A-': 'A-',
-        'B-': 'B-',
-        'AB-': 'AB-',
-        'O-': 'O-',
-      },
-      'genotype': {
-        'AA': 'AA',
-        'AS': 'AS',
-        'AC': 'AC',
-        'SS': 'SS',
-        'SC': 'SC',
-        'CC': 'CC',
-      },
-      'donor': {
-        'yes': 'yes',
-        'no': 'no',
-      },
-    },
+ 
     status: {
       active: 'Active',
       invited: 'Invited',

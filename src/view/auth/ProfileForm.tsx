@@ -1,4 +1,4 @@
-import { Button, TextField, Grid } from '@material-ui/core';
+import { Button, TextField, Grid, Card, makeStyles } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import SaveIcon from '@material-ui/icons/Save';
 import UndoIcon from '@material-ui/icons/Undo';
@@ -6,6 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { i18n } from 'src/i18n';
 import actions from 'src/modules/auth/authActions';
 import selectors from 'src/modules/auth/authSelectors';
+import userservice from 'src/modules/user/userService';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
@@ -20,6 +21,18 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import RadioFormItem from '../shared/form/items/RadioFormItem';
 import { DatePickerFormItem } from '../shared/form/items/DatePickerFormItem';
 import patientEnumerators from 'src/modules/patient/patientEnumerators';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: 'none',
+  },
+}));
 
 const schema = yup.object().shape({
   firstName: yupFormSchemas.string(
@@ -51,7 +64,6 @@ const schema = yup.object().shape({
 
 function ProfileFormPage(props) {
   const dispatch = useDispatch();
-
   const saveLoading = useSelector(
     selectors.selectLoadingUpdateProfile,
   );
@@ -62,12 +74,16 @@ function ProfileFormPage(props) {
 
   const [initialValues] = useState(() => {
     const record = currentUser || {};
-
+ 
+    // Call Endpoint with await to get others
+    const others =userservice.getUserProfile(record.id);    
+    console.log(others);
     return {
       firstName: record.firstName,
       lastName: record.lastName,
       phoneNumber: record.phoneNumber,
       avatars: record.avatars || [],
+      Others: others
     };
   });
 
@@ -86,11 +102,15 @@ function ProfileFormPage(props) {
       form.setValue(key, initialValues[key]);
     });
   };
-
+  const classes = useStyles();
   return (
     <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
+        <Card elevation={10} style={{
+          padding: 20,
+          marginTop: 5,
+        }}>
           <Grid spacing={2} container>
           <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
@@ -99,7 +119,7 @@ function ProfileFormPage(props) {
                   (value) => ({
                     value,
                     label: i18n(
-                      `user.enumerators.title.${value}`,
+                      `entities.profile.enumerators.title.${value}`,
                     ),
                   }),
                 )}
@@ -160,14 +180,14 @@ function ProfileFormPage(props) {
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <DatePickerFormItem
                 name="birthdate"
-                label={i18n('user.fields.birthdate')}
+                label={i18n('entities.profile.fields.birthdate')}
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
             <InputFormItem
                 name="Allergies"
-                label={i18n('user.fields.allergies')}  
+                label={i18n('entities.profile.fields.allergies')}  
                 required={true}
               />
             </Grid>
@@ -181,33 +201,33 @@ function ProfileFormPage(props) {
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Stateoforigin"
-                label={i18n('user.fields.stateoforigin')}  
+                label={i18n('entities.profile.fields.stateoforigin')}  
                 required={true}
               />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Stateofresidence"
-                label={i18n('user.fields.stateofresidence')}  
+                label={i18n('entities.profile.fields.stateofresidence')}  
                 required={true}
               />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Cityofresidence"
-                label={i18n('user.fields.cityofresidence')}  
+                label={i18n('entities.profile.fields.cityofresidence')}  
                 required={true}
               />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="gender"
-                label={i18n('user.fields.gender')}
+                label={i18n('entities.profile.fields.gender')}
                 options={patientEnumerators.gender.map(
                   (value) => ({
                     value,
                     label: i18n(
-                      `entities.patient.enumerators.gender.${value}`,
+                      `entities.profile.enumerators.gender.${value}`,
                     ),
                   }),
                 )}
@@ -217,12 +237,12 @@ function ProfileFormPage(props) {
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="bloodgroup"
-                label={i18n('user.fields.bloodgroup')}
+                label={i18n('entities.profile.fields.bloodgroup')}
                 options={patientEnumerators.bloodgroup.map(
                   (value) => ({
                     value,
                     label: i18n(
-                      `entities.patient.enumerators.bloodgroup.${value}`,
+                      `entities.profile.enumerators.bloodgroup.${value}`,
                     ),
                   }),
                 )}
@@ -232,12 +252,12 @@ function ProfileFormPage(props) {
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="genotype"
-                label={i18n('user.fields.genotype')}
+                label={i18n('entities.profile.fields.genotype')}
                 options={patientEnumerators.genotype.map(
                   (value) => ({
                     value,
                     label: i18n(
-                      `entities.patient.enumerators.genotype.${value}`,
+                      `entities.profile.enumerators.genotype.${value}`,
                     ),
                   }),
                 )}
@@ -253,7 +273,77 @@ function ProfileFormPage(props) {
     />
   </Grid>
           </Grid>
+          </Card>
 
+          <Card elevation={10} style={{
+          padding: 20,
+          marginTop: 5,
+        }}>
+        <h2>Family History</h2>
+            <Grid spacing={2} container>
+                <Grid item lg={4} md={6} sm={12} xs={12}>
+                  <InputFormItem
+                    name="Relative"
+                    label={i18n('entities.profile.fields.relative')}  
+                    required={true}
+                  />
+                </Grid>
+                <Grid item lg={4} md={6} sm={12} xs={12}>
+                  <InputFormItem
+                    name="Nok"
+                    label={i18n('entities.profile.fields.nok')}  
+                    required={true}
+                  />
+                </Grid>
+                <Grid item lg={4} md={6} sm={12} xs={12}>
+                  <InputFormItem
+                    name="Noknumber"
+                    label={i18n('entities.profile.fields.noknumber')}  
+                    required={true}
+                  />
+                </Grid>
+          </Grid>
+        </Card>
+       
+          <Card elevation={10} style={{
+          padding: 20,
+          marginTop: 5,
+        }}>
+        <h2>Organ Donor?</h2>
+            <Grid spacing={2} container>
+                <Grid item lg={4} md={6} sm={12} xs={12}>
+                <RadioFormItem
+                name="donor"
+                label={i18n('entities.profile.fields.donor')}
+                options={patientEnumerators.donor.map(
+                  (value) => ({
+                    value,
+                    label: i18n(
+                      `entities.profile.enumerators.donor.${value}`,
+                    ),
+                  }),
+                )}
+                required={true}
+              />
+                </Grid>
+                <Grid item lg={4} md={6} sm={12} xs={12}>
+                <div className={classes.root}>
+                        <input
+                          accept="image/*"
+                          className={classes.input}
+                          id="contained-button-file"
+                          multiple
+                          type="file"
+                        />
+                      <label htmlFor="contained-button-file">
+                        <Button variant="contained" color="primary" component="span">
+                          Upload Consent Document
+                        </Button>
+                      </label>
+                </div>
+                </Grid>
+          </Grid>
+        </Card>
           <FormButtons>
   <Button
     variant="contained"

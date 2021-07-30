@@ -144,7 +144,7 @@ function SigninPage() {
               justifyContent="space-between"
               alignItems="center"
             >
-              {/* <FormControlLabel
+              <FormControlLabel
                 control={
                   <Checkbox
                     id={'rememberMe'}
@@ -156,7 +156,7 @@ function SigninPage() {
                   />
                 }
                 label={i18n('user.fields.rememberMe')}
-              /> */}
+              />
 
               <MaterialLink
                 style={{ marginBottom: '8px' }}

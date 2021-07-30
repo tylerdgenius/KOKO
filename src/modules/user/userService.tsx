@@ -111,4 +111,15 @@ export default class UserService {
     );
     return response.data;
   }
+
+  static async getUserProfile(id) {
+    const tenantId = AuthCurrentTenant.get();
+    const response = await authAxios.get(
+      `/tenant/${id}/profile/`,
+    );
+  // console.log(response.data);
+    return response.data;
+  }
+
+
 }

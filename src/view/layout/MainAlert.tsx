@@ -77,7 +77,7 @@ function Welcome(props) {
                             variant="contained"
                             startIcon={<HomeIcon />}
                             component={Link}
-                            to="/patient/new"
+                            to="/profile"
                         >
                             Complete Profile
                         </Button>
