@@ -117,9 +117,23 @@ export default class UserService {
     const response = await authAxios.get(
       `/tenant/${id}/profile/`,
     );
-  // console.log(response.data);
+   //console.log(response.data);
     return response.data;
   }
 
+  // const [dataGotten, setDataGotten] = useState('');
+/// `/tenant/${tenantId}/profile/${id}`,
+
+  // static async getUserProfile(id) {
+  //   const tenantId = AuthCurrentTenant.get();
+  //   const response = await authAxios.get(
+  //     `/tenant/${id}/profile/`,
+  //   ).then(function (response) {
+  //     // console.log(response.data);
+  //     return JSON.stringify(response);
+  //   }).then(data => console.log(JSON.parse(data)));
+  // // console.log(response.data);
+
+  // }
 
 }

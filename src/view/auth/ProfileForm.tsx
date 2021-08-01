@@ -7,7 +7,7 @@ import { i18n } from 'src/i18n';
 import actions from 'src/modules/auth/authActions';
 import selectors from 'src/modules/auth/authSelectors';
 import userservice from 'src/modules/user/userService';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
@@ -20,6 +20,8 @@ import Storage from 'src/security/storage';
 import { yupResolver } from '@hookform/resolvers/yup';
 import RadioFormItem from '../shared/form/items/RadioFormItem';
 import { DatePickerFormItem } from '../shared/form/items/DatePickerFormItem';
+import profileEnumerators from 'src/modules/user/userEnumerators';
+import { getPositionOfLineAndCharacter } from 'typescript';
 import patientEnumerators from 'src/modules/patient/patientEnumerators';
 
 
@@ -72,19 +74,56 @@ function ProfileFormPage(props) {
     selectors.selectCurrentUser,
   );
 
+    // // Call Endpoint with await to get others
+    // const others =userservice.getUserProfile(record.id);    
+
+    // console.log(others)
+
+    let profile ;
+
+    const [repo, setProfile] = useState('');
+
+    /* const  getothers = async () =>{
+  
+    // const profilesss = JSON.stringify(profile);
+    // console.log(profilesss)
+    // setProfile(profilesss);
+     return profile;
+    } */
+
+ 
+ 
+ 
+
+// useEffect(() => {
+//   // getothers()
+// }, [])
+
+ 
+   // This is an Asynchronous function
+   userservice.getUserProfile(currentUser.id).then(res => {
+    profile = res;
+  initialValues.Others = res;
+  
+  })
+
   const [initialValues] = useState(() => {
     const record = currentUser || {};
- 
-    // Call Endpoint with await to get others
-    const others =userservice.getUserProfile(record.id);    
-    console.log(others);
+   
+    
+
     return {
       firstName: record.firstName,
       lastName: record.lastName,
+      middleName: record.middleName,
       phoneNumber: record.phoneNumber,
-      avatars: record.avatars || [],
-      Others: others
+      email: record.email,
+      avatars: record.avatars || [],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+       Others: {} as 
+       {allergies: string, id: any,address:any,stateoforigin:string,bloodgroup:string,genotype:string,relative:string,nok:string,birthdate:string,noknumber:string,gender:string,cityofresidence:string,stateofresidence:string}  // strongly typing the outcome
     };
+
+
   });
 
   const form = useForm({
@@ -94,6 +133,7 @@ function ProfileFormPage(props) {
   });
 
   const onSubmit = (values) => {
+    console.log(values)
     dispatch(actions.doUpdateProfile(values));
   };
 
@@ -102,6 +142,11 @@ function ProfileFormPage(props) {
       form.setValue(key, initialValues[key]);
     });
   };
+
+ 
+
+
+  
   const classes = useStyles();
   return (
     <FormWrapper>
@@ -115,7 +160,7 @@ function ProfileFormPage(props) {
           <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="title"
-                options={patientEnumerators.title.map(
+                options={profileEnumerators.title.map(
                   (value) => ({
                     value,
                     label: i18n(
@@ -145,28 +190,18 @@ function ProfileFormPage(props) {
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
-                name="Middlename"
-                label={i18n('user.fields.middlename')}  
+                name="middleName"
+                label={i18n('user.fields.middleName')}  
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
-    <TextField
-      id="email"
-      name="email"
-      label={i18n('user.fields.email')}
-      value={currentUser.email}
-      fullWidth
-      margin="normal"
-      InputProps={{
-        readOnly: true,
-      }}
-      InputLabelProps={{
-        shrink: true,
-      }}
-      variant="outlined"
-      size="small"
-    />
+            <InputFormItem
+                 name="email"
+                 label={i18n('user.fields.email')}
+                 autoComplete="email"
+                required={true}
+              />
   </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
@@ -185,45 +220,99 @@ function ProfileFormPage(props) {
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
-            <InputFormItem
-                name="Allergies"
+           <TextField 
+               id="allergies"
+                name="allergies"
                 label={i18n('entities.profile.fields.allergies')}  
+                autoComplete="allergies"
+                value={initialValues.Others.allergies}
                 required={true}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Address"
-                label={i18n('user.fields.address')}  
+               <TextField 
+                type="text"
+                name="address"
+                label={i18n('entities.profile.fields.address')} 
                 required={true}
-              />
-            </Grid>
+                value={initialValues.Others.address}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
+                />
+
+           
+               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Stateoforigin"
+                <TextField 
+                id="stateoforigin"
+                name="stateoforigin"
                 label={i18n('entities.profile.fields.stateoforigin')}  
                 required={true}
-              />
+                value={initialValues.Others.stateoforigin}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
+                />
+
+           
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Stateofresidence"
+              <TextField 
+                id="stateofresidence"
+                name="stateofresidence"
                 label={i18n('entities.profile.fields.stateofresidence')}  
                 required={true}
-              />
-              </Grid>
+                value={initialValues.Others.stateofresidence}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
+                />
+
+           
+             </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Cityofresidence"
-                label={i18n('entities.profile.fields.cityofresidence')}  
+              <TextField 
+                id="cityofresidence"
+                name="cityofresidence"
+                label={i18n('entities.profile.fields.cityofresidence')}   
                 required={true}
-              />
-              </Grid>
+                value={initialValues.Others.cityofresidence}
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
+               />
+
+           
+               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="gender"
                 label={i18n('entities.profile.fields.gender')}
-                options={patientEnumerators.gender.map(
+                options={profileEnumerators.gender.map(
                   (value) => ({
                     value,
                     label: i18n(
@@ -282,24 +371,50 @@ function ProfileFormPage(props) {
         <h2>Family History</h2>
             <Grid spacing={2} container>
                 <Grid item lg={4} md={6} sm={12} xs={12}>
-                  <InputFormItem
-                    name="Relative"
-                    label={i18n('entities.profile.fields.relative')}  
-                    required={true}
+                 <TextField 
+                  id="relative"
+                  name="relative"
+                  label={i18n('entities.profile.fields.relative')}   
+                  required={true}
+                  value={initialValues.Others.relative}
+                  fullWidth
+                  margin="normal"
+                  variant="outlined"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  size="small"
+                 
                   />
                 </Grid>
                 <Grid item lg={4} md={6} sm={12} xs={12}>
-                  <InputFormItem
-                    name="Nok"
+                 <TextField 
+                    name="nok"
                     label={i18n('entities.profile.fields.nok')}  
                     required={true}
+                    value={initialValues.Others.nok}
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    size="small"
                   />
                 </Grid>
                 <Grid item lg={4} md={6} sm={12} xs={12}>
-                  <InputFormItem
-                    name="Noknumber"
+                 <TextField 
+                    name="noknumber"
                     label={i18n('entities.profile.fields.noknumber')}  
                     required={true}
+                    value={initialValues.Others.noknumber}
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    size="small"
                   />
                 </Grid>
           </Grid>
