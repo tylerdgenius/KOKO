@@ -140,7 +140,7 @@ const SetupFormPage = (props) => {
             <CardMedia
           className={classes.media}
           image={menu.avater}
-          title="Contemplative Reptile"
+          title=""
         />
             <CardContent>
             <CustomRouterLink key={menu.path} to={menu.path}>

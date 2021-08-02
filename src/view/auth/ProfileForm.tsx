@@ -25,6 +25,10 @@ import { getPositionOfLineAndCharacter } from 'typescript';
 import patientEnumerators from 'src/modules/patient/patientEnumerators';
 
 
+interface OtherRecords 
+{allergies: string, id: any,address:any,stateoforigin:string,bloodgroup:string,genotype:string,
+ relative:string,nok:string,birthdate:string,noknumber:string,gender:string,cityofresidence:string,stateofresidence:string} 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -64,7 +68,9 @@ const schema = yup.object().shape({
   ),
 });
 
-function ProfileFormPage(props) {
+ function ProfileFormPage(props) {
+
+
   const dispatch = useDispatch();
   const saveLoading = useSelector(
     selectors.selectLoadingUpdateProfile,
@@ -74,57 +80,32 @@ function ProfileFormPage(props) {
     selectors.selectCurrentUser,
   );
 
-    // // Call Endpoint with await to get others
-    // const others =userservice.getUserProfile(record.id);    
-
-    // console.log(others)
-
-    let profile ;
-
-    const [repo, setProfile] = useState('');
-
-    /* const  getothers = async () =>{
   
-    // const profilesss = JSON.stringify(profile);
-    // console.log(profilesss)
-    // setProfile(profilesss);
-     return profile;
-    } */
-
- 
- 
- 
-
-// useEffect(() => {
-//   // getothers()
-// }, [])
-
- 
-   // This is an Asynchronous function
-   userservice.getUserProfile(currentUser.id).then(res => {
-    profile = res;
-  initialValues.Others = res;
-  
-  })
-
-  const [initialValues] = useState(() => {
     const record = currentUser || {};
-   
-    
+    let initialValues = record;
 
-    return {
-      firstName: record.firstName,
-      lastName: record.lastName,
-      middleName: record.middleName,
-      phoneNumber: record.phoneNumber,
-      email: record.email,
-      avatars: record.avatars || [],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-       Others: {} as 
-       {allergies: string, id: any,address:any,stateoforigin:string,bloodgroup:string,genotype:string,relative:string,nok:string,birthdate:string,noknumber:string,gender:string,cityofresidence:string,stateofresidence:string}  // strongly typing the outcome
-    };
+ 
+ const getAllData = async() => {
+      await userservice.getUserProfile(currentUser.id).then(res => {
+        initialValues = {
+          firstName: record.firstName,
+          lastName: record.lastName,
+          middleName: record.middleName,
+          phoneNumber: record.phoneNumber,
+          email: record.email,
+          avatars: record.avatars || [],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+          ...res
+        };
 
-
-  });
+      })
+      console.log(initialValues);
+      return  initialValues;
+    } 
+ //   
+ 
+ console.log(initialValues);
+ getAllData().then(res => initialValues = res);
+ console.log(initialValues);
 
   const form = useForm({
     resolver: yupResolver(schema),
@@ -144,8 +125,6 @@ function ProfileFormPage(props) {
   };
 
  
-
-
   
   const classes = useStyles();
   return (
@@ -220,21 +199,12 @@ function ProfileFormPage(props) {
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
-           <TextField 
-               id="allergies"
+            <InputFormItem
                 name="allergies"
-                label={i18n('entities.profile.fields.allergies')}  
-                autoComplete="allergies"
-                value={initialValues.Others.allergies}
+                label='Allergies'
                 required={true}
-                fullWidth
-                margin="normal"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                size="small"
               />
+      
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
                <TextField 
@@ -242,7 +212,6 @@ function ProfileFormPage(props) {
                 name="address"
                 label={i18n('entities.profile.fields.address')} 
                 required={true}
-                value={initialValues.Others.address}
                 fullWidth
                 margin="normal"
                 variant="outlined"
@@ -260,7 +229,6 @@ function ProfileFormPage(props) {
                 name="stateoforigin"
                 label={i18n('entities.profile.fields.stateoforigin')}  
                 required={true}
-                value={initialValues.Others.stateoforigin}
                 fullWidth
                 margin="normal"
                 variant="outlined"
@@ -278,7 +246,6 @@ function ProfileFormPage(props) {
                 name="stateofresidence"
                 label={i18n('entities.profile.fields.stateofresidence')}  
                 required={true}
-                value={initialValues.Others.stateofresidence}
                 fullWidth
                 margin="normal"
                 variant="outlined"
@@ -296,7 +263,6 @@ function ProfileFormPage(props) {
                 name="cityofresidence"
                 label={i18n('entities.profile.fields.cityofresidence')}   
                 required={true}
-                value={initialValues.Others.cityofresidence}
                 fullWidth
                 margin="normal"
                 variant="outlined"
@@ -376,7 +342,7 @@ function ProfileFormPage(props) {
                   name="relative"
                   label={i18n('entities.profile.fields.relative')}   
                   required={true}
-                  value={initialValues.Others.relative}
+                  value={initialValues.relative}
                   fullWidth
                   margin="normal"
                   variant="outlined"
@@ -392,7 +358,7 @@ function ProfileFormPage(props) {
                     name="nok"
                     label={i18n('entities.profile.fields.nok')}  
                     required={true}
-                    value={initialValues.Others.nok}
+                    value={initialValues.nok}
                     fullWidth
                     margin="normal"
                     variant="outlined"
@@ -407,7 +373,7 @@ function ProfileFormPage(props) {
                     name="noknumber"
                     label={i18n('entities.profile.fields.noknumber')}  
                     required={true}
-                    value={initialValues.Others.noknumber}
+                    value={initialValues.noknumber}
                     fullWidth
                     margin="normal"
                     variant="outlined"

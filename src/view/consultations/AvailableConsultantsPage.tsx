@@ -91,7 +91,7 @@ function AvailableConsultantPage(props) {
                     <Grid item lg={12}>
 
                         <Grid spacing={2} container>
-                            <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+                            <Grid item xl={4} lg={4} md={12} sm={12} xs={12}>
 
                                 <FormProvider {...form}>
                                     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -132,12 +132,26 @@ function AvailableConsultantPage(props) {
                                                         required={true}
                                                     />
                                                 </Grid>
-                                                <Grid item md={12} sm={12} xs={12}>
+                                                <Grid item md={6} sm={12} xs={12}>
                                                     <InputLabel id="demo-simple-select-label">{i18n('entities.search.fields.status')} </InputLabel>
                                                     <Select
                                                         labelId="demo-simple-select-label"
                                                         id="demo-simple-select"
                                                         name="status"
+                                                        className={classes.si}
+                                                    >
+
+                                                        <MenuItem value="1">Online</MenuItem>
+                                                        <MenuItem value="0">Offline</MenuItem>
+                                                    </Select>
+                                                </Grid>
+
+                                                <Grid item md={6} sm={12} xs={12}>
+                                                    <InputLabel id="demo-simple-select-label">{i18n('entities.search.fields.km')} </InputLabel>
+                                                    <Select
+                                                        labelId="demo-simple-select-label"
+                                                        id="demo-simple-select"
+                                                        name="km"
                                                         className={classes.si}
                                                     >
 
@@ -155,7 +169,7 @@ function AvailableConsultantPage(props) {
 
                             </Grid>
 
-                            <Grid item xl={8} lg={8} md={6} sm={12} xs={12}>
+                            <Grid item xl={8} lg={8} md={12} sm={12} xs={12}>
 
 
 

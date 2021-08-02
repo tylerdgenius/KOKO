@@ -55,12 +55,12 @@ export default [
     permissionRequired: permissions.userRead,
   },
   
-  {
-    path: '/settings',
-    icon: <SettingsIcon />,
-    label: i18n('settings.menu'),
-    permissionRequired: permissions.settingsEdit,
-  },
+  // {
+  //   path: '/settings',
+  //   icon: <SettingsIcon />,
+  //   label: i18n('settings.menu'),
+  //   permissionRequired: permissions.settingsEdit,
+  // },
 /* 
 
   {

@@ -18,7 +18,7 @@ export default [
     exact: true,
     icon: <HistoryIcon />,
     label: "Allergies Report",
-    avater:"https://enveritasgroup.com/wp-content/uploads/2016/01/Notify-by-Facebook-on-the-App-Store2.png",
+    avater:"https://www.publicradiotulsa.org/sites/kwgs/files/styles/x_large/public/201812/medical-tests.jpg",
     permissionRequired: permissions.userRead,
   },
 
@@ -62,7 +62,13 @@ export default [
     avater:"https://img-portal-prod.s3.amazonaws.com/uploads/image/attachment/1985/healthcare.png",
     permissionRequired: permissions.auditLogRead,
   },
-
+  {
+    path: '/settings',
+    icon: <SettingsIcon />,
+    label: i18n('settings.menu'),
+    avater:"https://img-portal-prod.s3.amazonaws.com/uploads/image/attachment/1985/healthcare.png",
+    permissionRequired: permissions.auditLogRead,
+  },
 
 
 
@@ -75,3 +81,5 @@ export default [
     label: i18n('entities.order.menu'),
   }, */
 ].filter(Boolean);
+
+///hospital,register patien,login audit,change audit report 
