@@ -10,7 +10,13 @@ const privateRoutes = [
     permissionRequired: null,
     exact: true,
   },
-
+  {
+    path: '/Dashboard',
+    loader: () =>
+    import('src/view/Admin/dashboard/DashboardPage'),
+    permissionRequired: null,
+    exact: true,
+  },
   {
     path: '/EMR',
     loader: () =>

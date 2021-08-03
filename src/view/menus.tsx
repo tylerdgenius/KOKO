@@ -17,7 +17,14 @@ export default [
     exact: true,
     icon: <DashboardIcon />,
     label: i18n('dashboard.menu'),
-    permissionRequired: null,
+    permissionRequired: permissions.patientRead,
+  },
+  {
+    path: '/Dashboard',
+    exact: true,
+    icon: <DashboardIcon />,
+    label: i18n('dashboard.menu'),
+    permissionRequired: permissions.userRead,
   },
 
   {
