@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import SearchIcon from '@material-ui/icons/Search';
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -141,7 +141,7 @@ function BranchListTable(props) {
                 name={"branchcode"}
                 label={i18n("entities.branch.fields.branchcode")}
               />
-              <TableCellCustom
+              {/* <TableCellCustom
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
@@ -154,7 +154,7 @@ function BranchListTable(props) {
                 sorter={sorter}
                 name={"branchcategory"}
                 label={i18n("entities.branch.fields.branchcategory")}
-              />
+              /> */}
               <TableCellCustom
                 onSort={doChangeSort}
                 hasRows={hasRows}
@@ -211,7 +211,7 @@ function BranchListTable(props) {
                           color="primary"
                           to={`/branch/${row.id}`}
                         >
-                          <SearchIcon />
+                          <VisibilityIcon />
                         </IconButton>
                       </Tooltip>
                       {hasPermissionToEdit && (
@@ -239,14 +239,14 @@ function BranchListTable(props) {
                   </TableCell>
                   <TableCell>{row.organizationid}</TableCell>
                   <TableCell>{row.branchcode}</TableCell>
-                  <TableCell>{row.branchkind}</TableCell>
+                  {/* <TableCell>{row.branchkind}</TableCell>
                   <TableCell>
                     {row.branchcategory
                       ? i18n(
                           `entities.branch.enumerators.branchcategory.${row.branchcategory}`
                         )
                       : null}
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell>{row.description}</TableCell>
                   <TableCell>
                     {row.status

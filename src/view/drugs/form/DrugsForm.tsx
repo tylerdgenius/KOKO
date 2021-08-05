@@ -24,6 +24,14 @@ const schema = yup.object().shape({
     min: 2,
     max: 255,
   }),
+  drugName: yupFormSchemas.string(
+    i18n("entities.drugs.fields.drugName"),
+    {
+      required: true,
+      min: 2,
+      max: 500,
+    }
+  ),
   description: yupFormSchemas.string(
     i18n("entities.drugs.fields.description"),
     {
@@ -86,6 +94,14 @@ function DrugsForm(props) {
               <InputFormItem
                 name="drugcode"
                 label={i18n("entities.drugs.fields.drugcode")}
+                required={true}
+                autoFocus
+              />
+            </Grid>
+            <Grid item lg={7} md={8} sm={12} xs={12}>
+              <InputFormItem
+                name="drugName"
+                label={i18n("entities.drugs.fields.drugName")}
                 required={true}
                 autoFocus
               />

@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import SearchIcon from '@material-ui/icons/Search';
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -138,6 +138,13 @@ function DrugsListTable(props) {
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
+                name={"drugName"}
+                label={i18n("entities.drugs.fields.drugName")}
+              />
+              <TableCellCustom
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
                 name={"description"}
                 label={i18n("entities.drugs.fields.description")}
               />
@@ -204,7 +211,7 @@ function DrugsListTable(props) {
                           color="primary"
                           to={`/drugs/${row.id}`}
                         >
-                          <SearchIcon />
+                          <VisibilityIcon />
                         </IconButton>
                       </Tooltip>
                       {hasPermissionToEdit && (
@@ -231,6 +238,7 @@ function DrugsListTable(props) {
                     </Box>
                   </TableCell>
                   <TableCell>{row.drugcode}</TableCell>
+                  <TableCell>{row.drugName}</TableCell>
                   <TableCell>{row.description}</TableCell>
                   <TableCell>
                     {row.drugkind
@@ -239,6 +247,7 @@ function DrugsListTable(props) {
                         )
                       : null}
                   </TableCell>
+
                   <TableCell>
                     {row.drugcategory
                       ? i18n(

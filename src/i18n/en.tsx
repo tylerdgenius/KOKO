@@ -461,6 +461,7 @@ const en = {
         created_date: "Created Date",
         created_by: "Created By",
         drugkind: "Drug Kind",
+        drugName: " Drug Name",
         status: "Status",
         id: "ID",
         drugcategory: "Drug Category",

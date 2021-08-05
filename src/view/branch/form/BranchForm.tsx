@@ -31,17 +31,17 @@ const schema = yup.object().shape({
     max: 255,
   }),
 
-  branchkind: yupFormSchemas.string(i18n("entities.branch.fields.branchkind"), {
-    required: true,
-    min: 2,
-    max: 255,
-  }),
-  branchcategory: yupFormSchemas.enumerator(
-    i18n("entities.branch.fields.branchcategory"),
-    {
-      options: branchEnumerators.branchcategory,
-    }
-  ),
+  // branchkind: yupFormSchemas.string(i18n("entities.branch.fields.branchkind"), {
+  //   required: true,
+  //   min: 2,
+  //   max: 255,
+  // }),
+  // branchcategory: yupFormSchemas.enumerator(
+  //   i18n("entities.branch.fields.branchcategory"),
+  //   {
+  //     options: branchEnumerators.branchcategory,
+  //   }
+  // ),
   description: yupFormSchemas.string(
     i18n("entities.branch.fields.description"),
     {
@@ -61,9 +61,9 @@ function BranchForm(props) {
 
     return {
       organizationid: record.organizationid,
-      branchcode: record.branchcode,
-      branchkind: record.branchkind,
-      branchcategory: record.branchcategory,
+       branchcode: record.branchcode,
+      // branchkind: record.branchkind,
+      //branchcategory: record.branchcategory,
       description: record.description,
       status: record.status,
     };
@@ -100,23 +100,23 @@ function BranchForm(props) {
                 autoFocus
               />
             </Grid>
-            <Grid item lg={7} md={8} sm={12} xs={12}>
+             <Grid item lg={7} md={8} sm={12} xs={12}>
               <InputFormItem
                 name="branchcode"
                 label={i18n("entities.branch.fields.branchcode")}
                 required={true}
                 autoFocus
               />
-            </Grid>
-            <Grid item lg={7} md={8} sm={12} xs={12}>
+            </Grid> 
+            {/* <Grid item lg={7} md={8} sm={12} xs={12}>
               <InputFormItem
                 name="branchkind"
                 label={i18n("entities.branch.fields.branchkind")}
                 required={true}
                 autoFocus
               />
-            </Grid>
-            <Grid item lg={7} md={8} sm={12} xs={12}>
+            </Grid> */}
+             {/* <Grid item lg={7} md={8} sm={12} xs={12}>
               <SelectFormItem
                 name="branchcategory"
                 label={i18n("entities.branch.fields.branchcategory")}
@@ -128,7 +128,7 @@ function BranchForm(props) {
                 }))}
                 required={false}
               />
-            </Grid>
+            </Grid>  */}
             <Grid item lg={7} md={8} sm={12} xs={12}>
               <InputFormItem
                 name="description"

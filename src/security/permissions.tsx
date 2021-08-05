@@ -245,6 +245,11 @@ class Permissions {
         allowedRoles: [roles.admin, roles.custom],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
+      allergiesRead: {
+        id: 'allergiesRead',
+        allowedRoles: [roles.admin, roles.custom],
+        allowedPlans: [plans.free, plans.growth, plans.enterprise],
+      },
     };
   }
 

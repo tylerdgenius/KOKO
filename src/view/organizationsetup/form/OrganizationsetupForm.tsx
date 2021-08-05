@@ -17,6 +17,7 @@ import SelectFormItem from "src/view/shared/form/items/SelectFormItem";
 import organizationsetupEnumerators from 'src/modules/organizationsetup/organizationsetupEnumerators';
 import moment from 'moment';
 import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
+import ImagesUploader from 'src/view/shared/uploaders/ImagesUploader';
 
 const schema = yup.object().shape({
   name: yupFormSchemas.string(i18n("entities.organizationsetup.fields.name"), {
@@ -210,7 +211,6 @@ function OrganizationsetupForm(props) {
                 required={true}
                 autoFocus
               />
-              organisation_type
             </Grid>
             <Grid item lg={6} md={8} sm={12} xs={12}>
               <InputFormItem
@@ -245,12 +245,16 @@ function OrganizationsetupForm(props) {
               />
             </Grid>
             <Grid item lg={6} md={8} sm={12} xs={12}>
-              <InputFormItem
+              <ImagesUploader
+                max={1000}
+              />
+              {/* <InputFormItem
                 name="logo"
                 label={i18n("entities.organizationsetup.fields.logo")}
                 required={true}
                 autoFocus
-              />
+                
+              /> */}
             </Grid>
             <Grid item lg={6} md={8} sm={12} xs={12}>
               <DatePickerFormItem
