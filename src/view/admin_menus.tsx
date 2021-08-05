@@ -17,7 +17,7 @@ export default [
     path: '/allergies',
     exact: true,
     icon: <HistoryIcon />,
-    label: "Allergies Report",
+    label: "Allergies",
     avater:"https://www.publicradiotulsa.org/sites/kwgs/files/styles/x_large/public/201812/medical-tests.jpg",
     permissionRequired: permissions.userRead,
   },

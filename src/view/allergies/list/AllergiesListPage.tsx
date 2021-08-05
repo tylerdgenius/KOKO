@@ -23,7 +23,7 @@ function AllergiesListPage(props) {
         </PageTitle>
 
         <AllergiesListToolbar />        
-        {/* <AllergiesListFilter /> */}
+        <AllergiesListFilter />
         <AllergiesListTable />
       </ContentWrapper>
     </>

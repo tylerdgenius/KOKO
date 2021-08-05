@@ -1,10 +1,10 @@
 // Place the URL here with the /api suffix.
 // Ex.:`https://domain.com/api`;
-const backendUrl = `https://kokofp-319805.wn.r.appspot.com/api`;
+const backendUrl = `https://kokofpapi.herokuapp.com/api/`;
 
 // SwaggerUI Documentation URL
 // Leave black if documentation should be hidden
-const apiDocumentationUrl = `https://kokofp-319805.wn.r.appspot.com/documentation`;
+const apiDocumentationUrl = `https://kokofpapi.herokuapp.com/documentation`;
 
 /**
  * Frontend URL.

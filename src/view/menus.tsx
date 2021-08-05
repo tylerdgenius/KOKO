@@ -48,17 +48,18 @@ export default [
     permissionRequired: permissions.patientRead,
   },
 
-  {
-    path: '/report',
-    icon: <SettingsIcon />,
-    label: 'Report',
-    permissionRequired: permissions.userRead,
-  },
+
 
   {
     path: '/setup',
     icon: <SettingsIcon />,
     label: 'Set Up',
+    permissionRequired: permissions.userRead,
+  },
+  {
+    path: '/report',
+    icon: <SettingsIcon />,
+    label: 'Report',
     permissionRequired: permissions.userRead,
   },
   
