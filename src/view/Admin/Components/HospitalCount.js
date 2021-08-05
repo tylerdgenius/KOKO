@@ -4,17 +4,20 @@ import {
   Card,
   CardContent,
   Grid,
+  ListItemAvatar,
   Typography,makeStyles
 } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import MoneyIcon from '@material-ui/icons/Money';
 import red from '@material-ui/core/colors/red';
+import logo from "../../../assets/img/images.png";
+
 
 const useStyles = makeStyles({
 
   jss28: {
       flexGrow: 1,
-      width: '100%',
+      width: '80%',
       cursor: 'pointer',
       // margin: '0 auto',
       borderRadius: '16px',
@@ -61,47 +64,22 @@ const classes = useStyles();
             color="textPrimary"
             variant="h3"
           >
-            $24,000
+            2,000
           </Typography>
         </Grid>
-        <Grid item>
-          <Avatar
-           colorDefault='red[600]'
-            sx={{
-              backgroundColor: red[600],
-              height: 56,
-              width: 56,
-              padding:74
-            }}
-          >
-            <MoneyIcon />
-          </Avatar>
+        <Grid item style={{ flex: 9 }}> 
+        <ListItemAvatar>
+            <img
+              alt='hello'
+              src={logo}             
+              style={{
+                height: 80,
+                width: 80
+              }}
+            />
+          </ListItemAvatar>
         </Grid>
       </Grid>
-      <Box
-        sx={{
-          pt: 2,
-          display: 'flex',
-          alignItems: 'center'
-        }}
-      >
-        <ArrowDownwardIcon sx={{ color: red[900] }} />
-        <Typography
-          sx={{
-            color: red[900],
-            mr: 1
-          }}
-          variant="body2"
-        >
-          12%
-        </Typography>
-        <Typography
-          color="textSecondary"
-          variant="caption"
-        >
-          Since last month
-        </Typography>
-      </Box>
     </CardContent>
   </Card>
 )};

@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
   jss28: {
       flexGrow: 1,
-      width: '100%',
+      width: '80%',
       cursor: 'pointer',
       // margin: '0 auto',
       borderRadius: '16px',
@@ -63,7 +63,7 @@ const classes = useStyles();
             color="textPrimary"
             variant="h3"
           >
-            $24,000
+            24,000
           </Typography>
         </Grid>
         <Grid item style={{ flex: 9 }}> 
@@ -72,8 +72,8 @@ const classes = useStyles();
               alt='hello'
               src={logo}             
               style={{
-                height: 150,
-                width: 180
+                height: 80,
+                width: 80
               }}
             />
           </ListItemAvatar>
