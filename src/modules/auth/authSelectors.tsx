@@ -63,6 +63,8 @@ const selectRoles = createSelector(
   },
 );
 
+
+
 const selectLoading = createSelector([selectRaw], (auth) =>
   Boolean(auth.loading),
 );
@@ -242,7 +244,7 @@ const authSelectors = {
   selectInvitedTenants,
   selectCurrentSettings,
   selectLogoUrl,
-  selectBackgroundImageUrl,
+  selectBackgroundImageUrl
 };
 
 export default authSelectors;

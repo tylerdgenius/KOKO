@@ -7,6 +7,7 @@ import { AuthToken } from 'src/modules/auth/authToken';
 import AuthCurrentTenant from 'src/modules/auth/authCurrentTenant';
 import selectors from 'src/modules/auth/authSelectors';
 import { tenantSubdomain } from '../tenant/tenantSubdomain';
+import { OnlineStatus } from '../online/OnlineStatus';
 
 const prefix = 'AUTH';
 
@@ -115,7 +116,6 @@ const authActions = {
         },
       });
     } catch (error) {
-      console.log(error);
       await service.signout();
 
       if (Errors.errorCode(error) !== 400) {
@@ -171,6 +171,8 @@ const authActions = {
     try {
       dispatch({ type: authActions.AUTH_START });
       await service.signout();
+
+      OnlineStatus.set(false);
 
       dispatch({
         type: authActions.AUTH_SUCCESS,

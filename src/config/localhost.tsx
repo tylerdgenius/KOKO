@@ -1,4 +1,4 @@
-const backendUrl = `http://localhost:8080/api`;
+const backendUrl = `https://kokofpapi.herokuapp.com/api/`;
 
 // SwaggerUI Documentation URL
 // Leave black if documentation should be hidden

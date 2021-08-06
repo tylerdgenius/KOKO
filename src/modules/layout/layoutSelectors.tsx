@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { OnlineStatus } from '../online/OnlineStatus';
 
 const selectRaw = (state) => state.layout;
 
@@ -19,7 +20,7 @@ const selectLanguage = createSelector(
 
 const selectOnline = createSelector(
   [selectRaw],
-  (layout) => Boolean(layout.IsOnline),
+  (layout) => Boolean(OnlineStatus.get()),
 );
 
 const layoutSelectors = {

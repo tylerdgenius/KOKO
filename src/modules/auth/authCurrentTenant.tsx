@@ -87,4 +87,6 @@ export default class AuthCurrentTenant {
   static clear() {
     localStorage.removeItem('tenant');
   }
+
+  
 }
