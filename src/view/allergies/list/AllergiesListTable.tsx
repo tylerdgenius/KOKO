@@ -142,13 +142,13 @@ function AllergiesListTable(props) {
                 label={i18n("entities.allergies.fields.description")}
               />
 
-              <TableCellCustom
+              {/* <TableCellCustom
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
                 name={"status"}
                 label={i18n("entities.allergies.fields.status")}
-              />
+              /> */}
               <TableCellCustom size="md" />
             </TableRow>
           </TableHead>
@@ -220,13 +220,13 @@ function AllergiesListTable(props) {
                   </TableCell>
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.description}</TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     {row.status
                       ? i18n(
                           `entities.allergies.enumerators.status.${row.status}`
                         )
                       : null}
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))}
           </TableBody>

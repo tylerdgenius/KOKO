@@ -42,11 +42,18 @@ export default [
     permissionRequired: permissions.userRead,
   },
   {
+    path: '/appointment',
+    icon: <SettingsIcon />,
+    label: 'Appointment',
+    permissionRequired: permissions.patientRead,
+  },
+  {
     path: '/patient-report',
     icon: <SettingsIcon />,
     label: 'Report',
     permissionRequired: permissions.patientRead,
   },
+
 
 
 
