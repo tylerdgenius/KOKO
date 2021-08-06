@@ -14,6 +14,7 @@ import branch from "src/modules/branch/branchReducers";
 import patient from 'src/modules/patient/patientReducers';
 import personalvitals from 'src/modules/personalvitals/personalvitalsReducers';
 import { combineReducers } from 'redux';
+import appointment from 'src/modules/appointment/appointmentReducers';
 
 export default (history) =>
   combineReducers({
@@ -32,5 +33,6 @@ export default (history) =>
     branch,
     patient,
     personalvitals,
+    appointment
 
   });

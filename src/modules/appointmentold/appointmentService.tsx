@@ -1,23 +1,24 @@
 import authAxios from 'src/modules/shared/axios/authAxios';
 import AuthCurrentTenant from 'src/modules/auth/authCurrentTenant';
 
-export default class UserService {
-  static async edit(data) {
+export default class AllergiesService {
+  static async update(id, data) {
     const body = {
+      id,
       data,
     };
 
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.put(
-      `/tenant/${tenantId}/user`,
+      `/tenant/${tenantId}/allergies/${id}`,
       body,
     );
 
     return response.data;
   }
 
-  static async destroy(ids) {
+  static async destroyAll(ids) {
     const params = {
       ids,
     };
@@ -25,7 +26,7 @@ export default class UserService {
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.delete(
-      `/tenant/${tenantId}/user`,
+      `/tenant/${tenantId}/allergies`,
       {
         params,
       },
@@ -42,7 +43,7 @@ export default class UserService {
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.post(
-      `/tenant/${tenantId}/user`,
+      `/tenant/${tenantId}/allergies`,
       body,
     );
 
@@ -51,16 +52,14 @@ export default class UserService {
 
   static async import(values, importHash) {
     const body = {
-      data: {
-        ...values,
-      },
+      data: values,
       importHash,
     };
 
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.post(
-      `/tenant/${tenantId}/user/import`,
+      `/tenant/${tenantId}/allergies/import`,
       body,
     );
 
@@ -69,13 +68,15 @@ export default class UserService {
 
   static async find(id) {
     const tenantId = AuthCurrentTenant.get();
+
     const response = await authAxios.get(
-      `/tenant/${tenantId}/user/${id}`,
+      `/tenant/${tenantId}/allergies/${id}`,
     );
+
     return response.data;
   }
 
-  static async fetchUsers(filter, orderBy, limit, offset) {
+  static async list(filter, orderBy, limit, offset) {
     const params = {
       filter,
       orderBy,
@@ -86,16 +87,16 @@ export default class UserService {
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.get(
-      `/tenant/${tenantId}/user`,
-      // {
-      //   params,
-      // },
+      `/tenant/${tenantId}/allergies`,
+      {
+        params,
+      },
     );
 
     return response.data;
   }
 
-  static async fetchUserAutocomplete(query, limit) {
+  static async listAutocomplete(query, limit) {
     const params = {
       query,
       limit,
@@ -104,22 +105,12 @@ export default class UserService {
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.get(
-      `/tenant/${tenantId}/user/autocomplete`,
+      `/tenant/${tenantId}/allergies/autocomplete`,
       {
         params,
       },
     );
+
     return response.data;
   }
-
-  static  async getUserProfile(id) {
-    const tenantId = AuthCurrentTenant.get();
-    const response = await authAxios.get(
-      `/tenant/${id}/profile/`,
-    );
-     return response.data;
-  }
-
-
-
 }

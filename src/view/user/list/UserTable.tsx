@@ -82,6 +82,8 @@ function UserTable() {
     dispatch(actions.doToggleOneSelected(id));
   };
 
+  console.log(rows);
+
   return (
     <>
       <Box
@@ -184,7 +186,7 @@ function UserTable() {
                   <TableCell>{row.email}</TableCell>
                   <TableCell>{row.fullName}</TableCell>
                   <TableCell>
-                    {row.roles.map((roleId) => (
+                    {JSON.parse(row.roles).map((roleId) => (
                       <div key={roleId}>
                         <span>{Roles.labelOf(roleId)}</span>
                       </div>
