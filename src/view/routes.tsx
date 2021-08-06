@@ -62,7 +62,7 @@ const privateRoutes = [
   
   {
     path: '/consultations',
-    loader: () => import('src/view/consultations/ConsultationPage'),
+    loader: () => import('src/view/consultations/AvailableConsultantsPage'),
     permissionRequired: null,
     exact: true,
   },
