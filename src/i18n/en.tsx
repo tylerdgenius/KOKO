@@ -499,6 +499,73 @@ const en = {
         hint: "Files/Images columns must be the URLs of the files separated by space.",
       },
     },
+     //Appointment 
+     appointment: {
+      name: "appointment",
+      label: "Appointment ",
+      menu: "Appointment",
+      exporterFileName: "medicaltest_export",
+      list: {
+        menu: "Appointment",
+        title: "Appointment",
+      },
+      create: {
+        success: "Appointment Test successfully saved",
+      },
+      update: {
+        success: "Appointment Test successfully saved",
+      },
+      destroy: {
+        success: "Appointment Test successfully deleted",
+      },
+      destroyAll: {
+        success: "Appointment Test(s) successfully deleted",
+      },
+      edit: {
+        title: "Edit Appointment Test",
+      },
+      fields: {
+        date: "Date",
+        created_date: "Created Date",
+        created_by: "Created By",
+        time: "Time",
+        comments: "Comments",
+        status: "Status",
+        id: "ID",
+        hospital: "Hospital",
+        name: "Name",
+        modified_date: "Date Modified",
+        modified_by: "Modified By",
+      },
+      enumerators: {
+        status: {
+          false: "false",
+          true: "true",
+        },
+        medicaltestcategory: {
+          Pregnancy: "Pregnancy",
+          Typhoid: "Typhoid",
+        },
+        medicaltestkind: {
+          Pregnancy: "Pregnancy",
+          Typhoid: "Typhoid",
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: "New Appointment ",
+      },
+      view: {
+        title: "View Appointment ",
+      },
+      importer: {
+        title: "Import Appointment ",
+        fileName: "Appointment",
+        hint: "Files/Images columns must be the URLs of the files separated by space.",
+      },
+    },
+   
     //Medical Test
     medicaltest: {
       name: "medicaltest",

@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
@@ -14,18 +14,18 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { i18n } from 'src/i18n';
-import allergiesSelectors from 'src/modules/allergies/allergiesSelectors';
-import destroyActions from 'src/modules/allergies/destroy/allergiesDestroyActions';
-import destroySelectors from 'src/modules/allergies/destroy/allergiesDestroySelectors';
-import actions from 'src/modules/allergies/list/allergiesListActions';
-import selectors from 'src/modules/allergies/list/allergiesListSelectors';
+import appointmentSelectors from 'src/modules/appointment/appointmentSelectors';
+import destroyActions from 'src/modules/appointment/destroy/appointmentDestroyActions';
+import destroySelectors from 'src/modules/appointment/destroy/appointmentDestroySelectors';
+import actions from 'src/modules/appointment/list/appointmentListActions';
+import selectors from 'src/modules/appointment/list/appointmentListSelectors';
 import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Pagination from 'src/view/shared/table/Pagination';
 import Spinner from 'src/view/shared/Spinner';
 import TableCellCustom from 'src/view/shared/table/TableCellCustom';
 
 
-function AllergiesListTable(props) {
+function AppointmentListTable(props) {
   const [
     recordIdToDestroy,
     setRecordIdToDestroy,
@@ -53,10 +53,10 @@ function AllergiesListTable(props) {
     selectors.selectIsAllSelected,
   );
   const hasPermissionToEdit = useSelector(
-    allergiesSelectors.selectPermissionToEdit,
+    appointmentSelectors.selectPermissionToEdit,
   );
   const hasPermissionToDestroy = useSelector(
-    allergiesSelectors.selectPermissionToDestroy,
+    appointmentSelectors.selectPermissionToDestroy,
   );
 
   const doOpenDestroyConfirmModal = (id) => {
@@ -99,25 +99,47 @@ function AllergiesListTable(props) {
     dispatch(actions.doToggleOneSelected(id));
   };
 
+  const button = (
+    <Button
+      variant="contained"
+      color="primary"
+      type="button"   
+      size="small"
+    >
+    Create Appointments
+    </Button>
+  );
+  
+
   return (
     <>
       <Box
         style={{
-          display: "block",
-          width: "100%",
-          overflowX: "auto",
+          display: 'block',
+          width: '100%',
+          overflowX: 'auto',
         }}
       >
+          <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to="/appointment/new"
+          size="small"
+        >
+          Create Appointments
+        </Button>
         <Table
           style={{
-            borderRadius: "5px",
-            border: "1px solid rgb(224, 224, 224)",
-            borderCollapse: "initial",
+            borderRadius: '5px',
+            border: '1px solid rgb(224, 224, 224)',
+            borderCollapse: 'initial',
           }}
         >
+          
           <TableHead>
             <TableRow>
-              {/* <TableCellCustom padding="checkbox">
+              <TableCellCustom padding="checkbox">
                 {hasRows && (
                   <Checkbox
                     checked={Boolean(isAllSelected)}
@@ -125,30 +147,52 @@ function AllergiesListTable(props) {
                     size="small"
                   />
                 )}
-              </TableCellCustom> */}
-              <TableCellCustom size="md" />
+              </TableCellCustom>
               <TableCellCustom
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
-                name={"name"}
-                label={i18n("entities.allergies.fields.name")}
+                name={'name'}
+                label={i18n(
+                  'entities.appointment.fields.name',
+                )}
               />
               <TableCellCustom
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
-                name={"description"}
-                label={i18n("entities.allergies.fields.description")}
+                name={'birthdate'}
+                label={i18n(
+                  'entities.appointment.fields.date',
+                )}
               />
-
-              {/* <TableCellCustom
+              <TableCellCustom
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
-                name={"status"}
-                label={i18n("entities.allergies.fields.status")}
-              /> */}
+                name={'gender'}
+                label={i18n(
+                  'entities.appointment.fields.time',
+                )}
+              />   
+                    <TableCellCustom
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'birthdate'}
+                label={i18n(
+                  'entities.appointment.fields.hospital',
+                )}
+              />   
+                    <TableCellCustom
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={'birthdate'}
+                label={i18n(
+                  'entities.appointment.fields.comments',
+                )}
+              />         
               <TableCellCustom size="md" />
             </TableRow>
           </TableHead>
@@ -165,11 +209,11 @@ function AllergiesListTable(props) {
                 <TableCell colSpan={100}>
                   <div
                     style={{
-                      display: "flex",
-                      justifyContent: "center",
+                      display: 'flex',
+                      justifyContent: 'center',
                     }}
                   >
-                    {i18n("table.noData")}
+                    {i18n('table.noData')}
                   </div>
                 </TableCell>
               </TableRow>
@@ -177,40 +221,60 @@ function AllergiesListTable(props) {
             {!loading &&
               rows.map((row) => (
                 <TableRow key={row.id}>
-                  {/* <TableCell padding="checkbox">
+                  <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedKeys.includes(row.id)}
-                      onChange={() => doToggleOneSelected(row.id)}
+                      checked={selectedKeys.includes(
+                        row.id,
+                      )}
+                      onChange={() =>
+                        doToggleOneSelected(row.id)
+                      }
                       size="small"
                     />
-                  </TableCell> */}
+                  </TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.date}</TableCell>
+                <TableCell>{row.time}</TableCell>
+                <TableCell>{row.hospital}</TableCell>
+                <TableCell>{row.comment}</TableCell>                 
                   <TableCell>
-                    <Box display="flex" justifyContent="flex-end">
-                      <Tooltip title={i18n("common.view")}>
+                    <Box
+                      display="flex"
+                      justifyContent="flex-end"
+                    >
+                      <Tooltip title={i18n('common.view')}>
                         <IconButton
                           component={Link}
                           color="primary"
-                          to={`/allergies/${row.id}`}
+                          to={`/appointment/${row.id}`}
                         >
                           <SearchIcon />
                         </IconButton>
                       </Tooltip>
                       {hasPermissionToEdit && (
-                        <Tooltip title={i18n("common.edit")}>
+                        <Tooltip
+                          title={i18n('common.edit')}
+                        >
                           <IconButton
                             color="primary"
                             component={Link}
-                            to={`/allergies/${row.id}/edit`}
+                            to={`/appointment/${row.id}/edit`}
                           >
                             <EditIcon />
                           </IconButton>
                         </Tooltip>
                       )}
                       {hasPermissionToDestroy && (
-                        <Tooltip title={i18n("common.destroy")}>
+                        <Tooltip
+                          title={i18n('common.destroy')}
+                        >
                           <IconButton
                             color="primary"
-                            onClick={() => doOpenDestroyConfirmModal(row.id)}
+                            onClick={() =>
+                              doOpenDestroyConfirmModal(
+                                row.id,
+                              )
+                            }
                           >
                             <DeleteIcon />
                           </IconButton>
@@ -218,34 +282,28 @@ function AllergiesListTable(props) {
                       )}
                     </Box>
                   </TableCell>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.description}</TableCell>
-                  {/* <TableCell>
-                    {row.status
-                      ? i18n(
-                          `entities.allergies.enumerators.status.${row.status}`
-                        )
-                      : null}
-                  </TableCell> */}
                 </TableRow>
               ))}
           </TableBody>
         </Table>
       </Box>
 
-      <Pagination onChange={doChangePagination} pagination={pagination} />
+      <Pagination
+        onChange={doChangePagination}
+        pagination={pagination}
+      />
 
       {recordIdToDestroy && (
         <ConfirmModal
-          title={i18n("common.areYouSure")}
+          title={i18n('common.areYouSure')}
           onConfirm={() => doDestroy(recordIdToDestroy)}
           onClose={() => doCloseDestroyConfirmModal()}
-          okText={i18n("common.yes")}
-          cancelText={i18n("common.no")}
+          okText={i18n('common.yes')}
+          cancelText={i18n('common.no')}
         />
       )}
     </>
   );
 }
 
-export default AllergiesListTable;
+export default AppointmentListTable;

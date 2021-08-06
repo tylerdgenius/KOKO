@@ -202,6 +202,37 @@ const privateRoutes = [
     permissionRequired: null,
     exact: true,
   },
+   //Appointment
+   {
+    path: "/appointment",
+    loader: () => import("src/view/appointment/list/AppointmentListPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/appointment/new",
+    loader: () => import("src/view/appointment/form/AppointmentFormPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/appointment/importer",
+    loader: () => import("src/view/appointment/importer/AppointmentImporterPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/appointment/:id/edit",
+    loader: () => import("src/view/appointment/form/AppointmentFormPage"),
+    permissionRequired: null,
+    exact: true,
+  },
+  {
+    path: "/appointment/:id",
+    loader: () => import("src/view/appointment/view/AppointmentViewPage"),
+    permissionRequired: null,
+    exact: true,
+  },
   //Drugs
 
   {

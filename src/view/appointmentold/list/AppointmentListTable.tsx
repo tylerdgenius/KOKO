@@ -14,18 +14,18 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { i18n } from 'src/i18n';
-import allergiesSelectors from 'src/modules/allergies/allergiesSelectors';
-import destroyActions from 'src/modules/allergies/destroy/allergiesDestroyActions';
-import destroySelectors from 'src/modules/allergies/destroy/allergiesDestroySelectors';
-import actions from 'src/modules/allergies/list/allergiesListActions';
-import selectors from 'src/modules/allergies/list/allergiesListSelectors';
+import medicaltestSelectors from 'src/modules/medicaltest/medicaltestSelectors';
+import destroyActions from 'src/modules/medicaltest/destroy/medicaltestDestroyActions';
+import destroySelectors from 'src/modules/medicaltest/destroy/medicaltestDestroySelectors';
+import actions from 'src/modules/medicaltest/list/medicaltestListActions';
+import selectors from 'src/modules/medicaltest/list/medicaltestListSelectors';
 import ConfirmModal from 'src/view/shared/modals/ConfirmModal';
 import Pagination from 'src/view/shared/table/Pagination';
 import Spinner from 'src/view/shared/Spinner';
 import TableCellCustom from 'src/view/shared/table/TableCellCustom';
 
 
-function AllergiesListTable(props) {
+function MedicaltestListTable(props) {
   const [
     recordIdToDestroy,
     setRecordIdToDestroy,
@@ -53,10 +53,10 @@ function AllergiesListTable(props) {
     selectors.selectIsAllSelected,
   );
   const hasPermissionToEdit = useSelector(
-    allergiesSelectors.selectPermissionToEdit,
+    medicaltestSelectors.selectPermissionToEdit,
   );
   const hasPermissionToDestroy = useSelector(
-    allergiesSelectors.selectPermissionToDestroy,
+    medicaltestSelectors.selectPermissionToDestroy,
   );
 
   const doOpenDestroyConfirmModal = (id) => {
@@ -131,25 +131,38 @@ function AllergiesListTable(props) {
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
-                name={"name"}
-                label={i18n("entities.allergies.fields.name")}
+                name={"medicaltestcode"}
+                label={i18n("entities.medicaltest.fields.medicaltestcode")}
               />
               <TableCellCustom
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
                 name={"description"}
-                label={i18n("entities.allergies.fields.description")}
+                label={i18n("entities.medicaltest.fields.description")}
+              />
+              <TableCellCustom
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={"medicaltestkind"}
+                label={i18n("entities.medicaltest.fields.medicaltestkind")}
               />
 
-              {/* <TableCellCustom
+              <TableCellCustom
+                onSort={doChangeSort}
+                hasRows={hasRows}
+                sorter={sorter}
+                name={"medicaltestcategory"}
+                label={i18n("entities.medicaltest.fields.medicaltestcategory")}
+              />
+              <TableCellCustom
                 onSort={doChangeSort}
                 hasRows={hasRows}
                 sorter={sorter}
                 name={"status"}
-                label={i18n("entities.allergies.fields.status")}
-              /> */}
-              <TableCellCustom size="md" />
+                label={i18n("entities.medicaltest.fields.status")}
+              />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -185,12 +198,12 @@ function AllergiesListTable(props) {
                     />
                   </TableCell> */}
                   <TableCell>
-                    <Box display="flex" justifyContent="flex-end">
+                    <Box display="flex" justifyContent="flex-start">
                       <Tooltip title={i18n("common.view")}>
                         <IconButton
                           component={Link}
                           color="primary"
-                          to={`/allergies/${row.id}`}
+                          to={`/medicaltest/${row.id}`}
                         >
                           <SearchIcon />
                         </IconButton>
@@ -200,7 +213,7 @@ function AllergiesListTable(props) {
                           <IconButton
                             color="primary"
                             component={Link}
-                            to={`/allergies/${row.id}/edit`}
+                            to={`/medicaltest/${row.id}/edit`}
                           >
                             <EditIcon />
                           </IconButton>
@@ -218,15 +231,29 @@ function AllergiesListTable(props) {
                       )}
                     </Box>
                   </TableCell>
-                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.medicaltestcode}</TableCell>
                   <TableCell>{row.description}</TableCell>
-                  {/* <TableCell>
-                    {row.status
+                  <TableCell>
+                    {row.medicaltestkind
                       ? i18n(
-                          `entities.allergies.enumerators.status.${row.status}`
+                          `entities.medicaltest.enumerators.medicaltestkind.${row.medicaltestkind}`
                         )
                       : null}
-                  </TableCell> */}
+                  </TableCell>
+                  <TableCell>
+                    {row.medicaltestcategory
+                      ? i18n(
+                          `entities.medicaltest.enumerators.medicaltestcategory.${row.medicaltestcategory}`
+                        )
+                      : null}
+                  </TableCell>
+                  <TableCell>
+                    {row.status
+                      ? i18n(
+                          `entities.medicaltest.enumerators.status.${row.status}`
+                        )
+                      : null}
+                  </TableCell>
                 </TableRow>
               ))}
           </TableBody>
@@ -248,4 +275,4 @@ function AllergiesListTable(props) {
   );
 }
 
-export default AllergiesListTable;
+export default MedicaltestListTable;
