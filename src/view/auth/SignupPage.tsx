@@ -107,15 +107,7 @@ function SignupPage() {
           
        
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <InputFormItem
-              name="email"
-              label={i18n('user.fields.email')}
-              autoComplete="email"
-              autoFocus
-            
-            />
-
-            
+                       
             <InputFormItem
               name="fullname"
               label='First Name'
@@ -130,6 +122,13 @@ function SignupPage() {
               autoComplete="text"
               autoFocus
              
+            />
+             <InputFormItem
+              name="email"
+              label={i18n('user.fields.email')}
+              autoComplete="email"
+              autoFocus
+            
             />
 
             <InputFormItem

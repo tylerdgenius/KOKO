@@ -1,469 +1,246 @@
-import { Button, TextField, Grid, Card, makeStyles } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import SaveIcon from '@material-ui/icons/Save';
-import UndoIcon from '@material-ui/icons/Undo';
-import { useForm, FormProvider } from 'react-hook-form';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import Check from '@material-ui/icons/Check';
+import PersonIcon from '@material-ui/icons/Person';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import RedeemIcon from '@material-ui/icons/Redeem';
+import StepConnector from '@material-ui/core/StepConnector';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { StepIconProps } from '@material-ui/core/StepIcon';
+import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core';
+import React from 'react';
+import clsx from 'clsx';
+import FamilyInfoForm from './FamilyInfoForm';
+import RelatedPatientForm from './RelatedPatients';
+import DonorForm from './OrganDonor';
+import Breadcrumb from 'src/view/shared/Breadcrumb';
 import { i18n } from 'src/i18n';
-import actions from 'src/modules/auth/authActions';
-import selectors from 'src/modules/auth/authSelectors';
-import userservice from 'src/modules/user/userService';
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
-import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import FormWrapper, {
-  FormButtons,
-} from 'src/view/shared/styles/FormWrapper';
-import * as yup from 'yup';
-import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
-import Storage from 'src/security/storage';
-import { yupResolver } from '@hookform/resolvers/yup';
-import RadioFormItem from '../shared/form/items/RadioFormItem';
-import { DatePickerFormItem } from '../shared/form/items/DatePickerFormItem';
-import profileEnumerators from 'src/modules/user/userEnumerators';
-import { getPositionOfLineAndCharacter } from 'typescript';
-import patientEnumerators from 'src/modules/patient/patientEnumerators';
+import PatientForm from '../patient/form/PatientForm';
 
+const QontoConnector = withStyles({
+  alternativeLabel: {
+    top: 10,
+    left: 'calc(-50% + 16px)',
+    right: 'calc(50% + 16px)',
+  },
+  active: {
+    '& $line': {
+      borderColor: '#784af4',
+    },
+  },
+  completed: {
+    '& $line': {
+      borderColor: '#784af4',
+    },
+  },
+  line: {
+    borderColor: '#eaeaf0',
+    borderTopWidth: 3,
+    borderRadius: 1,
+  },
+})(StepConnector);
 
-interface OtherRecords 
-{allergies: string, id: any,address:any,stateoforigin:string,bloodgroup:string,genotype:string,
- relative:string,nok:string,birthdate:string,noknumber:string,gender:string,cityofresidence:string,stateofresidence:string} 
-
-const useStyles = makeStyles((theme) => ({
+const useQontoStepIconStyles = makeStyles({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
+    color: '#eaeaf0',
+    display: 'flex',
+    height: 22,
+    alignItems: 'center',
   },
-  input: {
-    display: 'none',
+  active: {
+    color: '#784af4',
   },
-}));
-
-const schema = yup.object().shape({
-  firstName: yupFormSchemas.string(
-    i18n('user.fields.firstName'),
-    {
-      max: 80,
-    },
-  ),
-  lastName: yupFormSchemas.string(
-    i18n('user.fields.lastName'),
-    {
-      max: 175,
-    },
-  ),
-  phoneNumber: yupFormSchemas.string(
-    i18n('user.fields.phoneNumber'),
-    {
-      matches: /^[0-9]/,
-      max: 24,
-    },
-  ),
-  avatars: yupFormSchemas.images(
-    i18n('user.fields.avatars'),
-    {
-      max: 1,
-    },
-  ),
+  circle: {
+    width: 8,
+    height: 8,
+    borderRadius: '50%',
+    backgroundColor: 'currentColor',
+  },
+  completed: {
+    color: '#784af4',
+    zIndex: 1,
+    fontSize: 18,
+  },
 });
 
- function ProfileFormPage(props) {
+function QontoStepIcon(props: StepIconProps) {
+  const classes = useQontoStepIconStyles();
+  const { active, completed } = props;
 
-
-  const dispatch = useDispatch();
-  const saveLoading = useSelector(
-    selectors.selectLoadingUpdateProfile,
-  );
-
-  const currentUser = useSelector(
-    selectors.selectCurrentUser,
-  );
-
-  
-    const record = currentUser || {};
-    let initialValues = record;
-
- 
- const getAllData = async() => {
-      await userservice.getUserProfile(currentUser.id).then(res => {
-        initialValues = {
-          firstName: record.firstName,
-          lastName: record.lastName,
-          middleName: record.middleName,
-          phoneNumber: record.phoneNumber,
-          email: record.email,
-          avatars: record.avatars || [],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-          ...res
-        };
-
-      })
-      console.log(initialValues);
-      return  initialValues;
-    } 
- //   
- 
- console.log(initialValues);
- getAllData().then(res => initialValues = res);
- console.log(initialValues);
-
-  const form = useForm({
-    resolver: yupResolver(schema),
-    mode: 'all',
-    defaultValues: initialValues,
-  });
-
-  const onSubmit = (values) => {
-    console.log(values)
-    dispatch(actions.doUpdateProfile(values));
-  };
-
-  const onReset = () => {
-    Object.keys(initialValues).forEach((key) => {
-      form.setValue(key, initialValues[key]);
-    });
-  };
-
- 
-  
-  const classes = useStyles();
   return (
-    <FormWrapper>
-      <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-        <Card elevation={10} style={{
-          padding: 20,
-          marginTop: 5,
-        }}>
-          <Grid spacing={2} container>
-          <Grid item lg={4} md={6} sm={12} xs={12}>
-              <RadioFormItem
-                name="title"
-                options={profileEnumerators.title.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.profile.enumerators.title.${value}`,
-                    ),
-                  }),
-                )}
-                required={true}
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                 name="firstName"
-                 label={i18n('user.fields.firstName')}
-                 autoComplete="firstName"
-                required={true}
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-              name="lastName"
-              label={i18n('user.fields.lastName')}
-              autoComplete="lastName"
-                required={true}
-              autoFocus
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="middleName"
-                label={i18n('user.fields.middleName')}  
-                required={true}
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-            <InputFormItem
-                 name="email"
-                 label={i18n('user.fields.email')}
-                 autoComplete="email"
-                required={true}
-              />
-  </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="phoneNumber"
-                label={i18n('user.fields.phoneNumber')}
-                autoComplete="phoneNumber"
-                prefix="+" 
-                required={true}
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-              <DatePickerFormItem
-                name="birthdate"
-                label={i18n('entities.profile.fields.birthdate')}
-                required={true}
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-            <InputFormItem
-                name="allergies"
-                label='Allergies'
-                required={true}
-              />
-      
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-               <TextField 
-                type="text"
-                name="address"
-                label={i18n('entities.profile.fields.address')} 
-                required={true}
-                fullWidth
-                margin="normal"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                size="small"
-                />
-
-           
-               </Grid>
-              <Grid item lg={4} md={6} sm={12} xs={12}>
-                <TextField 
-                id="stateoforigin"
-                name="stateoforigin"
-                label={i18n('entities.profile.fields.stateoforigin')}  
-                required={true}
-                fullWidth
-                margin="normal"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                size="small"
-                />
-
-           
-              </Grid>
-              <Grid item lg={4} md={6} sm={12} xs={12}>
-              <TextField 
-                id="stateofresidence"
-                name="stateofresidence"
-                label={i18n('entities.profile.fields.stateofresidence')}  
-                required={true}
-                fullWidth
-                margin="normal"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                size="small"
-                />
-
-           
-             </Grid>
-              <Grid item lg={4} md={6} sm={12} xs={12}>
-              <TextField 
-                id="cityofresidence"
-                name="cityofresidence"
-                label={i18n('entities.profile.fields.cityofresidence')}   
-                required={true}
-                fullWidth
-                margin="normal"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                size="small"
-               />
-
-           
-               </Grid>
-              <Grid item lg={4} md={6} sm={12} xs={12}>
-              <RadioFormItem
-                name="gender"
-                label={i18n('entities.profile.fields.gender')}
-                options={profileEnumerators.gender.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.profile.enumerators.gender.${value}`,
-                    ),
-                  }),
-                )}
-                required={true}
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-              <RadioFormItem
-                name="bloodgroup"
-                label={i18n('entities.profile.fields.bloodgroup')}
-                options={patientEnumerators.bloodgroup.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.profile.enumerators.bloodgroup.${value}`,
-                    ),
-                  }),
-                )}
-                required={true}
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-              <RadioFormItem
-                name="genotype"
-                label={i18n('entities.profile.fields.genotype')}
-                options={patientEnumerators.genotype.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.profile.enumerators.genotype.${value}`,
-                    ),
-                  }),
-                )}
-                required={true}
-              />
-            </Grid>
-            <Grid item lg={6} md={8} sm={12} xs={12}>
-    <ImagesFormItem
-      name="avatars"
-      label={i18n('user.fields.avatars')}
-      storage={Storage.values.userAvatarsProfiles}
-      max={1}
-    />
-  </Grid>
-          </Grid>
-          </Card>
-
-          <Card elevation={10} style={{
-          padding: 20,
-          marginTop: 5,
-        }}>
-        <h2>Family History</h2>
-            <Grid spacing={2} container>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                 <TextField 
-                  id="relative"
-                  name="relative"
-                  label={i18n('entities.profile.fields.relative')}   
-                  required={true}
-                  value={initialValues.relative}
-                  fullWidth
-                  margin="normal"
-                  variant="outlined"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  size="small"
-                 
-                  />
-                </Grid>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                 <TextField 
-                    name="nok"
-                    label={i18n('entities.profile.fields.nok')}  
-                    required={true}
-                    value={initialValues.nok}
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    size="small"
-                  />
-                </Grid>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                 <TextField 
-                    name="noknumber"
-                    label={i18n('entities.profile.fields.noknumber')}  
-                    required={true}
-                    value={initialValues.noknumber}
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    size="small"
-                  />
-                </Grid>
-          </Grid>
-        </Card>
-       
-          <Card elevation={10} style={{
-          padding: 20,
-          marginTop: 5,
-        }}>
-        <h2>Organ Donor?</h2>
-            <Grid spacing={2} container>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                <RadioFormItem
-                name="donor"
-                label={i18n('entities.profile.fields.donor')}
-                options={patientEnumerators.donor.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.profile.enumerators.donor.${value}`,
-                    ),
-                  }),
-                )}
-                required={true}
-              />
-                </Grid>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                <div className={classes.root}>
-                        <input
-                          accept="image/*"
-                          className={classes.input}
-                          id="contained-button-file"
-                          multiple
-                          type="file"
-                        />
-                      <label htmlFor="contained-button-file">
-                        <Button variant="contained" color="primary" component="span">
-                          Upload Consent Document
-                        </Button>
-                      </label>
-                </div>
-                </Grid>
-          </Grid>
-        </Card>
-          <FormButtons>
-  <Button
-    variant="contained"
-    color="primary"
-    disabled={saveLoading}
-    type="button"
-    onClick={form.handleSubmit(onSubmit)}
-    startIcon={<SaveIcon />}
-    size="small"
-  >
-    {i18n('common.save')}
-  </Button>
-
-  <Button
-    disabled={saveLoading}
-    onClick={onReset}
-    type="button"
-    startIcon={<UndoIcon />}
-    size="small"
-  >
-    {i18n('common.reset')}
-  </Button>
-
-  {props.onCancel ? (
-    <Button
-      disabled={saveLoading}
-      onClick={() => props.onCancel()}
-      type="button"
-      startIcon={<CloseIcon />}
-      size="small"
+    <div
+      className={clsx(classes.root, {
+        [classes.active]: active,
+      })}
     >
-      {i18n('common.cancel')}
-    </Button>
-  ) : null}
-</FormButtons>
-        </form>
-      </FormProvider>
-    </FormWrapper>
+      {completed ? <Check className={classes.completed} /> : <div className={classes.circle} />}
+    </div>
   );
 }
 
-export default ProfileFormPage;
+const ColorlibConnector = withStyles({
+  alternativeLabel: {
+    top: 22,
+  },
+  active: {
+    '& $line': {
+      backgroundImage:
+        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+    },
+  },
+  completed: {
+    '& $line': {
+      backgroundImage:
+        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+    },
+  },
+  line: {
+    height: 3,
+    border: 0,
+    backgroundColor: '#eaeaf0',
+    borderRadius: 1,
+  },
+})(StepConnector);
+
+const useColorlibStepIconStyles = makeStyles({
+  root: {
+    backgroundColor: '#ccc',
+    zIndex: 1,
+    color: '#fff',
+    width: 50,
+    height: 50,
+    display: 'flex',
+    borderRadius: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  active: {
+    backgroundImage:
+      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+    boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+  },
+  completed: {
+    backgroundImage:
+      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+  },
+});
+
+function ColorlibStepIcon(props: StepIconProps) {
+  const classes = useColorlibStepIconStyles();
+  const { active, completed } = props;
+
+  const icons: { [index: string]: React.ReactElement } = {
+    1: <PersonIcon/>,
+    2: <PersonAddIcon />,
+    3: <GroupAddIcon />,
+    4: <RedeemIcon />,
+  };
+
+  return (
+    <div
+      className={clsx(classes.root, {
+        [classes.active]: active,
+        [classes.completed]: completed,
+      })}
+    >
+      {icons[String(props.icon)]}
+    </div>
+  );
+}
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+    },
+    button: {
+      marginRight: theme.spacing(1),
+    },
+    instructions: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+    },
+  }),
+);
+
+function getSteps() {
+  return ['Personal Details', 'Family Information', 'Related Patients','Organ Donor'];
+}
+function getStepContent(step: number) {
+  switch (step) {
+    case 0:
+      return (<PatientForm/>);
+    case 1:
+      return (<FamilyInfoForm/>);
+    case 2:
+      return (<RelatedPatientForm/>);
+    case 3:
+      return (<DonorForm/>);
+    default:
+      return 'Unknown step';
+  }
+}
+
+
+export default function ProfileFormPage(props) {
+  const classes = useStyles();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const steps = getSteps();
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+  return (
+    <div className={classes.root}>
+      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <div>
+        {activeStep === steps.length ? (
+          <div>
+            <Typography className={classes.instructions}>
+              All steps completed - you&apos;re finished
+            </Typography>
+            <Button onClick={handleReset} className={classes.button}>
+              Reset
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <div>
+              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+                Back
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleNext}
+                className={classes.button}
+              >
+                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+

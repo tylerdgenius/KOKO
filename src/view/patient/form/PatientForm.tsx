@@ -5,6 +5,9 @@ import Card from '@material-ui/core/Card';
 import UndoIcon from '@material-ui/icons/Undo';
 import React, { useState } from 'react';
 import { i18n } from 'src/i18n';
+import actions from 'src/modules/auth/authActions';
+import selectors from 'src/modules/auth/authSelectors';
+import userservice from 'src/modules/user/userService';
 import FormWrapper, {
   FormButtons,
 } from 'src/view/shared/styles/FormWrapper';
@@ -18,6 +21,8 @@ import patientEnumerators from 'src/modules/patient/patientEnumerators';
 import moment from 'moment';
 import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
 import { PhotoCamera } from '@material-ui/icons';
+import Breadcrumb from 'src/view/shared/Breadcrumb';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,13 +38,13 @@ const useStyles = makeStyles((theme) => ({
 const schema = yup.object().shape({
   
   title: yupFormSchemas.enumerator(
-    i18n('entities.patient.fields.title'),
+    i18n('entities.profile.fields.title'),
     {
       "options": patientEnumerators.title
     },
   ),
   LastName: yupFormSchemas.string(
-    i18n('entities.patient.fields.lastname'),
+    i18n('user.fields.lastname'),
     {
       "required": true,
       "min": 2,
@@ -47,7 +52,7 @@ const schema = yup.object().shape({
     },
   ),
   FirstName: yupFormSchemas.string(
-    i18n('entities.patient.fields.firstname'),
+    i18n('user.fields.firstname'),
     {
       "required": true,
       "min": 2,
@@ -55,7 +60,7 @@ const schema = yup.object().shape({
     },
   ),
   MiddleName: yupFormSchemas.string(
-    i18n('entities.patient.fields.middlename'),
+    i18n('user.fields.middlename'),
     {
       "required": true,
       "min": 2,
@@ -63,7 +68,7 @@ const schema = yup.object().shape({
     },
   ),
   Email: yupFormSchemas.string(
-    i18n('entities.patient.fields.email'),
+    i18n('user.fields.email'),
     {
       "required": true,
       "min": 2,
@@ -71,7 +76,7 @@ const schema = yup.object().shape({
     },
   ),
   Phonenumber: yupFormSchemas.string(
-    i18n('entities.patient.fields.phonenumber'),
+    i18n('user.fields.phonenumber'),
     {
       "required": true,
       "min": 2,
@@ -79,7 +84,7 @@ const schema = yup.object().shape({
     },
   ),
   Address: yupFormSchemas.string(
-    i18n('entities.patient.fields.address'),
+    i18n('user.fields.address'),
     {
       "required": true,
       "min": 2,
@@ -87,7 +92,7 @@ const schema = yup.object().shape({
     },
   ),
   Stateoforigin: yupFormSchemas.string(
-    i18n('entities.patient.fields.stateoforigin'),
+    i18n('entities.profile.fields.stateoforigin'),
     {
       "required": true,
       "min": 2,
@@ -95,7 +100,7 @@ const schema = yup.object().shape({
     },
   ),
   Allergies: yupFormSchemas.string(
-    i18n('entities.patient.fields.middlename'),
+    i18n('entities.profile.fields.middlename'),
     {
       "required": true,
       "min": 2,
@@ -103,7 +108,7 @@ const schema = yup.object().shape({
     },
   ),
   Cityofresidence: yupFormSchemas.string(
-    i18n('entities.patient.fields.cityofresidence'),
+    i18n('entities.profile.fields.cityofresidence'),
     {
       "required": true,
       "min": 2,
@@ -111,7 +116,7 @@ const schema = yup.object().shape({
     },
   ),
   Stateofresidence: yupFormSchemas.string(
-    i18n('entities.patient.fields.stateofresidence'),
+    i18n('entities.profile.fields.stateofresidence'),
     {
       "required": true,
       "min": 2,
@@ -119,23 +124,23 @@ const schema = yup.object().shape({
     },
   ),
   birthdate: yupFormSchemas.date(
-    i18n('entities.patient.fields.birthdate'),
+    i18n('entities.profile.fields.birthdate'),
     {},
   ),
   gender: yupFormSchemas.enumerator(
-    i18n('entities.patient.fields.gender'),
+    i18n('entities.profile.fields.gender'),
     {
       "options": patientEnumerators.gender
     },
   ),
   bloodgroup: yupFormSchemas.enumerator(
-    i18n('entities.patient.fields.bloodgroup'),
+    i18n('entities.profile.fields.bloodgroup'),
     {
       "options": patientEnumerators.bloodgroup
     },
   ),
   genotype: yupFormSchemas.enumerator(
-    i18n('entities.patient.fields.genotype'),
+    i18n('entities.profile.fields.genotype'),
     {
       "options": patientEnumerators.genotype
     },
@@ -143,32 +148,66 @@ const schema = yup.object().shape({
 });
 
 function PatientForm(props) {
-  const [initialValues] = useState(() => {
-    const record = props.record || {};
 
-    return {
-      title: record.title,
-      lastname: record.lastname,
-      firstname: record.firstname,
-      middlename: record.middlename,
-      email: record.email,
-      phonenumber: record.phonenumber,
-      address: record.address,
-      stateoforigin: record.stateoforigin,
-      allergies: record.allergies,
-      birthdate: record.birthdate ? moment(record.birthdate, 'YYYY-MM-DD') : null,
-      gender: record.gender,
-      genotype: record.genotype,
-      bloodgroup: record.bloodgroup,
-      relative: record.relative,
-      nok: record.nok,
-      noknumber: record.noknumber,
-      cityofresidence: record.cityofresidence,
-      stateofresidence: record.stateofresidence,
-    };
-  });
+  const dispatch = useDispatch();
+  const saveLoading = useSelector(
+    selectors.selectLoadingUpdateProfile,
+  );
+
+  const currentUser = useSelector(
+    selectors.selectCurrentUser,
+  );
 
   
+    const record = currentUser || {};
+    let initialValues = record;
+
+    
+  const getAllData = async() => {
+    await userservice.getUserProfile(currentUser.id).then(res => {
+      initialValues = {
+        firstName: record.firstName,
+        lastName: record.lastName,
+        middleName: record.middleName,
+        phoneNumber: record.phoneNumber,
+        email: record.email,
+        avatars: record.avatars || [],                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        ...res
+      };
+
+    })
+    console.log(initialValues);
+    return  initialValues;
+  } 
+  // const [initialValues] = useState(() => {
+  //   const record = props.record || {};
+
+  //   return {
+  //     title: record.title,
+  //     lastname: record.lastname,
+  //     firstname: record.firstname,
+  //     middlename: record.middlename,
+  //     email: record.email,
+  //     phonenumber: record.phonenumber,
+  //     address: record.address,
+  //     stateoforigin: record.stateoforigin,
+  //     allergies: record.allergies,
+  //     birthdate: record.birthdate ? moment(record.birthdate, 'YYYY-MM-DD') : null,
+  //     gender: record.gender,
+  //     genotype: record.genotype,
+  //     bloodgroup: record.bloodgroup,
+  //     relative: record.relative,
+  //     nok: record.nok,
+  //     noknumber: record.noknumber,
+  //     cityofresidence: record.cityofresidence,
+  //     stateofresidence: record.stateofresidence,
+  //   };
+  // });
+
+  
+  console.log(initialValues);
+  getAllData().then(res => initialValues = res);
+  console.log(initialValues);
 
   const form = useForm({
     resolver: yupResolver(schema),
@@ -177,7 +216,8 @@ function PatientForm(props) {
   });
 
   const onSubmit = (values) => {
-    props.onSubmit(props.record?.id, values);
+    console.log(values)
+    dispatch(actions.doUpdateProfile(values));
   };
 
   const onReset = () => {
@@ -186,11 +226,11 @@ function PatientForm(props) {
     });
   };
 
-  const { saveLoading, modal } = props;
   const classes = useStyles();
 
   return (
-    <FormWrapper>
+    <div>
+       <FormWrapper>
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
 
@@ -203,12 +243,11 @@ function PatientForm(props) {
           <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="title"
-                label={i18n('entities.patient.fields.title')}
                 options={patientEnumerators.title.map(
                   (value) => ({
                     value,
                     label: i18n(
-                      `entities.patient.enumerators.title.${value}`,
+                      `entities.profile.enumerators.title.${value}`,
                     ),
                   }),
                 )}
@@ -218,7 +257,7 @@ function PatientForm(props) {
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Lastname"
-                label={i18n('entities.patient.fields.lastname')}  
+                label={i18n('user.fields.lastName')}  
                 required={true}
               autoFocus
               />
@@ -226,82 +265,82 @@ function PatientForm(props) {
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Firstname"
-                label={i18n('entities.patient.fields.firstname')}  
+                label={i18n('user.fields.firstName')}  
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Middlename"
-                label={i18n('entities.patient.fields.middlename')}  
+                label={i18n('user.fields.middleName')}  
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Email"
-                label={i18n('entities.patient.fields.email')}  
+                label={i18n('user.fields.email')}  
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Phonenumber"
-                label={i18n('entities.patient.fields.phonenumber')}  
+                label={i18n('user.fields.phoneNumber')} 
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <DatePickerFormItem
                 name="birthdate"
-                label={i18n('entities.patient.fields.birthdate')}
+                label={i18n('entities.profile.fields.birthdate')}
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
             <InputFormItem
                 name="Allergies"
-                label={i18n('entities.patient.fields.allergies')}  
+                label={i18n('entities.profile.fields.allergies')}  
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Address"
-                label={i18n('entities.patient.fields.address')}  
+                label={i18n('entities.profile.fields.address')}  
                 required={true}
               />
             </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Stateoforigin"
-                label={i18n('entities.patient.fields.stateoforigin')}  
+                label={i18n('entities.profile.fields.stateoforigin')}  
                 required={true}
               />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Stateofresidence"
-                label={i18n('entities.patient.fields.stateofresidence')}  
+                label={i18n('entities.profile.fields.stateofresidence')}  
                 required={true}
               />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
                 name="Cityofresidence"
-                label={i18n('entities.patient.fields.cityofresidence')}  
+                label={i18n('entities.profile.fields.cityofresidence')}  
                 required={true}
               />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="gender"
-                label={i18n('entities.patient.fields.gender')}
+                label={i18n('entities.profile.fields.gender')}
                 options={patientEnumerators.gender.map(
                   (value) => ({
                     value,
                     label: i18n(
-                      `entities.patient.enumerators.gender.${value}`,
+                      `entities.profile.enumerators.gender.${value}`,
                     ),
                   }),
                 )}
@@ -311,12 +350,12 @@ function PatientForm(props) {
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="bloodgroup"
-                label={i18n('entities.patient.fields.bloodgroup')}
+                label={i18n('entities.profile.fields.bloodgroup')}
                 options={patientEnumerators.bloodgroup.map(
                   (value) => ({
                     value,
                     label: i18n(
-                      `entities.patient.enumerators.bloodgroup.${value}`,
+                      `entities.profile.enumerators.bloodgroup.${value}`,
                     ),
                   }),
                 )}
@@ -326,12 +365,12 @@ function PatientForm(props) {
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
                 name="genotype"
-                label={i18n('entities.patient.fields.genotype')}
+                label={i18n('entities.profile.fields.genotype')}
                 options={patientEnumerators.genotype.map(
                   (value) => ({
                     value,
                     label: i18n(
-                      `entities.patient.enumerators.genotype.${value}`,
+                      `entities.profile.enumerators.genotype.${value}`,
                     ),
                   }),
                 )}
@@ -339,123 +378,47 @@ function PatientForm(props) {
               />
             </Grid>
             </Grid>
-        </Card>
-       
-        <Card elevation={10} style={{
-          padding: 20,
-          marginTop: 5,
-        }}>
-        <h2>Family History</h2>
-            <Grid spacing={2} container>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                  <InputFormItem
-                    name="Relative"
-                    label={i18n('entities.patient.fields.relative')}  
-                    required={true}
-                  />
-                </Grid>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                  <InputFormItem
-                    name="Nok"
-                    label={i18n('entities.patient.fields.nok')}  
-                    required={true}
-                  />
-                </Grid>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                  <InputFormItem
-                    name="Noknumber"
-                    label={i18n('entities.patient.fields.noknumber')}  
-                    required={true}
-                  />
-                </Grid>
-          </Grid>
-        </Card>
-            
-
-        <Card elevation={10} style={{
-          padding: 20,
-          marginTop: 5,
-        }}>
-        <h2>Organ Donor?</h2>
-            <Grid spacing={2} container>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                <RadioFormItem
-                name="donor"
-                label={i18n('entities.patient.fields.donor')}
-                options={patientEnumerators.donor.map(
-                  (value) => ({
-                    value,
-                    label: i18n(
-                      `entities.patient.enumerators.donor.${value}`,
-                    ),
-                  }),
-                )}
-                required={true}
-              />
-                </Grid>
-                <Grid item lg={4} md={6} sm={12} xs={12}>
-                <div className={classes.root}>
-                        <input
-                          accept="image/*"
-                          className={classes.input}
-                          id="contained-button-file"
-                          multiple
-                          type="file"
-                        />
-                      <label htmlFor="contained-button-file">
-                        <Button variant="contained" color="primary" component="span">
-                          Upload Consent Document
-                        </Button>
-                      </label>
-                </div>
-                </Grid>
-          </Grid>
         </Card>
           
-          <FormButtons
-            style={{
-              flexDirection: modal
-                ? 'row-reverse'
-                : undefined,
-            }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={saveLoading}
-              type="button"
-              onClick={form.handleSubmit(onSubmit)}
-              startIcon={<SaveIcon />}
-              size="small"
-            >
-              {i18n('common.save')}
-            </Button>
+        <FormButtons>
+  <Button
+    variant="contained"
+    color="primary"
+    disabled={saveLoading}
+    type="button"
+    onClick={form.handleSubmit(onSubmit)}
+    startIcon={<SaveIcon />}
+    size="small"
+  >
+    {i18n('common.save')}
+  </Button>
 
-            <Button
-              disabled={saveLoading}
-              onClick={onReset}
-              type="button"
-              startIcon={<UndoIcon />}
-              size="small"
-            >
-              {i18n('common.reset')}
-            </Button>
+  <Button
+    disabled={saveLoading}
+    onClick={onReset}
+    type="button"
+    startIcon={<UndoIcon />}
+    size="small"
+  >
+    {i18n('common.reset')}
+  </Button>
 
-            {props.onCancel ? (
-              <Button
-                disabled={saveLoading}
-                onClick={() => props.onCancel()}
-                type="button"
-                startIcon={<CloseIcon />}
-                size="small"
-              >
-                {i18n('common.cancel')}
-              </Button>
-            ) : null}
-          </FormButtons>
+  {props.onCancel ? (
+    <Button
+      disabled={saveLoading}
+      onClick={() => props.onCancel()}
+      type="button"
+      startIcon={<CloseIcon />}
+      size="small"
+    >
+      {i18n('common.cancel')}
+    </Button>
+  ) : null}
+</FormButtons>
         </form>
       </FormProvider>
     </FormWrapper>
+    </div>
   );
 }
 
