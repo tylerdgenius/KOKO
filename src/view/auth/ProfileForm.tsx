@@ -20,6 +20,13 @@ import Breadcrumb from 'src/view/shared/Breadcrumb';
 import { i18n } from 'src/i18n';
 import PatientForm from '../patient/form/PatientForm';
 
+
+
+interface OtherRecords 
+{allergies: string, id: any,address:any,stateoforigin:string,bloodgroup:string,genotype:string,
+ relative:string,nok:string,birthdate:string,noknumber:string,gender:string,cityofresidence:string,stateofresidence:string} 
+
+ 
 const QontoConnector = withStyles({
   alternativeLabel: {
     top: 10,

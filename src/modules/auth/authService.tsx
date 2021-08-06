@@ -33,12 +33,16 @@ export default class AuthService {
   }
 
   static async registerWithEmailAndPassword(
+    firstname,
+    lastname,
     email,
     password,
   ) {
     const invitationToken = AuthInvitationToken.get();
 
     const response = await authAxios.post('/auth/sign-up', {
+      firstname,
+      lastname,
       email,
       password,
       invitationToken,

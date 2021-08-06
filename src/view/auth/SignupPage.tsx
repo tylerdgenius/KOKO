@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress } from '@material-ui/core';
 import MaterialLink from '@material-ui/core/Link';
 import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
@@ -25,6 +25,18 @@ const schema = yup.object().shape({
   }),
   password: yupFormSchemas.string(
     i18n('user.fields.password'),
+    {
+      required: true,
+    },
+  ),
+  firstName: yupFormSchemas.string(
+    i18n('user.fields.firstName'),
+    {
+      required: true,
+    },
+  ),
+  lastName: yupFormSchemas.string(
+    i18n('user.fields.lastName'),
     {
       required: true,
     },
@@ -56,6 +68,8 @@ function SignupPage() {
 
   const [initialValues] = useState({
     email: emailFromInvitation || '',
+    firstName: '',
+    lastName: '',
     password: '',
   });
 
@@ -65,9 +79,9 @@ function SignupPage() {
     defaultValues: initialValues,
   });
 
-  const onSubmit = ({ email, password }) => {
+  const onSubmit = ({ firstName,lastName,email, password }) => {
     dispatch(
-      actions.doRegisterEmailAndPassword(email, password),
+      actions.doRegisterEmailAndPassword(firstName,lastName,email, password),
     );
   };
 
@@ -109,16 +123,16 @@ function SignupPage() {
           <form onSubmit={form.handleSubmit(onSubmit)}>
                        
             <InputFormItem
-              name="fullname"
-              label='First Name'
+              name="firstName"
+              label={i18n('user.fields.firstName')}
               autoComplete="text"
               autoFocus
            
             />
 
             <InputFormItem
-              name="lastname"
-              label='Last Name'
+              name="lastName"
+              label={i18n('user.fields.lastName')}
               autoComplete="text"
               autoFocus
              
@@ -154,6 +168,7 @@ function SignupPage() {
               disabled={loading}
             >
               {i18n('auth.signup')}
+              {loading && <CircularProgress size={24} />}
             </Button>
 
             <OtherActions>

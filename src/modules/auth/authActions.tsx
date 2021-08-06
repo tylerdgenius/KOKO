@@ -94,14 +94,16 @@ const authActions = {
     }
   },
 
-  doRegisterEmailAndPassword: (email, password) => async (
+  doRegisterEmailAndPassword: (firstname,lastname,email, password) => async (
     dispatch,
   ) => {
     try {
       dispatch({ type: authActions.AUTH_START });
 
       const token = await service.registerWithEmailAndPassword(
-        email,
+        firstname,
+        lastname,
+          email,
         password,
       );
 

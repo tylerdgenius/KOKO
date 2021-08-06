@@ -1,4 +1,4 @@
-import { Button, Grid, IconButton, makeStyles } from '@material-ui/core';
+import { Button, Grid, IconButton, makeStyles, TextField } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import SaveIcon from '@material-ui/icons/Save';
 import Card from '@material-ui/core/Card';
@@ -179,31 +179,6 @@ function PatientForm(props) {
     console.log(initialValues);
     return  initialValues;
   } 
-  // const [initialValues] = useState(() => {
-  //   const record = props.record || {};
-
-  //   return {
-  //     title: record.title,
-  //     lastname: record.lastname,
-  //     firstname: record.firstname,
-  //     middlename: record.middlename,
-  //     email: record.email,
-  //     phonenumber: record.phonenumber,
-  //     address: record.address,
-  //     stateoforigin: record.stateoforigin,
-  //     allergies: record.allergies,
-  //     birthdate: record.birthdate ? moment(record.birthdate, 'YYYY-MM-DD') : null,
-  //     gender: record.gender,
-  //     genotype: record.genotype,
-  //     bloodgroup: record.bloodgroup,
-  //     relative: record.relative,
-  //     nok: record.nok,
-  //     noknumber: record.noknumber,
-  //     cityofresidence: record.cityofresidence,
-  //     stateofresidence: record.stateofresidence,
-  //   };
-  // });
-
   
   console.log(initialValues);
   getAllData().then(res => initialValues = res);
@@ -256,38 +231,42 @@ function PatientForm(props) {
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
-                name="Lastname"
-                label={i18n('user.fields.lastName')}  
-                required={true}
-              autoFocus
-              />
-            </Grid>
-            <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Firstname"
+                name="firstName"
                 label={i18n('user.fields.firstName')}  
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
-                name="Middlename"
-                label={i18n('user.fields.middleName')}  
+                name="lastName"
+                label={i18n('user.fields.lastName')}  
+                required={true}
+              autoFocus
+              />
+            </Grid>
+         
+            <Grid item lg={4} md={6} sm={12} xs={12}>
+              <InputFormItem
+               name="middleName"
+               label={i18n('user.fields.middleName')}   
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
-                name="Email"
-                label={i18n('user.fields.email')}  
+                name="email"
+                label={i18n('user.fields.email')}
+                autoComplete="email" 
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
               <InputFormItem
-                name="Phonenumber"
-                label={i18n('user.fields.phoneNumber')} 
-                required={true}
+                 name="phoneNumber"
+                 label={i18n('user.fields.phoneNumber')}
+                 autoComplete="phoneNumber"
+                 prefix="+" 
+                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
@@ -299,38 +278,70 @@ function PatientForm(props) {
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
             <InputFormItem
-                name="Allergies"
+                name="allergies"
                 label={i18n('entities.profile.fields.allergies')}  
                 required={true}
               />
             </Grid>
             <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Address"
-                label={i18n('entities.profile.fields.address')}  
+            <TextField 
+                type="text"
+                name="address"
+                label={i18n('entities.profile.fields.address')} 
                 required={true}
-              />
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
+                />
             </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Stateoforigin"
+              <TextField 
+                id="stateoforigin"
+                name="stateoforigin"
                 label={i18n('entities.profile.fields.stateoforigin')}  
                 required={true}
-              />
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
+                />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Stateofresidence"
+              <TextField 
+                id="stateofresidence"
+                name="stateofresidence"
                 label={i18n('entities.profile.fields.stateofresidence')}  
                 required={true}
-              />
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
+                />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
-              <InputFormItem
-                name="Cityofresidence"
-                label={i18n('entities.profile.fields.cityofresidence')}  
+              <TextField 
+                id="cityofresidence"
+                name="cityofresidence"
+                label={i18n('entities.profile.fields.cityofresidence')}   
                 required={true}
-              />
+                fullWidth
+                margin="normal"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                size="small"
+               />
               </Grid>
               <Grid item lg={4} md={6} sm={12} xs={12}>
               <RadioFormItem
