@@ -96,6 +96,7 @@ function MedicaltestForm(props) {
                 label={i18n("entities.medicaltest.fields.medicaltestcode")}
                 required={true}
                 autoFocus
+                placeholder={i18n("entities.medicaltest.placeholder")}
               />
             </Grid>
             <Grid item lg={7} md={8} sm={12} xs={12}>

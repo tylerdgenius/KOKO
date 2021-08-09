@@ -509,7 +509,7 @@ const en = {
       name: "appointment",
       label: "Appointment ",
       menu: "Appointment",
-      exporterFileName: "medicaltest_export",
+      exporterFileName: "appointment_export",
       list: {
         menu: "Appointment",
         title: "Appointment",
@@ -576,6 +576,7 @@ const en = {
       name: "medicaltest",
       label: "Medical Tests",
       menu: "Medicaltest",
+      placeholder: "MED2011",
       exporterFileName: "medicaltest_export",
       list: {
         menu: "Medicaltest",

@@ -28,7 +28,7 @@ import admin_menus from '../admin_menus';
 //   media: {
 //     height: 140,
 //   },
-  
+
 // });
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,13 +50,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '16px',
     boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
     transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
-   ' &:hover':{  
+    ' &:hover': {
       boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
     }
- },
- jss29:{
-  fontWeight: 'bold',
- }
+  },
+  jss29: {
+    fontWeight: 'bold',
+  }
 }));
 const SetupFormPage = (props) => {
   const classes = useStyles();
@@ -124,44 +124,50 @@ const SetupFormPage = (props) => {
 
   return (
     <>
-    
+
       <ContentWrapper>
         <PageTitle>
           {i18n('entities.setup.menu')}
         </PageTitle>
         <div className={classes.root}>
-      <Grid container spacing={3}>
-      {admin_menus
-          .filter((menu) => match(menu.permissionRequired))
-          .map((menu) => (
-        <Grid item spacing={2} sm={6} md={4} xs={12} lg={3}>
-              <Card className={classes.jss28}>
-            <CardActionArea>
-            <CardMedia
-          className={classes.media}
-          image={menu.avater}
-          title=""
-        />
-            <CardContent>
-            <CustomRouterLink key={menu.path} to={menu.path}>
-              <Button size="small" color="primary">
-              <Typography gutterBottom variant="h5" component="h2"  className={classes.jss29}>
-              {menu.label}
-                </Typography>  
-              </Button>
-              </CustomRouterLink>
+
+          <Grid container spacing={3}>
+            {admin_menus
+              .filter((menu) => match(menu.permissionRequired))
+              .map((menu) => (
                 
-              </CardContent>
-            </CardActionArea>
-       
-          </Card>
-        </Grid>
-    
-      ))}
-        </Grid>
-    </div>
-      
-    
+                <Grid item spacing={2} sm={6} md={4} xs={12} lg={3}>
+                  <Card className={classes.jss28}>
+                    <CardActionArea>
+                    <CustomRouterLink key={menu.path} to={menu.path}>
+                      <CardMedia
+                        className={classes.media}
+                        image={menu.avater}
+                        title=""
+                      />
+                      </CustomRouterLink>
+                      <CardContent>
+                        <CustomRouterLink key={menu.path} to={menu.path}>
+                          <Button size="small" color="primary">
+                            <Typography gutterBottom variant="h5" component="h2" className={classes.jss29}>
+                              {menu.label}
+                            </Typography>
+                          </Button>
+                        </CustomRouterLink>
+
+                      </CardContent>
+                    </CardActionArea>
+
+                  </Card>
+                </Grid>
+
+              ))}
+          </Grid>
+
+          
+        </div>
+
+
       </ContentWrapper>
     </>
   );
