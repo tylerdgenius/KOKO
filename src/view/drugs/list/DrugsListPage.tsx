@@ -23,7 +23,7 @@ function DrugsListPage(props) {
         </PageTitle>
 
         <DrugsListToolbar />
-        {/* <DrugsListFilter /> */}
+        <DrugsListFilter />
         <DrugsListTable />
       </ContentWrapper>
     </>

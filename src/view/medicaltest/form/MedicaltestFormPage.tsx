@@ -47,7 +47,7 @@ function MedicaltestFormPage(props) {
       <Breadcrumb
         items={[
           [i18n('dashboard.menu'), '/'],
-          [i18n('entities.medicaltest.menu'), '/medicaltest'],
+          [i18n('entities.medicaltest.menu'), '/medical'],
           [title],
         ]}
       />

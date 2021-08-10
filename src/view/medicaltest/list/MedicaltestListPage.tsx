@@ -23,7 +23,7 @@ function MedicaltestListPage(props) {
         </PageTitle>
 
         <MedicaltestListToolbar />
-        {/* <MedicaltestListFilter /> */}
+        <MedicaltestListFilter />
         <MedicaltestListTable />
       </ContentWrapper>
     </>

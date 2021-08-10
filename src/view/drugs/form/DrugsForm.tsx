@@ -59,11 +59,12 @@ function DrugsForm(props) {
     const record = props.record || {};
 
     return {
-      drugcode: record.nadrugcodeme,
+      drugcode: record.drugcode,
       description: record.description,
       drugkind: record.drugkind,
       drugcategory: record.drugcategory,
       status: record.status,
+      drugName: record.drugName
     };
   });
 

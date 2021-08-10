@@ -26,10 +26,10 @@ export default class BranchService {
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.delete(
-      `/tenant/${tenantId}/branch`,
-      {
-        params,
-      },
+      `/tenant/${tenantId}/branch/${ids}`,
+      // {
+      //   params,
+      // },
     );
 
     return response.data;

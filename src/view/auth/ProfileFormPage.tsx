@@ -5,6 +5,7 @@ import ProfileForm from 'src/view/auth/ProfileForm';
 import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
+import { Button } from '@material-ui/core';
 
 function ProfileFormPage() {
   return (
@@ -18,7 +19,7 @@ function ProfileFormPage() {
 
       <ContentWrapper>
         <PageTitle>{i18n('auth.profile.title')}</PageTitle>
-
+        <Button color="primary" href="/onboarding" >Provider Onboarding</Button>
         <ProfileForm
           onCancel={() => getHistory().push('/')}
         />

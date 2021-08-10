@@ -7,28 +7,9 @@ import swal from 'sweetalert';
 
 const Error404Page = () => {
 
-  useEffect(() => {
-    swal({
-      text: "Provider Not Available ....",
-      // content: el,
-      buttons: {
-        confirm: {
-          /*
-           * We need to initialize the value of the button to
-           * an empty string instead of "true":
-           */
-          value: "DEFAULT_INPUT_TEXT",
-        },
-      },
-    })
-
-    window.location.href = "/medicaltest/new";
- 
-  }, [])
-
   return (
     <ErrorWrapper>
-      {/* <div className="exception">
+      <div className="exception">
         <div className="content">
           <h1>404</h1>
           <div className="desc">{i18n('errors.404')}</div>
@@ -44,7 +25,7 @@ const Error404Page = () => {
             </Button>
           </div>
         </div>
-      </div> */}
+      </div>
       
     </ErrorWrapper>
   );
