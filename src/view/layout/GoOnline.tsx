@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,8 @@ import {FormGroup , Switch ,FormControlLabel , ListItem , ListItemText , ListIte
 from '@material-ui/core';
 import  HomeIcon  from '@material-ui/icons/Home';
 import { OnlineStatus } from 'src/modules/online/OnlineStatus';
+import io from "socket.io-client";
+
 
 const useStyles = makeStyles((theme) => ({
     active: {
@@ -24,29 +26,38 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
   
-  GoOnline.propTypes = {
-    IsOnline: PropTypes.bool
-  };
+  
 
 
-export default function GoOnline(props) {
+export default function GoOnline(props)  {
 
 
   const classes = useStyles();
+ 
+  const [IsOnline, SetUpdate] = useState(OnlineStatus.get());
 
   
-  const [XIsOnline, setIsOnline] = useState();
-
   const handleChange = (event) => {
     
+    SetUpdate(event.target.checked);
+    OnlineStatus.set(event.target.checked);
+    OnlineStatus.get();
+    console.log(event.target.checked, Boolean(IsOnline));
 
-    OnlineStatus.set( event.target.checked);
-    setIsOnline( event.target.checked );
-    console.log(OnlineStatus.get());
     // Here we would connect to the WebSocket on the server
 
     // But first we would check if you are done with your profile
   };
+
+ useEffect(()=>{
+ 
+ {  
+  SetUpdate(OnlineStatus.get());
+}
+    
+
+ },[OnlineStatus.get()])
+
 
   const CustomRouterLink = (props) => (
     <div   style={{
@@ -61,18 +72,18 @@ export default function GoOnline(props) {
       />
     </div>
   );
-
+  {console.log( IsOnline, typeof(IsOnline).valueOf())}
   return (
-      <>
+      <> 
     <FormGroup row>
       <FormControlLabel
-        control={<Switch checked={XIsOnline} onChange={handleChange} name="IsOnline" />}
+        control={<Switch checked={Boolean(IsOnline)}  onChange={handleChange} name="IsOnline" />}
         label="Go Online" 
         className={classes.optionText}
       />
     </FormGroup>
    
-    {XIsOnline &&  (
+    { Boolean(IsOnline) &&  (
        <List>
           <CustomRouterLink key='/consultations'
           to='/consultations'>
@@ -102,3 +113,5 @@ export default function GoOnline(props) {
     </>
   );
 }
+
+

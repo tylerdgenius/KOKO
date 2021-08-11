@@ -2,8 +2,9 @@
 
 export class OnlineStatus {
   static get() {
-    return (
-       localStorage.getItem('IsOnline') as unknown as boolean || false
+    console.log(localStorage.getItem('IsOnline'));
+    return ( 
+        Boolean(localStorage.getItem('IsOnline') || false )
     );
   }
 

@@ -18,14 +18,16 @@ const selectLanguage = createSelector(
   (layout) => layout.language,
 );
 
-const selectOnline = createSelector(
+
+const IsOnline = createSelector(
   [selectRaw],
   (layout) => Boolean(OnlineStatus.get()),
 );
 
+
 const layoutSelectors = {
   selectRaw,
-  selectOnline,
+  IsOnline,
   selectMenuVisible,
   selectLoading,
   selectLanguage,
