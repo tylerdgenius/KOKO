@@ -2,6 +2,8 @@ import Message from 'src/view/shared/message';
 import { getHistory } from 'src/modules/store';
 import { i18n, i18nExists } from 'src/i18n';
 import authService from 'src/modules/auth/authService';
+import { useEffect } from 'react';
+import swal from 'sweetalert';
 
 const DEFAULT_ERROR_MESSAGE = i18n(
   'errors.defaultErrorMessage',
@@ -57,12 +59,45 @@ export default class Errors {
       return;
     }
 
+    if (selectErrorCode(error) === 404) {
+      //Comment this out and instead insert a SWAL here
+      swal({
+        text: "Provider Not Available ....",
+        // content: el,
+        buttons: {
+          confirm: {
+            /*
+             * We need to initialize the value of the button to
+             * an empty string instead of "true":
+             */
+            value: "DEFAULT_INPUT_TEXT",
+          },
+        },
+      })
+
+      // getHistory().push('/403');
+      return;
+    }
+
     if ([400, 429].includes(selectErrorCode(error))) {
       Message.error(selectErrorMessage(error));
       return;
     }
-
-    getHistory().push('/500');
+    //Comment this out and instead insert a SWAL here
+    swal({
+      text: "Provider Not Available ....",
+      // content: el,
+      buttons: {
+        confirm: {
+          /*
+           * We need to initialize the value of the button to
+           * an empty string instead of "true":
+           */
+          value: "DEFAULT_INPUT_TEXT",
+        },
+      },
+    })
+    // getHistory().push('/500');
   }
 
   static errorCode(error) {

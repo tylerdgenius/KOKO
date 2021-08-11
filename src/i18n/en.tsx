@@ -35,66 +35,66 @@ const en = {
 
   entities: {
     customer: {
-        name: 'customer',
-        label: 'Customers',
+      name: 'customer',
+      label: 'Customers',
+      menu: 'Customers',
+      exporterFileName: 'customer_export',
+      list: {
         menu: 'Customers',
-        exporterFileName: 'customer_export',
-        list: {
-          menu: 'Customers',
-          title: 'Customers',
-        },
-        create: {
-          success: 'Customer successfully saved',
-        },
-        update: {
-          success: 'Customer successfully saved',
-        },
-        destroy: {
-          success: 'Customer successfully deleted',
-        },
-        destroyAll: {
-          success: 'Customer(s) successfully deleted',
-        },
-        edit: {
-          title: 'Edit Customer',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'birthdateRange': 'Birthdate',
-          'birthdate': 'Birthdate',
-          'gender': 'Gender',
-          createdAt: 'Created at',
-          updatedAt: 'Updated at',
-          createdAtRange: 'Created at',
-        },
-        enumerators: {
-          'gender': {
-            'male': 'Male',
-            'female': 'Female',
-          },
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'New Customer',
-        },
-        view: {
-          title: 'View Customer',
-        },
-        importer: {
-          title: 'Import Customers',
-          fileName: 'customer_import_template',
-          hint:
-            'Files/Images columns must be the URLs of the files separated by space.',
+        title: 'Customers',
+      },
+      create: {
+        success: 'Customer successfully saved',
+      },
+      update: {
+        success: 'Customer successfully saved',
+      },
+      destroy: {
+        success: 'Customer successfully deleted',
+      },
+      destroyAll: {
+        success: 'Customer(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Customer',
+      },
+      fields: {
+        id: 'Id',
+        'name': 'Name',
+        'birthdateRange': 'Birthdate',
+        'birthdate': 'Birthdate',
+        'gender': 'Gender',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        'gender': {
+          'male': 'Male',
+          'female': 'Female',
         },
       },
+      placeholders: {
 
-         //patient
+      },
+      hints: {
+
+      },
+      new: {
+        title: 'New Customer',
+      },
+      view: {
+        title: 'View Customer',
+      },
+      importer: {
+        title: 'Import Customers',
+        fileName: 'customer_import_template',
+        hint:
+          'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    //patient
     profile: {
       name: 'profile',
       label: 'Profile',
@@ -178,10 +178,10 @@ const en = {
         },
       },
       placeholders: {
-  
+
       },
       hints: {
-  
+
       },
       new: {
         title: 'New Profile',
@@ -198,188 +198,188 @@ const en = {
     },
 
     product: {
-        name: 'product',
-        label: 'Products',
+      name: 'product',
+      label: 'Products',
+      menu: 'Products',
+      exporterFileName: 'product_export',
+      list: {
         menu: 'Products',
-        exporterFileName: 'product_export',
-        list: {
-          menu: 'Products',
-          title: 'Products',
-        },
-        create: {
-          success: 'Product successfully saved',
-        },
-        update: {
-          success: 'Product successfully saved',
-        },
-        destroy: {
-          success: 'Product successfully deleted',
-        },
-        destroyAll: {
-          success: 'Product(s) successfully deleted',
-        },
-        edit: {
-          title: 'Edit Product',
-        },
-        fields: {
-          id: 'Id',
-          'name': 'Name',
-          'description': 'Description',
-          'unitPriceRange': 'Unit Price',
-          'unitPrice': 'Unit Price',
-          'photos': 'Photos',
-          createdAt: 'Created at',
-          updatedAt: 'Updated at',
-          createdAtRange: 'Created at',
-        },
-        enumerators: {
-
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'New Product',
-        },
-        view: {
-          title: 'View Product',
-        },
-        importer: {
-          title: 'Import Products',
-          fileName: 'product_import_template',
-          hint:
-            'Files/Images columns must be the URLs of the files separated by space.',
-        },
+        title: 'Products',
       },
+      create: {
+        success: 'Product successfully saved',
+      },
+      update: {
+        success: 'Product successfully saved',
+      },
+      destroy: {
+        success: 'Product successfully deleted',
+      },
+      destroyAll: {
+        success: 'Product(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Product',
+      },
+      fields: {
+        id: 'Id',
+        'name': 'Name',
+        'description': 'Description',
+        'unitPriceRange': 'Unit Price',
+        'unitPrice': 'Unit Price',
+        'photos': 'Photos',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
 
-      personalvitals: {
-        name: 'personalvitals',
-        label: 'Personalvitals',
+      },
+      placeholders: {
+
+      },
+      hints: {
+
+      },
+      new: {
+        title: 'New Product',
+      },
+      view: {
+        title: 'View Product',
+      },
+      importer: {
+        title: 'Import Products',
+        fileName: 'product_import_template',
+        hint:
+          'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+
+    personalvitals: {
+      name: 'personalvitals',
+      label: 'Personalvitals',
+      menu: 'Personalvitals',
+      exporterFileName: 'personalvitals_export',
+      list: {
         menu: 'Personalvitals',
-        exporterFileName: 'personalvitals_export',
-        list: {
-          menu: 'Personalvitals',
-          title: 'Personalvitals',
-        },
-        create: {
-          success: 'Personalvitals successfully saved',
-        },
-        update: {
-          success: 'Personalvitals successfully saved',
-        },
-        destroy: {
-          success: 'Personalvitals successfully deleted',
-        },
-        destroyAll: {
-          success: 'Personalvitals(s) successfully deleted',
-        },
-        edit: {
-          title: 'Edit Personalvitals',
-        },
-        fields: {
-            id: 'Id',
-            'name': 'Name',
-            'birthdateRange': 'Birthdate',
-            'birthdate': 'Birthdate',
-            'gender': 'Gender',
-            'temperature': 'Temprature(°C)',
-            'weight': 'Weight(kg)',
-            'height': 'Height(m)',
-            'bloodpressure': 'Bloodpressure',
-            'date': 'Date',
-            'bmi': 'BMI',
-            'pulse': 'Pulse(bpm)',
-            createdAt: 'Created at',
-            updatedAt: 'Updated at',
-            createdAtRange: 'Created at',
-          },
-          enumerators: {
-            'gender': {
-              'male': 'Male',
-              'female': 'Female',
-            },
-          },
-        placeholders: {
-    
-        },
-        hints: {
-    
-        },
-        new: {
-          title: 'New Personalvitals',
-        },
-        view: {
-          title: 'View Personalvitals',
-        },
-        importer: {
-          title: 'Import Personalvitals',
-          fileName: 'personalvitals_import_template',
-          hint:
-            'Files/Images columns must be the URLs of the files separated by space.',
+        title: 'Personalvitals',
+      },
+      create: {
+        success: 'Personalvitals successfully saved',
+      },
+      update: {
+        success: 'Personalvitals successfully saved',
+      },
+      destroy: {
+        success: 'Personalvitals successfully deleted',
+      },
+      destroyAll: {
+        success: 'Personalvitals(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Personalvitals',
+      },
+      fields: {
+        id: 'Id',
+        'name': 'Name',
+        'birthdateRange': 'Birthdate',
+        'birthdate': 'Birthdate',
+        'gender': 'Gender',
+        'temperature': 'Temprature(°C)',
+        'weight': 'Weight(kg)',
+        'height': 'Height(m)',
+        'bloodpressure': 'Bloodpressure',
+        'date': 'Date',
+        'bmi': 'BMI',
+        'pulse': 'Pulse(bpm)',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+        'gender': {
+          'male': 'Male',
+          'female': 'Female',
         },
       },
+      placeholders: {
+
+      },
+      hints: {
+
+      },
+      new: {
+        title: 'New Personalvitals',
+      },
+      view: {
+        title: 'View Personalvitals',
+      },
+      importer: {
+        title: 'Import Personalvitals',
+        fileName: 'personalvitals_import_template',
+        hint:
+          'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
 
     order: {
-        name: 'order',
-        label: 'Orders',
+      name: 'order',
+      label: 'Orders',
+      menu: 'Orders',
+      exporterFileName: 'order_export',
+      list: {
         menu: 'Orders',
-        exporterFileName: 'order_export',
-        list: {
-          menu: 'Orders',
-          title: 'Orders',
-        },
-        create: {
-          success: 'Order successfully saved',
-        },
-        update: {
-          success: 'Order successfully saved',
-        },
-        destroy: {
-          success: 'Order successfully deleted',
-        },
-        destroyAll: {
-          success: 'Order(s) successfully deleted',
-        },
-        edit: {
-          title: 'Edit Order',
-        },
-        fields: {
-          id: 'Id',
-          'customer': 'Customer',
-          'products': 'Products',
-          'employee': 'Employee',
-          'delivered': 'Delivered',
-          'attachments': 'Attachments',
-          createdAt: 'Created at',
-          updatedAt: 'Updated at',
-          createdAtRange: 'Created at',
-        },
-        enumerators: {
-
-        },
-        placeholders: {
-
-        },
-        hints: {
-
-        },
-        new: {
-          title: 'New Order',
-        },
-        view: {
-          title: 'View Order',
-        },
-        importer: {
-          title: 'Import Orders',
-          fileName: 'order_import_template',
-          hint:
-            'Files/Images columns must be the URLs of the files separated by space.',
-        },
+        title: 'Orders',
       },
-        //Allergies
+      create: {
+        success: 'Order successfully saved',
+      },
+      update: {
+        success: 'Order successfully saved',
+      },
+      destroy: {
+        success: 'Order successfully deleted',
+      },
+      destroyAll: {
+        success: 'Order(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Order',
+      },
+      fields: {
+        id: 'Id',
+        'customer': 'Customer',
+        'products': 'Products',
+        'employee': 'Employee',
+        'delivered': 'Delivered',
+        'attachments': 'Attachments',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+      },
+      enumerators: {
+
+      },
+      placeholders: {
+
+      },
+      hints: {
+
+      },
+      new: {
+        title: 'New Order',
+      },
+      view: {
+        title: 'View Order',
+      },
+      importer: {
+        title: 'Import Orders',
+        fileName: 'order_import_template',
+        hint:
+          'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
+    //Allergies
     allergies: {
       name: "allergies",
       label: "Allergies",
@@ -435,8 +435,74 @@ const en = {
         hint: "Files/Images columns must be the URLs of the files separated by space.",
       },
     },
-    //Drugs
+    //Onboarding
+    onboarding: {
+      name: "onboarding",
+      label: "Onboarding",
+      menu: "Onboarding",
+      placeholder: "",
+      exporterFileName: "onboarding_export",
+      list: {
+        menu: "Onboarding",
+        title: "Onboarding",
+      },
+      create: {
+        success: "Onboarding successfully saved",
+      },
+      update: {
+        success: "Onboarding successfully saved",
+      },
+      destroy: {
+        success: "Onboarding successfully deleted",
+      },
+      destroyAll: {
+        success: "Onboarding(s) successfully deleted",
+      },
+      edit: {
+        title: "Edit Onboarding",
+      },
+      fields: {
+        medicaltestkind: "Onboarding Kind",
+        created_date: "Created Date",
+        created_by: "Created By",
+        medicaltestcategory: "Medical Category",
+        status: "Status",
+        id: "ID",
+        medicaltestcode: "Medical Test Code",
+        description: "Description",
+        modified_date: "Date Modified",
+        modified_by: "Modified By",
+      },
+      enumerators: {
+        status: {
+          false: "false",
+          true: "true",
+        },
+        medicaltestcategory: {
+          Pregnancy: "Pregnancy",
+          Typhoid: "Typhoid",
+        },
+        medicaltestkind: {
+          Pregnancy: "Pregnancy",
+          Typhoid: "Typhoid",
+        },
+      },
+      placeholders: {},
+      hints: {},
+      new: {
+        title: "New Medical Test",
+      },
+      view: {
+        title: "View Medical Test",
+      },
+      importer: {
+        title: "Import Medical Tests",
+        fileName: "medicaltest_import_template",
+        hint: "Files/Images columns must be the URLs of the files separated by space.",
+      },
+    },
 
+    //Drugs
     drugs: {
       name: "drugs",
       label: "Drugs",
@@ -504,12 +570,12 @@ const en = {
         hint: "Files/Images columns must be the URLs of the files separated by space.",
       },
     },
-     //Appointment 
-     appointment: {
+    //Appointment 
+    appointment: {
       name: "appointment",
       label: "Appointment ",
       menu: "Appointment",
-      exporterFileName: "medicaltest_export",
+      exporterFileName: "appointment_export",
       list: {
         menu: "Appointment",
         title: "Appointment",
@@ -570,12 +636,13 @@ const en = {
         hint: "Files/Images columns must be the URLs of the files separated by space.",
       },
     },
-   
+
     //Medical Test
     medicaltest: {
-      name: "medicaltest",
-      label: "Medical Tests",
+      name: "medical",
+      label: "Medical",
       menu: "Medicaltest",
+      placeholder: "MED2011",
       exporterFileName: "medicaltest_export",
       list: {
         menu: "Medicaltest",
@@ -636,93 +703,94 @@ const en = {
         hint: "Files/Images columns must be the URLs of the files separated by space.",
       },
     },
-     //organization Setup
-     organizationsetup: {
-      name: "organizationsetup",
-      label: "Organization Setup",
+   //organization Setup
+   organization: {
+    name: "organizationsetup",
+    label: "Organization Setup",
+    menu: "Organizationsetup",
+    exporterFileName: "organizationsetup_export",
+    list: {
       menu: "Organizationsetup",
-      exporterFileName: "organizationsetup_export",
-      list: {
-        menu: "Organizationsetup",
-        title: "Organization setup",
+      title: "Organizationsetup",
+    },
+    create: {
+      success: "Organization Setup successfully saved",
+    },
+    update: {
+      success: "Organization Setup successfully saved",
+    },
+    destroy: {
+      success: "Organization Setup successfully deleted",
+    },
+    destroyAll: {
+      success: "Organization Setup(s) successfully deleted",
+    },
+    edit: {
+      title: "Edit Organization Setup",
+    },
+    fields: {
+      email: "Email",
+      created_date: "Created Date",
+      created_by: "Created By",
+      name: "Name",
+      status: "Status",
+      id: "ID",
+      shortcode: "Short Code",
+      domain: "Domain",
+      dateofestablishment: "Date of Establishment",
+      description: "Description",
+      phoneno: "Phone Number",
+      address1: "Main Address",
+      address2: "Secondary Address",
+      geoAddress: "Geographical Address",
+      country_code: "Country code",
+      state_code: "State code",
+      lga_code: "LGA code",
+      Regno: "Reg No",
+      organisation_type: "Organization Type",
+      logo: "Logo",
+      is_deleted: "Deleted",
+      modified_date: "Date Modified",
+      modified_by: "Modified By",
+    },
+    enumerators: {
+      status: {
+        false: "false",
+        true: "true",
       },
-      create: {
-        success: "Organization Setup successfully saved",
+      organisation_type: {
+        Provider: "Provider",
+        Laboratory: "Laboratory",
+        Pharmacy: "Pharmacy",
+        Radiology: "Radiology",
       },
-      update: {
-        success: "Organization Setup successfully saved",
+      country_code: {
+        Nigeria: "Nigeria",
+        Canada: "Canada",
       },
-      destroy: {
-        success: "Organization Setup successfully deleted",
+      state_code: {
+        Lagos: "Lagos",
+        Ontario: "Ontario",
       },
-      destroyAll: {
-        success: "Organization Setup(s) successfully deleted",
-      },
-      edit: {
-        title: "Edit Organization Setup",
-      },
-      fields: {
-        email: "Email",
-        created_date: "Created Date",
-        created_by: "Created By",
-        name: "Name",
-        status: "Status",
-        id: "ID",
-        shortcode: "Short Code",
-        domain: "Domain",
-        dateofestablishment: "Date of Establishment",
-        description: "Description",
-        phoneno: "Phone Number",
-        address1: "Main Address",
-        address2: "Secondary Address",
-        country_code: "Country code",
-        state_code: "State code",
-        lga_code: "LGA code",
-        Regno: "Reg No",
-        organisation_type: "Organization Type",
-        logo: "Logo",
-        is_deleted: "Deleted",
-        modified_date: "Date Modified",
-        modified_by: "Modified By",
-      },
-      enumerators: {
-        status: {
-          false: "false",
-          true: "true",
-        },
-        organisation_type: {
-          Provider: "Provider",
-          Laboratory: "Laboratory",
-          Pharmacy: "Pharmacy",
-          Radiology: "Radiology",
-        },
-        country_code: {
-          Nigeria: "Nigeria",
-          Canada: "Canada",
-        },
-        state_code: {
-          Lagos: "Lagos",
-          Ontario: "Ontario",
-        },
-        lga_code: {
-          Ikeja: "Ikeja",
-          Surulere: "Surulere",
-        },
-      },
-      placeholders: {},
-      hints: {},
-      new: {
-        title: "New Organization Setup",
-      },
-      view: {
-        title: "View Organization setup",
-      },
-      importer: {
-        title: "Import Organization Setup",
-        fileName: "organizationsetup_import_template",
-        hint: "Files/Images columns must be the URLs of the files separated by space.",
+      lga_code: {
+        Ikeja: "Ikeja",
+        Surulere: "Surulere",
       },
     },
+    placeholders: {},
+    hints: {},
+    new: {
+      title: "New Organization Setup",
+    },
+    view: {
+      title: "View Organization setup",
+    },
+    importer: {
+      title: "Import Organization Setup",
+      fileName: "organizationsetup_import_template",
+      hint: "Files/Images columns must be the URLs of the files separated by space.",
+    },
+  },
     //branch
     branch: {
       name: "branch",
@@ -767,9 +835,9 @@ const en = {
           open: "open",
           close: "close",
         },
-        branchcategory:{
+        branchcategory: {
           Headquater: "Headquater",
-          Branch:"Branch",
+          Branch: "Branch",
         }
       },
       placeholders: {},
@@ -787,11 +855,11 @@ const en = {
       },
     },
 
-     //search
+    //search
 
-     search: {
+    search: {
       name: "Search",
-    
+
       fields: {
         specialization: "Specialization",
         country: "Country",
@@ -799,7 +867,7 @@ const en = {
         city: "City",
         status: "Status",
       },
-  
+
     },
 
     //patient
@@ -888,10 +956,10 @@ const en = {
         },
       },
       placeholders: {
-  
+
       },
       hints: {
-  
+
       },
       new: {
         title: 'New patient',
@@ -1021,7 +1089,7 @@ const en = {
       lastName: 'Last Name',
       middleName: 'middle Name',
       status: 'Status',
-      phoneNumber: 'Phone Number',      
+      phoneNumber: 'Phone Number',
       role: 'Role',
       createdAt: 'Created at',
       updatedAt: 'Updated at',
@@ -1033,9 +1101,9 @@ const en = {
       newPassword: 'New Password',
       newPasswordConfirmation: 'New Password Confirmation',
       rememberMe: 'Remember me',
-   
+
     },
- 
+
     status: {
       active: 'Active',
       invited: 'Invited',
@@ -1179,7 +1247,7 @@ const en = {
       createdByEmail: 'User Email',
     },
   },
- 
+
   settings: {
     title: 'Settings',
     menu: 'Settings',
@@ -1244,7 +1312,7 @@ const en = {
     error:
       'Sorry, this operation is not allowed in preview mode.',
   },
-  
+
   // See https://github.com/jquense/yup#using-a-custom-locale-dictionary
   /* eslint-disable */
   validation: {

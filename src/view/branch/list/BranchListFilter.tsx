@@ -44,7 +44,7 @@ const schema = yup.object().shape({
 });
 
 const emptyValues = {
-  branchkind: null,
+  branchcode: null,
   branchcategory: null,
   // birthdateRange: [],
   // gender: null,
@@ -52,15 +52,15 @@ const emptyValues = {
 
 const previewRenders = {
   branchkind: {
-    label: i18n("entities.branch.fields.branchkind"),
+    label: i18n("entities.branch.fields.branchcode"),
     render: filterRenders.generic(),
   },
-  branchcategory: {
-    label: i18n("entities.branch.fields.branchcategory"),
-    render: filterRenders.enumerator(
-      "entities.branch.enumerators.branchcategory"
-    ),
-  },
+  // branchcategory: {
+  //   label: i18n("entities.branch.fields.branchcategory"),
+  //   render: filterRenders.enumerator(
+  //     "entities.branch.enumerators.branchcategory"
+  //   ),
+  // },
   // birthdateRange: {
   //   label: i18n('entities.branch.fields.birthdateRange'),
   //   render: filterRenders.dateRange(),
@@ -133,11 +133,11 @@ function BranchListFilter(props) {
               <Grid container spacing={2}>
                 <Grid item lg={6} xs={12}>
                   <InputFormItem
-                    name="branchkind"
-                    label={i18n("entities.branch.fields.branchkind")}
+                    name="branchcode"
+                    label={i18n("entities.branch.fields.branchcode")}
                   />
                 </Grid>
-                <Grid item lg={6} xs={12}>
+                {/* <Grid item lg={6} xs={12}>
                   <SelectFormItem
                     name="branchcategory"
                     label={i18n("entities.branch.fields.branchcategory")}
@@ -148,7 +148,7 @@ function BranchListFilter(props) {
                       ),
                     }))}
                   />
-                </Grid>
+                </Grid> */}
                 {/* <Grid item lg={6} xs={12}>
                   <DatePickerRangeFormItem
                     name="birthdateRange"

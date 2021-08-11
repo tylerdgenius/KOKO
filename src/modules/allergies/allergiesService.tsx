@@ -26,10 +26,10 @@ export default class AllergiesService {
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.delete(
-      `/tenant/${tenantId}/allergies`,
-      {
-        params,
-      },
+      `/tenant/${tenantId}/allergies/${ids}`,
+      // {
+      //   params,
+      // },
     );
 
     return response.data;

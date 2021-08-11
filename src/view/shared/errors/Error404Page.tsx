@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ErrorWrapper from 'src/view/shared/errors/styles/ErrorWrapper';
 import { i18n } from 'src/i18n';
 import { Button } from '@material-ui/core';
+import swal from 'sweetalert';
 
 const Error404Page = () => {
+
   return (
     <ErrorWrapper>
       <div className="exception">
@@ -24,6 +26,7 @@ const Error404Page = () => {
           </div>
         </div>
       </div>
+      
     </ErrorWrapper>
   );
 };

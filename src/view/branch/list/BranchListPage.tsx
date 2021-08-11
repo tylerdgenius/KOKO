@@ -23,7 +23,7 @@ function BranchListPage(props) {
         </PageTitle>
 
         <BranchListToolbar />
-        {/* <BranchListFilter /> */}
+        <BranchListFilter />
         <BranchListTable />
       </ContentWrapper>
     </>

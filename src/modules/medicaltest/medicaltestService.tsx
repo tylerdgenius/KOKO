@@ -26,10 +26,10 @@ export default class MedicaltestService {
     const tenantId = AuthCurrentTenant.get();
 
     const response = await authAxios.delete(
-      `/tenant/${tenantId}/medicaltest`,
-      {
-        params,
-      },
+      `/tenant/${tenantId}/medicaltest/${ids}`,
+      // {
+      //   params,
+      // },
     );
 
     return response.data;
