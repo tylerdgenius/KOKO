@@ -260,7 +260,7 @@ const authActions = {
       });
       await dispatch(authActions.doRefreshCurrentUser());
       Message.success(i18n('auth.profile.success'));
-      getHistory().push('/profile');
+    //  getHistory().push('/profile');
     } catch (error) {
       Errors.handle(error);
 

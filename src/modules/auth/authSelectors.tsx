@@ -103,6 +103,10 @@ const selectLoadingUpdateProfile = createSelector(
   [selectRaw],
   (auth) => Boolean(auth.loadingUpdateProfile),
 );
+const  selectLoadingCreateProvider = createSelector(
+  [selectRaw],
+  (auth) => Boolean(auth.loadingCreateProvider),
+);
 
 const selectErrorMessage = createSelector(
   [selectRaw],
@@ -224,6 +228,7 @@ const authSelectors = {
   selectLoadingPasswordResetEmail,
   selectLoadingEmailConfirmation,
   selectLoadingInit,
+  selectLoadingCreateProvider,
   selectLoadingUpdateProfile,
   selectLoading,
   selectRoles,

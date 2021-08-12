@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Card, CardActions, Button, Typography, ButtonGroup } from '@material-ui/core';
+import { Box, Card, CardActions, Button, Typography, ButtonGroup, Grid } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import CodeIcon from '@material-ui/icons/Code';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,10 @@ import WalletIcon from '@material-ui/icons/PersonAdd';
 import { Link } from 'react-router-dom';
 import publishArticleImage from './styles/welcome_illustration.svg';
 import CardWithIcon from '../components/CardWithIcon';
+import { useSelector, useDispatch } from 'react-redux';
+import selectors from 'src/modules/auth/authSelectors';
+import WalletListModal from './WalletComponent/WalletListModal';
+// import WalletComponent from './WalletComponent/WalletComponent';
 
 
 const useStyles = makeStyles(theme => ({
@@ -37,6 +41,19 @@ const useStyles = makeStyles(theme => ({
             },
         },
     },
+    classbox: {
+      
+        border: '2px solid white',
+        borderRadius: 10,
+        background: 'linear-gradient(180deg, #c3c8df, #7C8BD0  90%)',
+        boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+        padding: 8,
+       
+      },
+      title: {
+        fontSize: 30,
+        
+      },
     Buttons: {
         background: "linear-gradient(0.07turn, #3f87a6, #ebf8e1, #2796f3)",
         border: 0,
@@ -52,8 +69,26 @@ const useStyles = makeStyles(theme => ({
    
 }));
 
+
+
 function Welcome(props) {
+    const currentUser = useSelector(
+        selectors.selectCurrentUser,
+      );
+      let profilebutton ;
     const classes = useStyles();
+      if (!currentUser.profileId) {
+    
+    profilebutton =   <Button
+    className={classes.Buttons}
+        variant="contained"
+        startIcon={<HomeIcon />}
+        component={Link}
+        to="/profile"
+    >
+        Complete Profile
+    </Button>;
+  }
     return (
         <Card className={classes.root}>
             <Box display={{  lg: "none" }}>
@@ -73,15 +108,7 @@ function Welcome(props) {
                         </Typography>
                     </Box>
                     <CardActions className={classes.actions}>
-                        <Button
-                        className={classes.Buttons}
-                            variant="contained"
-                            startIcon={<HomeIcon />}
-                            component={Link}
-                            to="/profile"
-                        >
-                            Complete Profile
-                        </Button>
+                    {profilebutton}
                         <Button
                          className={classes.Buttons}
                             variant="contained"
@@ -100,10 +127,42 @@ function Welcome(props) {
                     overflow="hidden" 
                 />
 
-                
-                <CardWithIcon icon={WalletIcon} to={"userID"}  title={"Wallet"}
-            subtitle={"N5,000"} />
-            
+<Box bgcolor="primary.main" className={` ${classes.classbox}`} color="primary.contrastText"
+            >
+
+          <Box  p={1} m={0}  className={` ${classes.title}`}>
+            {/* {i18n('common.walletTop')}   */}
+            </Box>
+
+      <Grid container spacing={3}>
+    
+        
+        <Grid item xs>
+        <Box flexDirection="row" p={1} m={0}>
+        <WalletListModal />
+        <br />
+            </Box>
+        </Grid>
+        <Grid item xs>
+      
+        </Grid>
+        <Grid item xs>
+        
+        <Box flexDirection="row-reverse" p={1} m={0}>
+            <Button
+            component={Link}
+            to="/wallet/list"
+             style={{ color: "white", fontSize: 22}}>Balance <br />
+              NGN1200
+            </Button>
+            </Box>
+        </Grid>
+      </Grid>
+      </Box>
+     
+                {/* <CardWithIcon icon={WalletIcon} to={"userID"}  title={"Wallet"}
+            subtitle={"N5,000"} /> */}
+            {/* <WalletComponent /> */}
         
 
                         

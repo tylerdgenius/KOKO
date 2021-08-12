@@ -22,9 +22,6 @@ import PatientForm from '../patient/form/PatientForm';
 
 
 
-interface OtherRecords 
-{allergies: string, id: any,address:any,stateoforigin:string,bloodgroup:string,genotype:string,
- relative:string,nok:string,birthdate:string,noknumber:string,gender:string,cityofresidence:string,stateofresidence:string} 
 
  
 const QontoConnector = withStyles({

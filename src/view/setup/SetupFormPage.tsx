@@ -145,17 +145,16 @@ const SetupFormPage = (props) => {
                         image={menu.avater}
                         title=""
                       />
-                      </CustomRouterLink>
                       <CardContent>
-                        <CustomRouterLink key={menu.path} to={menu.path}>
                           <Button size="small" color="primary">
                             <Typography gutterBottom variant="h5" component="h2" className={classes.jss29}>
                               {menu.label}
                             </Typography>
                           </Button>
-                        </CustomRouterLink>
+                       
 
                       </CardContent>
+                      </CustomRouterLink>
                     </CardActionArea>
 
                   </Card>

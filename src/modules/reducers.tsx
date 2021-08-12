@@ -15,6 +15,7 @@ import patient from 'src/modules/patient/patientReducers';
 import personalvitals from 'src/modules/personalvitals/personalvitalsReducers';
 import { combineReducers } from 'redux';
 import appointment from 'src/modules/appointment/appointmentReducers';
+import wallet from 'src/modules/wallet/walletReducers';
 
 export default (history) =>
   combineReducers({
@@ -33,6 +34,7 @@ export default (history) =>
     branch,
     patient,
     personalvitals,
-    appointment
+    appointment,
+    wallet
 
   });

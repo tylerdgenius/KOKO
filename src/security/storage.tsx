@@ -17,7 +17,13 @@ export default class Storage {
         folder: 'tenant/:tenantId/product/photos',
         maxSizeInBytes: 1000000,
       },
-
+      consentAttachments: {
+        id: 'consentAttachments',
+        folder: 'tenant/:tenantId/consent/:userId',
+        maxSizeInBytes: 10 * 1024 * 1024,
+        bypassWritingPermissions: true,
+        publicRead: true,
+      },
       orderAttachments: {
         id: 'orderAttachments',
         folder: 'tenant/:tenantId/order/attachments',

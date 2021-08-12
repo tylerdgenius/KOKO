@@ -3,6 +3,10 @@ import CloseIcon from '@material-ui/icons/Close';
 import SaveIcon from '@material-ui/icons/Save';
 import Card from '@material-ui/core/Card';
 import UndoIcon from '@material-ui/icons/Undo';
+import userservice from 'src/modules/user/userService';
+import selectors from 'src/modules/auth/authSelectors';
+import actions from 'src/modules/auth/authActions';
+import { useSelector, useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import { i18n } from 'src/i18n';
 import FormWrapper, {
@@ -27,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const schema = yup.object().shape({
   
-  Nok: yupFormSchemas.string(
+  nok: yupFormSchemas.string(
     i18n('entities.profile.fields.nok'),
     {
       "required": true,
@@ -35,7 +39,7 @@ const schema = yup.object().shape({
       "max": 255
     },
   ),
-  Noknumber: yupFormSchemas.string(
+  noknumber: yupFormSchemas.string(
     i18n('entities.profile.fields.noknumber'),
     {
       "required": true,
@@ -43,7 +47,7 @@ const schema = yup.object().shape({
       "max": 255
     },
   ),
-  Nokemail: yupFormSchemas.string(
+  nokemail: yupFormSchemas.string(
     i18n('entities.profile.fields.nokemail'),
     {
       "required": true,
@@ -51,7 +55,7 @@ const schema = yup.object().shape({
       "max": 255
     },
   ),
-  Nokaddress: yupFormSchemas.string(
+  nokaddress: yupFormSchemas.string(
     i18n('entities.profile.fields.nokaddress'),
     {
       "required": true,
@@ -62,27 +66,44 @@ const schema = yup.object().shape({
 });
 
 function FamilyInfoForm(props) {
-  const [initialValues] = useState(() => {
-    const record = props.record || {};
+  const dispatch = useDispatch();
 
-    return {
-      nok: record.nok,
-      noknumber: record.noknumber,
-      nokaddress: record.nokaddress,
-      nokemail: record.nokemail,
-    };
-  });
+  const saveLoading = useSelector(
+    selectors.selectLoadingUpdateProfile,
+  );
 
+  const currentUser = useSelector(
+    selectors.selectCurrentUser,
+  );
+
+  // const record = currentUser || {};
+  let initialValues ;
+
+  const getAllData = async() => {
+    await userservice.getUserProfile(currentUser.id).then(res => {
+      initialValues = {
+        nok: res.nok,
+        noknumber: res.noknumber,
+        nokaddress: res.nokaddress,
+        nokemail: res.nokemail,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+            };
+
+    })
+    console.log(initialValues)
+    return  initialValues;
+  } 
   
+
+  getAllData().then(res => initialValues = res);
 
   const form = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
-    defaultValues: initialValues as any,
+    defaultValues: initialValues ,
   });
 
   const onSubmit = (values) => {
-    props.onSubmit(props.record?.id, values);
+    dispatch(actions.doUpdateProfile(values));
   };
 
   const onReset = () => {
@@ -91,13 +112,13 @@ function FamilyInfoForm(props) {
     });
   };
 
-  const { saveLoading, modal } = props;
+
   const classes = useStyles();
 
   return (
     <div>
         <FormWrapper>
-      <FormProvider {...form}>
+        <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
        
         <Card elevation={10} style={{
@@ -108,28 +129,28 @@ function FamilyInfoForm(props) {
             <Grid spacing={2} container>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                   <InputFormItem
-                    name="Nok"
+                    name="nok"
                     label={i18n('entities.profile.fields.nok')}  
                     required={true}
                   />
                 </Grid>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                   <InputFormItem
-                    name="Noknumber"
+                    name="noknumber"
                     label={i18n('entities.profile.fields.noknumber')}  
                     required={true}
                   />
                 </Grid>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                   <InputFormItem
-                    name="Nokemail"
+                    name="nokemail"
                     label={i18n('entities.profile.fields.nokemail')}  
                     required={true}
                   />
                 </Grid>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                   <InputFormItem
-                    name="Nokaddress"
+                    name="nokaddress"
                     label={i18n('entities.profile.fields.nokaddress')}  
                     required={true}
                   />
@@ -137,47 +158,41 @@ function FamilyInfoForm(props) {
           </Grid>
         </Card>
             
-          <FormButtons
-            style={{
-              flexDirection: modal
-                ? 'row-reverse'
-                : undefined,
-            }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={saveLoading}
-              type="button"
-              onClick={form.handleSubmit(onSubmit)}
-              startIcon={<SaveIcon />}
-              size="small"
-            >
-              {i18n('common.save')}
-            </Button>
+        <FormButtons>
+  <Button
+    variant="contained"
+    color="primary"
+    disabled={saveLoading}
+    type="button"
+    onClick={form.handleSubmit(onSubmit)}
+    startIcon={<SaveIcon />}
+    size="small"
+  >
+    {i18n('common.save')}
+  </Button>
 
-            <Button
-              disabled={saveLoading}
-              onClick={onReset}
-              type="button"
-              startIcon={<UndoIcon />}
-              size="small"
-            >
-              {i18n('common.reset')}
-            </Button>
+  <Button
+    disabled={saveLoading}
+    onClick={onReset}
+    type="button"
+    startIcon={<UndoIcon />}
+    size="small"
+  >
+    {i18n('common.reset')}
+  </Button>
 
-            {props.onCancel ? (
-              <Button
-                disabled={saveLoading}
-                onClick={() => props.onCancel()}
-                type="button"
-                startIcon={<CloseIcon />}
-                size="small"
-              >
-                {i18n('common.cancel')}
-              </Button>
-            ) : null}
-          </FormButtons>
+  {props.onCancel ? (
+    <Button
+      disabled={saveLoading}
+      onClick={() => props.onCancel()}
+      type="button"
+      startIcon={<CloseIcon />}
+      size="small"
+    >
+      {i18n('common.cancel')}
+    </Button>
+  ) : null}
+</FormButtons>
         </form>
       </FormProvider>
     </FormWrapper>

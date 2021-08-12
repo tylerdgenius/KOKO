@@ -23,6 +23,10 @@ const en = {
     select: 'Select',
     continue: 'Continue',
     filters: 'Filters',
+    wallBalance: 'Wallet Balance',
+    recTransact: 'Recent Transaction',
+    playGame:     'Play Game',
+    watchAdvert:     'Watch Advertisement',
   },
 
   app: {
@@ -93,7 +97,93 @@ const en = {
           'Files/Images columns must be the URLs of the files separated by space.',
       },
     },
+    wallet: {
+      name: 'wallet',
+      label: 'Wallet',
+      menu: 'Wallet',
+      crumb: 'Wireframe',
+      exporterFileName: 'customer_export',
+      list: {
+        menu: 'Wallet',
+        title: 'Wireframe',
+        wallAmt: 'Wallet Balance',
+        transact: "Wallet Transaction"
 
+      },
+      create: {
+        success: 'Wallet successfully saved',
+      },
+      update: {
+        success: 'Wallet successfully saved',
+      },
+      destroy: {
+        success: 'Wallet successfully deleted',
+      },
+      destroyAll: {
+        success: 'Wallet(s) successfully deleted',
+      },
+      edit: {
+        title: 'Edit Wallet',
+      },
+      fields: {
+        id: 'Id',
+        'name': 'Name',
+        'birthdateRange': 'Birthdate',
+        'birthdate': 'Birthdate',
+        'datetimerange': 'Date of Transaction',
+        'walletbalance': 'Amount',
+        'timeframe'    : 'Time Frame',
+        'bank'          :  'Bank',
+        'card'          :  'Card',
+        'gender': 'Gender',
+        'description':'XDR',
+        'status':     'Status',
+        createdAt: 'Created at',
+        updatedAt: 'Updated at',
+        createdAtRange: 'Created at',
+        
+      },
+      enumerators: {
+        'gender': {
+          'male': 'Male',
+          'female': 'Female',
+        },
+        'timeframe': {
+          '1day': '1 day',
+          '2days': '2 days',
+          '3days': '3 days',
+          '7days': '2 days',
+          '6months': '6 months'
+        },
+        'bank': {
+          'bankA': 'Bank A',
+          'bankB': 'Bank B',
+          'bankC': 'Bank C',
+          'bankD': 'Bank D',
+          'bankE': 'Bank E'
+        },
+      },
+
+    
+      placeholders: {
+
+      },
+      hints: {
+
+      },
+      new: {
+        title: 'New Wallet',
+      },
+      view: {
+        title: 'View Wallet',
+      },
+      importer: {
+        title: 'Import Wallet',
+        fileName: 'customer_import_template',
+        hint:
+          'Files/Images columns must be the URLs of the files separated by space.',
+      },
+    },
     //patient
     profile: {
       name: 'profile',
@@ -120,7 +210,7 @@ const en = {
         title: 'Edit Profile',
       },
       fields: {
-        id: 'Id',
+        'id': 'Id',
         'stateoforigin': 'Stateoforigin',
         'allergies': 'Allergies',
         'bloodgroup': 'Bloodgroup',
@@ -140,6 +230,8 @@ const en = {
         'relativenumber': 'Relative Number',
         'relativeemail': 'Relative Email',
         'relativeaddress': 'Relative Address',
+        avatars: 'Avatar',
+        'up':'Upload Consent Document',
         createdAt: 'Created at',
         updatedAt: 'Updated at',
         createdAtRange: 'Created at',
@@ -440,6 +532,7 @@ const en = {
       name: "onboarding",
       label: "Onboarding",
       menu: "Onboarding",
+      dashboard: "Onboarding Dashboard",
       placeholder: "",
       exporterFileName: "onboarding_export",
       list: {
@@ -501,7 +594,120 @@ const en = {
         hint: "Files/Images columns must be the URLs of the files separated by space.",
       },
     },
-
+     //default hospital
+     defaulthospital: {
+      name: "defaulthospital",
+      label: "Default Hospital",
+      menu: "Default hospital",
+     },
+ //existing hospital
+ existinghospital: {
+  name: "existinghospital",
+  label: "Existing Hospital",
+  menu: "Existing hospital",
+  exporterFileName: "organizationsetup_export",
+  list: {
+    menu: "Organizationsetup",
+    title: "Organizationsetup",
+  },
+  create: {
+    success: "Existing Hospital successfully saved",
+  },
+  update: {
+    success: "Existing Hospitalsuccessfully saved",
+  },
+  destroy: {
+    success: "Existing Hospital successfully deleted",
+  },
+  destroyAll: {
+    success: "Existing Hospital(s) successfully deleted",
+  },
+  edit: {
+    title: "Edit Existing Hospital",
+  },
+  fields: {
+    created_date: "Created Date",
+    created_by: "Created By",
+    name: "Name",
+    id: "ID",
+    is_deleted: "Deleted",
+    modified_date: "Date Modified",
+    modified_by: "Modified By",
+  },
+  enumerators: {
+    name: {
+      Provider: "Provider",
+      Laboratory: "Laboratory",
+      Pharmacy: "Pharmacy",
+    },
+  },
+  placeholders: {},
+  hints: {},
+  new: {
+    title: "New Existing Hospital",
+  },
+  view: {
+    title: "View Exisiting Hospital",
+  },
+  importer: {
+    title: "Import Existing Hospital Setup",
+    fileName: "organizationsetup_import_template",
+    hint: "Files/Images columns must be the URLs of the files separated by space.",
+  },
+},
+   //provider Entity
+   provider: {
+    name: "provider",
+    label: "Provider",
+    menu: "Provider",
+    exporterFileName: "provider_export",
+    list: {
+      menu: "Provider",
+      title: "Provider",
+    },
+    create: {
+      success: "Provider successfully saved",
+    },
+    update: {
+      success: "Provider successfully saved",
+    },
+    destroy: {
+      success: "Provider successfully deleted",
+    },
+    destroyAll: {
+      success: "Provider successfully deleted",
+    },
+    edit: {
+      title: "Edit Provider",
+    },
+    fields: {
+      medical_no: "Medical ID",
+      created_date: "Created Date",
+      created_by: "Created By",
+      id: "ID",
+      is_deleted: "Is Deleted",
+      practice_area: "Area of Practice",
+      organization: "Organization ",
+      branch: "Branch",
+      tenant: "Tenant",
+      modified_date: "Date Modified",
+      modified_by: "Modified By",
+    },
+    enumerators: {},
+    placeholders: {},
+    hints: {},
+    new: {
+      title: "New Predefined Values",
+    },
+    view: {
+      title: "View Predefined Values",
+    },
+    importer: {
+      title: "Import Predefined Values",
+      fileName: "predefinedvalues_import_template",
+      hint: "Files/Images columns must be the URLs of the files separated by space.",
+    },
+  },
     //Drugs
     drugs: {
       name: "drugs",
@@ -1020,6 +1226,7 @@ const en = {
     signin: 'Sign in',
     signup: 'Sign up',
     signout: 'Sign out',
+    onboarding: 'Dashboard',
     alreadyHaveAnAccount:
       'Already have an account? Sign in.',
     social: {
@@ -1060,6 +1267,11 @@ const en = {
       success: 'Email successfully verified.',
       message:
         'Just a moment, your email is being verified...',
+    },
+    verifyOnboarding: {
+      success: 'Onboarding successfully verified.',
+      message:
+        'Just a moment, your request is being verified...',
     },
   },
 

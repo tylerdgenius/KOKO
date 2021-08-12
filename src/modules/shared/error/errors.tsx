@@ -85,7 +85,7 @@ export default class Errors {
     }
     //Comment this out and instead insert a SWAL here
     swal({
-      text: "Provider Not Available ....",
+      text: "Network Error....",
       // content: el,
       buttons: {
         confirm: {

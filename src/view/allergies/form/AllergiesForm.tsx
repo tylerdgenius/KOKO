@@ -35,6 +35,7 @@ const schema = yup.object().shape({
 });
 
 function AllergiesForm(props) {
+  console.log(props)
   const [initialValues] = useState(() => {
     const record = props.record || {};
 
@@ -52,6 +53,7 @@ function AllergiesForm(props) {
   });
 
   const onSubmit = (values) => {
+ 
     props.onSubmit(props.record?.id, values);
   };
 

@@ -13,12 +13,10 @@ import * as yup from 'yup';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import { yupResolver } from '@hookform/resolvers/yup';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
-import RadioFormItem from 'src/view/shared/form/items/RadioFormItem';
-import patientEnumerators from 'src/modules/patient/patientEnumerators';
-import moment from 'moment';
-import DatePickerFormItem from 'src/view/shared/form/items/DatePickerFormItem';
-import { PhotoCamera } from '@material-ui/icons';
-import Breadcrumb from 'src/view/shared/Breadcrumb';
+import userservice from 'src/modules/user/userService';
+import selectors from 'src/modules/auth/authSelectors';
+import actions from 'src/modules/auth/authActions';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const schema = yup.object().shape({
   
-  Relative: yupFormSchemas.string(
+  relative: yupFormSchemas.string(
     i18n('entities.profile.fields.relative'),
     {
       "required": true,
@@ -41,7 +39,7 @@ const schema = yup.object().shape({
       "max": 255
     },
   ),
-  Relativenumber: yupFormSchemas.string(
+  relativenumber: yupFormSchemas.string(
     i18n('entities.profile.fields.relativenumber'),
     {
       "required": true,
@@ -49,7 +47,7 @@ const schema = yup.object().shape({
       "max": 255
     },
   ),
-  Relativeemail: yupFormSchemas.string(
+  relativeemail: yupFormSchemas.string(
     i18n('entities.profile.fields.relativeemail'),
     {
       "required": true,
@@ -57,7 +55,7 @@ const schema = yup.object().shape({
       "max": 255
     },
   ),
-  Relativeaddress: yupFormSchemas.string(
+  relativeaddress: yupFormSchemas.string(
     i18n('entities.profile.fields.relativeaddress'),
     {
       "required": true,
@@ -68,27 +66,43 @@ const schema = yup.object().shape({
 });
 
 function RelatedPatientForm(props) {
-  const [initialValues] = useState(() => {
-    const record = props.record || {};
+  const dispatch = useDispatch();
 
-    return {
-      relative: record.relative,
-      relativenumber: record.relativenumber,
-      relativeaddress: record.relativeaddress,
-      relativeemail: record.relativeemail,
-    };
-  });
+  const saveLoading = useSelector(
+    selectors.selectLoadingUpdateProfile,
+  );
 
+  const currentUser = useSelector(
+    selectors.selectCurrentUser,
+  );
+
+  // const record = currentUser || {};
+  let initialValues ;
+
+  const getAllData = async() => {
+    await userservice.getUserProfile(currentUser.id).then(res => {
+      initialValues = {
+        relative: res.relative,
+      relativenumber: res.relativenumber,
+      relativeaddress: res.relativeaddress,
+      relativeemail: res.relativeemail,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+            };
+
+    })
   
+    return  initialValues;
+  } 
+  
+  getAllData().then(res => initialValues = res);
 
   const form = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
-    defaultValues: initialValues as any,
+    defaultValues: initialValues ,
   });
 
   const onSubmit = (values) => {
-    props.onSubmit(props.record?.id, values);
+    dispatch(actions.doUpdateProfile(values));
   };
 
   const onReset = () => {
@@ -97,7 +111,6 @@ function RelatedPatientForm(props) {
     });
   };
 
-  const { saveLoading, modal } = props;
   const classes = useStyles();
 
   return (
@@ -115,25 +128,25 @@ function RelatedPatientForm(props) {
             <Grid spacing={2} container>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                   <InputFormItem
-                    name="Relative"
+                    name="relative"
                     label={i18n('entities.profile.fields.relative')}  
                   />
                 </Grid>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                   <InputFormItem
-                    name="Relativenumber"
+                    name="relativenumber"
                     label={i18n('entities.profile.fields.relativenumber')}  
                   />
                 </Grid>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                   <InputFormItem
-                    name="Relativeemail"
+                    name="relativeemail"
                     label={i18n('entities.profile.fields.relativeemail')} 
                   />
                 </Grid>
                 <Grid item lg={6} md={6} sm={12} xs={12}>
                   <InputFormItem
-                    name="Relativeaddress"
+                    name="relativeaddress"
                     label={i18n('entities.profile.fields.relativeaddress')}  
                   />
                 </Grid>
@@ -141,11 +154,7 @@ function RelatedPatientForm(props) {
         </Card>
             
           <FormButtons
-            style={{
-              flexDirection: modal
-                ? 'row-reverse'
-                : undefined,
-            }}
+           
           >
             <Button
               variant="contained"

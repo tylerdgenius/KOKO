@@ -203,6 +203,27 @@ const privateRoutes = [
     permissionRequired: null,
     exact: true,
   },
+    // exisiting Hospital
+    {
+      path: "/existinghospital",
+      loader: () => import("src/view/onboarding/Components/ExistingHospital"),
+      permissionRequired: null,
+      exact: true,
+    },
+    //default Hospital
+  {
+    path: "/defaulthospital",
+    loader: () => import("src/view/onboarding/Components/defaulthospital"),
+    permissionRequired: null,
+    exact: true,
+  },
+  //create neew  Hospital
+  {
+    path: "/createhospital",
+    loader: () => import("src/view/onboarding/Components/createhospital"),
+    permissionRequired: null,
+    exact: true,
+  },
 
   //Allergies
   {
@@ -336,6 +357,38 @@ const privateRoutes = [
     permissionRequired: null,
     exact: true,
   },
+
+   {
+    path: '/wallet/list',
+    loader: () =>
+      import('src/view/wallet/list/WalletListPage'),
+    permissionRequired: null,
+    exact: true,
+  },
+  // {
+  //   path: '/wallet/list/account',
+  //   loader: () =>
+  //     import(
+  //       'src/view/wallet/form/WalletFormPage'
+  //     ),
+  //   permissionRequired: null,
+  //   exact: true,
+  // },
+  // {
+  //   path: '/wallet/:id/edit',
+  //   loader: () =>
+  //     import('src/view/wallet/form/WalletFormPage'),
+  //   permissionRequired: null,
+  //   exact: true,
+  // },
+  // {
+  //   path: '/wallet/:id',
+  //   loader: () =>
+  //     import('src/view/wallet/view/WalletViewPage'),
+  //   permissionRequired: null,
+  //   exact: true,
+  // },
+
 
   //Oranization Setup
   {
@@ -539,6 +592,10 @@ const simpleRoutes = [
   {
     path: '/auth/verify-email',
     loader: () => import('src/view/auth/VerifyEmailPage'),
+  },
+  {
+    path: '/auth/verify-onboarding',
+    loader: () => import('src/view/auth/VerifyOnboardingPage'),
   },
   {
     path: '/403',
