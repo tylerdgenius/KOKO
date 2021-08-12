@@ -58,9 +58,10 @@ function Menu(props) {
     currentUser,
   );
 
-  const IsOnline = useSelector(
-    layoutSelectors.selectOnline,
+  const AmOnline = useSelector(
+    layoutSelectors.IsOnline,
   );
+ 
 
   useLayoutEffect(() => {
     const toggleMenuOnResize = () => {
@@ -146,7 +147,7 @@ function Menu(props) {
       }}
     >
       <div className={classes.toolbar}></div>
-      <GoOnline IsOnline />
+      <GoOnline AmOnline/>
       <List>
         {menus
           .filter((menu) => match(menu.permissionRequired))

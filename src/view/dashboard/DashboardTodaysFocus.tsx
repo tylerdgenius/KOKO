@@ -64,7 +64,6 @@ function TodaysFocus (props) {
         );
    
 
-    return null;
 };
 
 export default TodaysFocus;
