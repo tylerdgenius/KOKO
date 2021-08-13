@@ -25,8 +25,9 @@ const en = {
     filters: 'Filters',
     wallBalance: 'Wallet Balance',
     recTransact: 'Recent Transaction',
-    playGame:     'Play Game',
-    watchAdvert:     'Watch Advertisement',
+    playgame:     'Play Game',
+    watchgame:     'Watch Advertisement',
+
   },
 
   app: {

@@ -80,7 +80,7 @@ function UserMenu(props) {
   };
 
   const doNavigateToWallet = () => {
-    getHistory().push('/profile');
+    getHistory().push('/wallet/list');
   };
 
   const doNavigateToPasswordChange = () => {

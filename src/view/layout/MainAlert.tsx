@@ -102,14 +102,14 @@ function Welcome(props) {
                     <Typography variant="h5" component="h2" gutterBottom style={{color:'#fff'}}> 
                         Welcome {props.UserName}
                     </Typography>
-                    <Box maxWidth="40em">
+                    {/* <Box maxWidth="40em">
                         <Typography variant="body1" component="p" gutterBottom>
                             Complete you sign up
                         </Typography>
-                    </Box>
+                    </Box> */}
                     <CardActions className={classes.actions}>
                     {profilebutton}
-                        <Button
+                        {/* <Button
                          className={classes.Buttons}
                             variant="contained"
                             startIcon={<CodeIcon />}
@@ -117,7 +117,7 @@ function Welcome(props) {
                             to="/personalvitals"
                         >
                             Update Vitals
-                        </Button>
+                        </Button> */}
                     </CardActions>
                 </Box>
 

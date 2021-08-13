@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { i18n } from 'src/i18n';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Card from '@material-ui/core/Card';
@@ -13,6 +13,9 @@ import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import selectors from 'src/modules/provider/providerSelectors';
+import swal from 'sweetalert';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +44,31 @@ const useStyles = makeStyles((theme) => ({
  }
 }));
 
-function AppointmentListPage(props) {
+function OnboardingListPage(props) {
+  const  currentProvider = useSelector(selectors.selectCurrentProvider);
+  console.log(currentProvider)
+if( currentProvider){
+
+    swal({
+      text: "Awaiting Admin Confirmation....",
+      // content: el,
+      buttons: {
+        confirm: {
+          /*
+           * We need to initialize the value of the button to
+           * an empty string instead of "true":
+           */
+          value: "DEFAULT_INPUT_TEXT",
+        },
+      },
+    })
+ 
+
+}
+
+
+
+
   const classes = useStyles();
   const rows = [{id:'0',PageTile:'Default hospital',logo:'/images/usAsIS.png', path: '/defaulthospital'},{id:'1',PageTile:'Existing Hospital',logo:'/images/usAsIS.png', path: '/existinghospital'},{id:'1',PageTile:'Create Hospital',logo:'/images/usAsIS.png', path: '/createhospital'}];
   const CustomRouterLink = (props) => (
@@ -111,4 +138,4 @@ function AppointmentListPage(props) {
   );
 }
 
-export default AppointmentListPage;
+export default OnboardingListPage;

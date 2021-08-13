@@ -32,7 +32,7 @@ function  ModalEnterAmount(props) {
           <br />
             <Button
             variant="contained"
-            color="primary" href="https://flutterwave.com/pay/plfqqz92tplz" target= "__blank">
+            color="primary" href="https://flutterwave.com/pay/plfqqz92tplz">
                 Load Wallet
             </Button>
 

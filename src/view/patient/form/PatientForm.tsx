@@ -95,7 +95,7 @@ function ProfileFormPage(props) {
   const form = useForm({
     resolver: yupResolver(schema),
     mode: 'all',
-    defaultValues: initialValues,
+    defaultValues: initialValues as any,
   });
 
   const onSubmit = (values) => {
