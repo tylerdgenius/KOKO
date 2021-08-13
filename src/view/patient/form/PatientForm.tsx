@@ -7,7 +7,7 @@ import { i18n } from 'src/i18n';
 import actions from 'src/modules/auth/authActions';
 import userservice from 'src/modules/user/userService';
 import selectors from 'src/modules/auth/authSelectors';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ImagesFormItem from 'src/view/shared/form/items/ImagesFormItem';
 import InputFormItem from 'src/view/shared/form/items/InputFormItem';
@@ -70,6 +70,10 @@ function ProfileFormPage(props) {
   const record = currentUser || {};
   let initialValues = record;
 
+  const handleUpdate = (item) =>{
+    initialValues = item;
+  }
+
   const getAllData = async() => {
     await userservice.getUserProfile(currentUser.id).then(res => {
       initialValues = {
@@ -86,11 +90,18 @@ function ProfileFormPage(props) {
       };
 
     })
-    return  initialValues;
+    console.log(initialValues)
+    handleUpdate(initialValues);
   } 
   
+  getAllData().then(res => {
+  
+    console.log(initialValues)
+  
+  });
 
-  getAllData().then(res => initialValues = res);
+  console.log(initialValues);
+  // getAllData().then(res => initialValues = res);
  
   const form = useForm({
     resolver: yupResolver(schema),

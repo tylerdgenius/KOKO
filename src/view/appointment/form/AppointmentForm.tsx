@@ -99,7 +99,7 @@ function AppointmentForm(props) {
 
   return (
     <FormWrapper>
-      <FormProvider {...form}>
+      {/* <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Grid spacing={2} container>
             <Grid item lg={7} md={8} sm={12} xs={12}>
@@ -118,7 +118,7 @@ function AppointmentForm(props) {
               />
             </Grid>
             <Grid item lg={7} md={8} sm={12} xs={12}>
-              {/* <RadioFormItem
+              <RadioFormItem
                 name="gender"
                 label={i18n('entities.appointment.fields.gender')}
                 options={appointmentEnumerators.gender.map(
@@ -130,7 +130,7 @@ function AppointmentForm(props) {
                   }),
                 )}
                 required={false}
-              /> */}
+              />
             </Grid>
           </Grid>
           <FormButtons
@@ -175,9 +175,9 @@ function AppointmentForm(props) {
             ) : null}
           </FormButtons>
         </form>
-     
+        </FormProvider> */}
         <AppointmentCalendarPage /> 
-      </FormProvider>
+    
     </FormWrapper>
   );
 }

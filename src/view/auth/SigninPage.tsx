@@ -19,6 +19,7 @@ import {
   Button,
   Tooltip,
   CircularProgress,
+  makeStyles,
 } from '@material-ui/core';
 import yupFormSchemas from 'src/modules/shared/yup/yupFormSchemas';
 import * as yup from 'yup';
@@ -28,6 +29,26 @@ import config from 'src/config'; */
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import Message from 'src/view/shared/message';
+
+
+const useStyles = makeStyles({
+// login34: {
+//   content: "",
+//   marginLeft: "-40%",
+//   background-image: url(../../assets/img/bg-login-page.svg);
+//   background-repeat: no-repeat;
+//   background-size: auto 100%;
+//   background-position: 100%;
+//   width: 100%;
+//   height: 100%;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+// }
+
+});
+
+
 
 const schema = yup.object().shape({
   email: yupFormSchemas.string(i18n('user.fields.email'), {
@@ -104,9 +125,20 @@ function SigninPage() {
   return (
     <Wrapper
       style={{
+     
         backgroundImage: `url(${
-          backgroundImageUrl || '/images/signin.jpg'
+          backgroundImageUrl || '/images/bg-login-page.svg'
+          // backgroundImageUrl || '/images/signin.jpg'
         })`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "auto 100%",
+        backgroundPosition: "100%",
+        width: "100%",
+        height: "100%",
+        position: 'absolute',
+        marginLeft: "-8%",
+    top: "0",
+    left: "0",
       }}
     >
       <Content>

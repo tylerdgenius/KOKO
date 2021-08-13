@@ -19,8 +19,7 @@ function ProfileFormPage() {
 
       <ContentWrapper>
         <PageTitle>{i18n('auth.profile.title')}</PageTitle>
-        <Button color="primary" href="/onboarding" >Provider Onboarding</Button>
-        <ProfileForm
+           <ProfileForm
           onCancel={() => getHistory().push('/')}
         />
       </ContentWrapper>

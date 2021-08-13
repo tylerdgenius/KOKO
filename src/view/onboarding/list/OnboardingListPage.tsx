@@ -13,9 +13,10 @@ import ContentWrapper from 'src/view/layout/styles/ContentWrapper';
 import Breadcrumb from 'src/view/shared/Breadcrumb';
 import PageTitle from 'src/view/shared/styles/PageTitle';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import selectors from 'src/modules/provider/providerSelectors';
+import { useDispatch, useSelector } from 'react-redux';
+import selectors from 'src/modules/provider/view/providerViewSelectors';
 import swal from 'sweetalert';
+import actions from 'src/modules/provider/list/providerListActions'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,28 +46,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function OnboardingListPage(props) {
-  const  currentProvider = useSelector(selectors.selectCurrentProvider);
-  console.log(currentProvider)
-if( currentProvider){
 
-    swal({
-      text: "Awaiting Admin Confirmation....",
-      // content: el,
-      buttons: {
-        confirm: {
-          /*
-           * We need to initialize the value of the button to
-           * an empty string instead of "true":
-           */
-          value: "DEFAULT_INPUT_TEXT",
-        },
-      },
-    })
- 
+  // getProviderInfo()
 
-}
+ const dispatch = useDispatch()
 
-
+  useEffect(() => {
+    dispatch(actions.doFetch());
+  }, [dispatch]); 
 
 
   const classes = useStyles();
@@ -104,7 +91,7 @@ if( currentProvider){
       <Grid container spacing={3}>
       {
       rows.map((row) => (
-        <Grid item xs={4} >
+        <Grid item spacing={2} sm={6} md={4} xs={12} lg={3}>
               <Card className={classes.jss28}>
             <CardActionArea>
             <CustomRouterLink key={row.path} to={row.path}>

@@ -9,7 +9,7 @@ export default class AuthCurrentProvider {
         if (token) {
             currentUser = await service.fetchProviderInfo();
           }
-    console.log(currentUser)
+     console.log(currentUser)
         return currentUser;
     
       }

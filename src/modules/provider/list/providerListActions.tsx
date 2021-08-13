@@ -126,12 +126,13 @@ const providerListActions = {
         payload: { filter, rawFilter, keepPagination },
       });
 
-      const response = await ProviderService.list(
+      const response = await ProviderService.fetchProviderInfo();
+     /*  .list(
         filter,
         selectors.selectOrderBy(getState()),
         selectors.selectLimit(getState()),
         selectors.selectOffset(getState()),
-      );
+      ); */
 
       dispatch({
         type: providerListActions.FETCH_SUCCESS,

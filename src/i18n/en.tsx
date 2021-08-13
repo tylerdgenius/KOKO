@@ -1221,6 +1221,10 @@ const en = {
       title: 'Profile',
       success: 'Profile successfully updated',
     },
+    physician: {
+      title: 'Provider Onboarding',
+      success: 'Provider successfully updated',
+    },
     createAnAccount: 'Create an account',
     rememberMe: 'Remember me',
     forgotPassword: 'Forgot password',

@@ -74,21 +74,21 @@ function ExistinghospitalForm(props) {
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Grid spacing={2} container>
-            {/* <Grid item lg={7} md={8} sm={12} xs={12}>
+            <Grid item lg={7} md={8} sm={12} xs={12}>
               <InputFormItem
                 name="name"
                 label={i18n('entities.existinghospital.fields.name')}  
                 required={true}
               autoFocus
               />
-            </Grid> */}
-            {/* <Grid item lg={7} md={8} sm={12} xs={12}>
+            </Grid>
+            <Grid item lg={7} md={8} sm={12} xs={12}>
               <DatePickerFormItem
                 name="birthdate"
                 label={i18n('entities.existinghospital.fields.birthdate')}
                 required={false}
               />
-            </Grid> */}
+            </Grid>
             <Grid item lg={7} md={8} sm={12} xs={12}>
               <SelectFormItem
                 name="name"

@@ -74,7 +74,9 @@ function UserMenu(props) {
   const doSignout = () => {
     dispatch(authActions.doSignout());
   };
-
+  const doNavigateToProvider = () => {
+    getHistory().push('/onboarding');
+  };
   const doNavigateToProfile = () => {
     getHistory().push('/profile');
   };
@@ -126,6 +128,12 @@ function UserMenu(props) {
           <PersonOutlineIcon />
           <span className={classes.optionText}>
             {i18n('auth.profile.title')}
+          </span>
+        </MenuItem>
+        <MenuItem onClick={doNavigateToProvider}>
+          <PersonOutlineIcon />
+          <span className={classes.optionText}>
+            {i18n('auth.physician.title')}
           </span>
         </MenuItem>
         <MenuItem onClick={doNavigateToPasswordChange}>
