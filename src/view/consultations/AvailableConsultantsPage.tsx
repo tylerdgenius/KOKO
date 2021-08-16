@@ -184,6 +184,7 @@ function AvailableConsultantPage(props) {
                                     </Grid>
                                     <Grid container alignItems="center" spacing={2}>
                                         {hospitals.map((row) => (
+                                            <
                                             <Grid item spacing={2} sm={6} md={4} xs={12} lg={3}>
 
                                                 <Card className={classes.jss28}>
